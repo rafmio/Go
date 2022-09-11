@@ -23,3 +23,6 @@ func main() {
 func printSlice(s []int) {
     fmt.Printf("len = %d cap = %d %v\n", len(s), cap(s), s)
 }
+
+// Go Slices: usage and internals
+// https://go.dev/blog/slices-intro

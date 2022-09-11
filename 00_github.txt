@@ -18,4 +18,9 @@ git branch -M main
 git remote add origin git@github.com:rafmio/Go.git
 git push -u origin main
 
+github tips: https://habr.com/ru/company/ruvds/blog/599929/
+
+git commit -m "One more commit"
+git push
+
 

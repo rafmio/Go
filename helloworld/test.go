@@ -1,15 +1,12 @@
 package main
-import "fmt"
+import "fmt" 
 
 func main() {
-    strg := []string{"Huggy", "Waggy", "Kissy", "Missy"}
-    fmt.Println(strg)
+    varvar := make([]int, 10)
+    varvar[0] = 1 << uint(0)
+    varvar[1] = 1 << uint(1)
+    fmt.Println(varvar)
     
-    strg = strg[0:2]
-    fmt.Println(strg)
-    
-    strg = strg[2:4]
-    fmt.Println(strg)
-    
-    fmt.Println(len(strg), cap(strg))
+    varvar[4] = 1 << uint(4)
+    fmt.Println(varvar)
 }

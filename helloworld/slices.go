@@ -2,8 +2,16 @@ package main
 import "fmt"
 
 func main() {
-    primes := [9] int {2, 3, 10, 15, 30, 100, 404, 505, 112}
+    primes := []int{2, 44, 55, 66, 77, 88, 190}
+    var sls []int = primes[1:4]
+    fmt.Println(sls)
     
-    var s[] int = primes[2:5]
-    fmt.Println(s)
+    var numbers []int = []int{1, 2, 3, 4, 5, 100}
+    var numsls[]int = numbers[3:6]
+    fmt.Println(numbers)
+    fmt.Println(numsls)
+    
 }
+
+// An array has a fixed size. A slice, on the other hand, is 
+// dynamically-sized, flexible view into the elements of an array

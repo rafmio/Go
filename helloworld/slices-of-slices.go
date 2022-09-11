@@ -11,7 +11,7 @@ func main() {
         []string{"_", "_", "_"},
         []string{"_", "_", "_"},
     }
-    
+
     // The players take turns
     board[0][0] = "X"
     board[2][2] = "O"
@@ -24,3 +24,4 @@ func main() {
     }
 }
 
+// Slices cat contain any type, including other slices

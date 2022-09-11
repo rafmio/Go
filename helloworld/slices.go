@@ -13,5 +13,5 @@ func main() {
     
 }
 
-// An array has a fixed size. A slice, on the other hand, is 
-// dynamically-sized, flexible view into the elements of an array
+// Slies 
+// https://go.dev/blog/slices-intro

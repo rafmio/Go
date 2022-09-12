@@ -22,3 +22,4 @@ func main() {
 // Functions are values too. They can be passed around just like
 // other values
 // Function values may be used as function argument and return values
+// https://go.dev/tour/moretypes/24

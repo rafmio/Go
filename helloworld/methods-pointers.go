@@ -20,5 +20,10 @@ func (v *Vertex) Scale(f float64) {
 func main() {
     v := Vertex{3, 4}
     v.Scale(10)
+    fmt.Println("v.X = ", v.X)
+    fmt.Println("v.Y = ", v.Y)
     fmt.Println(v.Abs())
 }
+
+// Pointers and functions
+// https://go.dev/tour/methods/5

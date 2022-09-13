@@ -19,7 +19,7 @@ git remote add origin git@github.com:rafmio/Go.git
 git push -u origin main
 
 github tips: https://habr.com/ru/company/ruvds/blog/599929/
-
+GODocs: Guide to Cloning Git Repos: https://golangdocs.com/cloning-git-repositories
 git commit -m "One more commit"
 git push
 

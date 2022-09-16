@@ -35,5 +35,28 @@ func main() {
  
     fmt.Println("---------------------------------------------")
     // Example 3 -----------------------------------------------
+    oRignAl_slice := []int{34, 75, 23, 5, 34, 234, 73}
+    var my_slice_7 = oRignAl_slice[1:5]
+    my_slice_8  := oRignAl_slice[0: ]
+    my_slice_9  := oRignAl_slice[ :6]
+    my_slice_10 := oRignAl_slice[ : ]
+    my_slice_11 := oRignAl_slice[2:4]
     
+    fmt.Println("oRignAl_slice: ", oRignAl_slice)
+    fmt.Println("my_slice_7:  ", my_slice_7)
+    fmt.Println("my_slice_8:  ", my_slice_8)
+    fmt.Println("my_slice_9:  ", my_slice_9)
+    fmt.Println("my_slice_10: ", my_slice_10)
+    fmt.Println("my_slice_11: ", my_slice_11)
+ 
+     fmt.Println("---------------------------------------------")
+    // Example 4 -----------------------------------------------
+     var my_slice_12 = make([]int, 4, 7)
+     fmt.Printf("my_slice_12 = %v, length = %d, capacity = %d\n", my_slice_12, len(my_slice_12), cap(my_slice_12))
+     
+     var my_slice_13 = make([]int, 7)
+     fmt.Printf("my_slice_13 = %v, length = %d, capacity = %d\n", my_slice_13, len(my_slice_13), cap(my_slice_13))
+
+    fmt.Println("---------------------------------------------")
+    // Example 4 -----------------------------------------------
 }

@@ -40,8 +40,39 @@ func main() {
     fmt.Println("p1  =  ", p1)
     fmt.Println("*p  =  ", *p1)
     
-     fmt.Println("-------------------------------------")
+    fmt.Println("-------------------------------------")
     // Example 5 -------------------------------------
+    x5 := 500
+    p2 := &x5
+    
+    fmt.Println("x5  = ", x5)
+    fmt.Println("&x5 = ", &x5)
+    fmt.Println("p2  = ", p2)
+    fmt.Println("*p2 = ", *p2)
+    
+    fmt.Println("-------------------------------------")
+    // Example 6 -------------------------------------
+    var x6  int = 1024
+    var p3 *int = &x6
+    
+    fmt.Println("x6  = ", x6)
+    fmt.Println("&x6 = ", &x6)
+    fmt.Println("p3  = ", p3)
+    fmt.Println("*p3 = ", *p3)
+
+    fmt.Println("-------------------------------------")
+    // Example 7 -------------------------------------
+    var x7 = 2048
+    var p4 = &x7
+    
+    fmt.Println("x7  = ", x7)
+    fmt.Println("&x7 = ", &x7)
+    fmt.Println("p3  = ", p4)
+    fmt.Println("*p3 = ", *p4)
+    
+    *p4 = 4096
+    
+    fmt.Println("x7 var after *p = 4096: ", x7)
 }
 
 

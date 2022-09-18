@@ -8,4 +8,15 @@ In Go, strings are immutable once a string is created the value of the string ca
 
 You can iterate over string using for rang loop. This loop can iterate over the Unicode code point for a string. 
 
+You can trim a string in different ways using under strings package, so you have to import strings in your program to access these functions:
+- Trim
+- TrimLeft
+- TrimRight
+- TrimSpace 
+- TrimSuffix
+- TrimPrefix
+
+
+
 // https://www.geeksforgeeks.org/strings-in-golang/
+// https://www.geeksforgeeks.org/how-to-trim-a-string-in-golang/

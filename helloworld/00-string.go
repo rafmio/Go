@@ -16,6 +16,15 @@ You can trim a string in different ways using under strings package, so you have
 - TrimSuffix
 - TrimPrefix
 
+To split strings (functions): 
+- Split
+- SplitAfter
+- SplitAfterN
+
+Way to compare strings:
+- Using comparison operators
+- Using Compare() method
+
 
 
 // https://www.geeksforgeeks.org/strings-in-golang/

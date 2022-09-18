@@ -29,6 +29,8 @@ func main() {
     fmt.Println(pts.empid)
     fmt.Println((*pts).empid)
 }
+// ---------------------------------------------
+Double Pointers - pointers to pointers
 
 // Will give the same result
 // &{Justin Jonhson 19078}

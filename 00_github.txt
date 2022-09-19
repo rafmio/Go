@@ -23,4 +23,5 @@ GODocs: Guide to Cloning Git Repos: https://golangdocs.com/cloning-git-repositor
 git commit -m "One more commit"
 git push
 
-
+Clone repo:
+git clone git@github.com:rafmio/Go.git

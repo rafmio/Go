@@ -4,6 +4,7 @@ import (
   "time"
 )
 
+// for Example 1----------------------------
 func display(str string) {
   for w := 0; w < 6; w++ {
     time.Sleep(1 * time.Second)
@@ -12,6 +13,7 @@ func display(str string) {
 }
 
 func main() {
+  // Example 1 -------------------------------
   go display("Welcome")
   display("Come here to me")
 }

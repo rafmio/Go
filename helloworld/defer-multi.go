@@ -2,7 +2,7 @@ package main
 import "fmt"
 
 func main() {
-    fmt.Println("countion")
+    fmt.Println("counting")
     
     for i := 0; i < 10; i++ {
         defer fmt.Println(i)
@@ -10,3 +10,6 @@ func main() {
     
     fmt.Println("done")
 }
+
+// Stacking defers
+// https://go.dev/tour/flowcontrol/13

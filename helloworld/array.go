@@ -2,25 +2,23 @@ package main
 import "fmt"
 
 func main() {
-    var array [4]string
-    array[0] = "Hello"
-    array[1] = "Mello"
-    array[2] = "Kissy"
-    array[3] = "Missy"
+    var arr [4] string
+    arr[0] = "Kissy"
+    arr[1] = "Missy"
+    arr[2] = "Huggy"
+    arr[3] = "Wuggy"
     
-    for i := 0; i < len(array); i++ {
-        fmt.Println(array[i])
-    }
-    fmt.Println(array)
+    fmt.Println("arr[0] = ", arr[0], "arr[1] = ", arr[1])
+    fmt.Println(arr)
     
-    primes := [8]int{10, 20, 30, 40, 50, 60, 70, 80}
-    for i := 0; i < len(primes); i++ {
-        fmt.Println(primes[i])
+    primes := [6]int{10, 20, 30, 40, 50, 60}
+    fmt.Println("primes: ", primes)
+    
+    for i := 0; i < len(arr); i++ {
+        fmt.Printf("arr[%d] = %s\n", i, arr[i])
     }
-    fmt.Println(primes)
 }
 
-// The type [n]T is an array of n values of type T
-// An array's length is part of its type, so arrays cannot be 
-// resized
-// But Go provides a convinient way of working with arrays
+
+// Arrays
+// https://go.dev/tour/moretypes/6

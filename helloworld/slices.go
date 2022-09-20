@@ -2,16 +2,27 @@ package main
 import "fmt"
 
 func main() {
-    primes := []int{2, 44, 55, 66, 77, 88, 190}
-    var sls []int = primes[1:4]
-    fmt.Println(sls)
+    primes := [6]int{2, 3, 5, 7, 11, 15}
     
-    var numbers []int = []int{1, 2, 3, 4, 5, 100}
-    var numsls[]int = numbers[3:6]
-    fmt.Println(numbers)
-    fmt.Println(numsls)
+    var sls1 []int = primes[1:4]
+    fmt.Println("sls1: ", sls1)
     
+    primes[1] = 2000
+    fmt.Println("primes: ", primes)
+    fmt.Println("sls1: ", sls1)
+    
+    fmt.Println("sls1[0]: ", sls1[0])
+    
+    sls2 := []int{10, 20, 55, 66, 77, 88}
+    fmt.Println("sls2: ", sls2)
+    
+    sls3 := sls2[2:5]
+    fmt.Println("sls3: ", sls3)
+    
+    sls2[2] = 1000
+    fmt.Println("sls2: ", sls2)
+    fmt.Println("sls3: ", sls3)
 }
 
-// Slies 
-// https://go.dev/blog/slices-intro
+// Slices
+// https://go.dev/tour/moretypes/7

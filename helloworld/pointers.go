@@ -4,14 +4,24 @@ import "fmt"
 func main() {
     i, j := 42, 2701
     
-    p := &i             // point to i
-    fmt.Println(*p)     // read i through the pointer
-    fmt.Println(p)
-    *p = 21             // set i through the pointer
-    fmt.Println(i)      // see the new value of i
+    p  := &i
+    pp := &j
     
-    p = &j              // point to j
-    *p = *p / 37        // divide j through the pointer
-    fmt.Println(j)      // see the new value of j
-    fmt.Println(*p)
+    fmt.Printf("*p = %v, *pp = %v\n", *p, *pp)
+    
+    *p  = 100
+    *pp = 3000
+
+    fmt.Printf("*p = %v, *pp = %v, i = %d, j = %d\n", *p, *pp, i, j)
+    
+    p = &j
+    fmt.Println("*p = ", *p)
+    *p = *p / 3 / 500
+    fmt.Println("(After *p = *p / 3 / 500): *p = ", *p)
+    
+    fmt.Printf("i = %v, j = %v, *p = %v, *pp = %v\n", i, j, *p, *pp)
 }
+
+
+// Pointers 
+// https://go.dev/tour/moretypes/1

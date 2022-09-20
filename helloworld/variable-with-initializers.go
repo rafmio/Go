@@ -1,9 +1,12 @@
-package main 
+package main
 import "fmt"
 
-var i, j, n, m int = 1, 2, 200, 300
+var i, j int = 1, 2
 
 func main() {
-    var c, python, java = true, false, "no!"
-    fmt.Println(i, j, n, m, c, python, java)
+  var c, python, java = true, false, "no!"
+  fmt.Println(i, j, c, python, java)
 }
+
+// Variables with initializers
+// https://go.dev/tour/basics/9

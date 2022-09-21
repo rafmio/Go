@@ -2,27 +2,31 @@ package main
 import "fmt"
 
 func main() {
-    array := []int{22, 33, 43, 54, 57, 89}
-    fmt.Printf("array []: len = %d cap = %d\n", len(array), cap(array))
+    arr := [9]int{2, 4, 8, 16, 32, 64, 128, 256, 512}
+    fmt.Println("arr: ", arr)
+    fmt.Printf("len(arr) = %d, cap(arr) = %d\n", len(arr), cap(arr))
     
-    // Slice the slice to give it zero length
-    array = array[:0]
-    printSlice(array)
+    sls1 := arr[2:8]
+    fmt.Println()
+    fmt.Println("sls1: ", sls1)
+    fmt.Printf("len(sls1) = %d, cap(sls1) = %d\n", len(sls1), cap(sls1))
     
-    // Extend its length
-    array = array[:4]
-    printSlice(array)
+    sls1 = sls1[2: ]
+    fmt.Println()
+    fmt.Println("sls1: ", sls1)
+    fmt.Printf("len(sls1) = %d, cap(sls1) = %d\n", len(sls1), cap(sls1))
     
-    // Drop its first two values
-    array = array[2:]
-    printSlice(array)
+    sls1 = sls1[1:4]
+    fmt.Println()
+    fmt.Println("sls1: ", sls1)
+    fmt.Printf("len(sls1) = %d, cap(sls1) = %d\n", len(sls1), cap(sls1))
+    
+    sls1[0] = 1000
+    fmt.Println()
+    fmt.Println("arr: ", arr)
+    fmt.Println("sls1: ", sls1)
 }
 
-func printSlice(s []int) {
-    fmt.Printf("len=%d cap=%d %v\n", len(s), cap(s), s)
-}
 
-// A slice has both a length and a capacity
-// The length of slice if the number of elements it contains
-// The capacity of a slice is the number of elements in the 
-// underlying array, counting from the first element is the slice
+// Slice length and capacity
+// https://go.dev/tour/moretypes/11

@@ -1,5 +1,5 @@
 Last stop (20 Sep 2022, 23:30):
-https://go.dev/tour/moretypes/9
+https://go.dev/tour/moretypes/15
 
 Declaring functions:
 func funcname(x int, y int) int {

@@ -2,21 +2,17 @@ package main
 import "fmt"
 
 func main() {
-    s := []int{12, 32, 434, 6313, 121, 4, 5, 353, 51}
-    s = s[1:7]
-    fmt.Println(s)
+    sss := []int{2, 4, 8, 16, 32, 64, 128, 256, 512}
+    fmt.Println("sss slice: ", sss)
     
-    s = s[:4]
-    fmt.Println(s)
+    sss = sss[2:7]
+    fmt.Println("slice: ", sss) 
+    fmt.Println("sss[0]: ", sss[0])
     
-    s = s[1:]
-    fmt.Println(s)
+    sss = sss[3:]
+    fmt.Println("sss: ", sss)
 }
 
 
-// When slicing, you may omit the high or low bounds to use their
-// defaults instead
-// The defaults is zero for the low bound and the length of the 
-// slice for the high bound
-// My notes (MAY BE WRONG!!!): in this example s redefined by // 
-// assinging new values of new slices
+// Slice defaults 
+// https://go.dev/tour/moretypes/10

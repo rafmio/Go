@@ -6,13 +6,18 @@ import (
 
 func main() {
     // Create a tic-tac-toe board
-    board := [][]string{
+    
+    board := [][]string {
         []string{"_", "_", "_"},
         []string{"_", "_", "_"},
         []string{"_", "_", "_"},
     }
-
-    // The players take turns
+    
+    for i := 0; i < len(board); i++ {
+        fmt.Println(board[i])
+    }
+    
+    // The players take turns 
     board[0][0] = "X"
     board[2][2] = "O"
     board[1][2] = "X"
@@ -20,8 +25,9 @@ func main() {
     board[0][2] = "X"
     
     for i := 0; i < len(board); i++ {
-        fmt.Printf("%s\n", strings.Join(board[i], " "))
+        fmt.Printf("%s\n", strings.Join(board[i], " " ))
     }
 }
 
-// Slices cat contain any type, including other slices
+// Slices of slices
+// https://go.dev/tour/moretypes/14

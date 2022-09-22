@@ -2,34 +2,34 @@ package main
 import "fmt"
 
 func main() {
-    pow := make([]int, 10)
-    fmt.Println(pow)
-    for i := range pow {
-        pow[i] = 1 << uint(i) // == 2 ** i
-    }
-    
+  pow := make([]int, 10)
+  for i := range pow {
+    pow[i] = 1 << uint(i)     // == 2 ** i
+  }
 
-    for _, value := range pow {
-        fmt.Printf("%d ", value)
-    } 
-    
-    fmt.Println("\n")
-    
-    for i := range pow {
-        pow[i] = 0
-    }
-    
-    for i := 0; i < len(pow); i++ {
-        pow[i] = i * 2
-    }
-    fmt.Println(pow)
-    
-    fmt.Println("\n")
+  for _, value := range pow {
+    fmt.Printf("%d\n", value)
+  }
+
+  fmt.Println("pow: ", pow)
+
+  sls1 := make([]int, 0)
+
+  fmt.Println("sls1: ", sls1)
+  sls1 = append(pow)
+  fmt.Println("sls1: ", sls1)
+  fmt.Println("pow: ", pow)
+
+  for _, vl := range sls1 {
+    fmt.Println("sls1: ", vl)
+  }
+
+  for indx, _ := range sls1 {
+    fmt.Println("sls1: ", indx)
+  }
 }
 
 
-// You can skip the index or value by assigning to_
-// for i, _ := range pow
-// for _, value := range pow
-// If you only want the index, you can omit the second variable
-// for i := range pow
+
+// Range
+// https://go.dev/tour/moretypes/17

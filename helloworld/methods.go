@@ -1,11 +1,12 @@
 package main
+
 import (
     "fmt"
     "math"
 )
 
 type Vertex struct {
-    X, Y float64
+    X, Y float64 
 }
 
 func (v Vertex) Abs() float64 {
@@ -16,6 +17,7 @@ func main() {
     v := Vertex{3, 4}
     fmt.Println(v.Abs())
 }
+
 
 // Methods 
 // A method is a function with a special reveiver argument

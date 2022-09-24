@@ -1,4 +1,5 @@
 package main
+
 import (
     "fmt"
     "math"
@@ -16,6 +17,8 @@ func main() {
     v := Vertex{3, 4}
     fmt.Println(Abs(v))
 }
+
+
 
 // Method are functions
 // A method is just a function with a receiver argument

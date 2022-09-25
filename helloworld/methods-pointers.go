@@ -1,4 +1,5 @@
 package main
+
 import (
     "fmt"
     "math"
@@ -8,7 +9,7 @@ type Vertex struct {
     X, Y float64
 }
 
-func (v Vertex) Abs() float64 {
+func (v *Vertex) Abs() float64 {
     return math.Sqrt(v.X * v.X + v.Y * v.Y)
 }
 
@@ -19,11 +20,12 @@ func (v *Vertex) Scale(f float64) {
 
 func main() {
     v := Vertex{3, 4}
+    fmt.Println("v = ", v)
     v.Scale(10)
-    fmt.Println("v.X = ", v.X)
-    fmt.Println("v.Y = ", v.Y)
+    fmt.Println("v = ", v)
     fmt.Println(v.Abs())
+    fmt.Println("v = ", v)
 }
 
-// Pointers and functions
-// https://go.dev/tour/methods/5
+// Pointers receivers
+// https://go.dev/tour/methods/4

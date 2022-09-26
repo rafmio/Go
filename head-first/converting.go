@@ -8,7 +8,7 @@ func main() {
 	fmt.Println("Price is", price, currency)
 
 	var taxRate float64 = 0.08
-	var tax float64 = float64(price) * taxRate 
+	var tax float64 = float64(price) * taxRate
 	fmt.Println("Tax is", tax, currency)
 
 	var total float64 = float64(price) + tax

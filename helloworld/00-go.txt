@@ -1,13 +1,2 @@
-Last stop (20 Sep 2022, 23:30):
-https://go.dev/tour/moretypes/15
-
-Declaring functions:
-func funcname(x int, y int) int {
-    // do smt
-}
-
-We may omit the type except last
-func funcname(x, y int) int {
-    // do smt
-}
-A function can return any number of results.
+Last stop (26 Sep 2022, 17:30):
+https://go.dev/tour/methods/21

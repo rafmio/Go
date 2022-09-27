@@ -1,29 +1,17 @@
 package main
 
-import "fmt"
-
-var a = "a"
+import (
+	"fmt"
+	"log"
+	"os" 
+) 
 
 func main() {
-    a = "a"
-    b := "b"
-    
-    if true {
-        c := "c"
-        if true {
-            d := "d"
-            fmt.Println(a)
-            fmt.Println(b)
-            fmt.Println(c)
-            fmt.Println(d)
-        }
-        fmt.Println(a)
-        fmt.Println(b)
-        fmt.Println(c)
-//         fmt.Println(d) // delete
-    }
-    fmt.Println(a)
-    fmt.Println(b)
-//     fmt.Println(c)    // delete
-//     fmt.Println(d)    // delete
-}
+	fileInfo, err := os.Stat("time.go") 
+	if err != nil {
+		log.Fatal(err) 
+	}
+
+	fmt.Println(fileInfo.Size()) 
+	fmt.Println(fileInfo) 
+} 

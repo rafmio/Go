@@ -1,13 +1,12 @@
-package main 
+package main
 
 import (
-	"fmt" 
-	"reflect" 
-) 
+    "fmt"
+    "os"
+)
 
 func main() {
-	var myInt int 
-	fmt.Println(reflect.TypeOf(&myInt))
-	var myFloat float64
-	fmt.Println(reflect.TypeOf(&myFloat)) 
+    fmt.Println(os.Stdin)
+    stdinn := os.Stdin
+    fmt.Printf("Type of stdinn = %T\n", stdinn)
 }

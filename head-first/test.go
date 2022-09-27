@@ -1,19 +1,13 @@
-package main
+package main 
 
 import (
-	"fmt"
-	"math" 
-)  
-
-func floatParts(number float64) (intergerPart int, fractionalPart float64) {
-	wholeNumber := math.Floor(number)
-
-	fmt.Println("wholeNumber: ", wholeNumber) 
-
-	return int(wholeNumber), number - wholeNumber 
-}
+	"fmt" 
+	"reflect" 
+) 
 
 func main() {
-	cans, remainder := floatParts(1.26) 
-	fmt.Println(cans, remainder) 
+	var myInt int 
+	fmt.Println(reflect.TypeOf(&myInt))
+	var myFloat float64
+	fmt.Println(reflect.TypeOf(&myFloat)) 
 }

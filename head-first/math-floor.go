@@ -6,10 +6,7 @@ import (
 )  
 
 func floatParts(number float64) (intergerPart int, fractionalPart float64) {
-	wholeNumber := math.Floor(number)
-
-	fmt.Println("wholeNumber: ", wholeNumber) 
-
+	wholeNumber := math.Floor(number) 
 	return int(wholeNumber), number - wholeNumber 
 }
 

@@ -18,4 +18,4 @@ Tutor https://www.digitalocean.com/community/tutorials/how-to-install-go-and-set
 При компиляции и установке инструментов Go помещает их в директорию $GOPATH/bin. Для удобства субдиректория /bin рабочего пространства обычно добавляется в переменную PATH в файле ~/.profile:
 export PATH=$PATH:$GOPATH/bin
 
-
+The path was changed from ~/Documents/it/Go to /home/raf/go 

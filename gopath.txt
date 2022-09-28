@@ -1,0 +1,21 @@
+Tutor https://losst.ru/ustanovka-go-ubuntu
+
+$export PATH=PATH:/opt/go/bin (до этого архив был распакован в папку /opt)
+
+edit file etc/environment by adding path 'opt/go/bin'
+
+Notese Go where directory for projects is:
+$export GOPATH=$HOME/work (прмер)
+
+
+Tutor https://www.digitalocean.com/community/tutorials/how-to-install-go-and-set-up-a-local-programming-environment-on-ubuntu-18-04-ru
+ 
+По Соглашению структура рабочей папки Go должна содержать 2 директории:
+- src
+- bin
+
+Можно задать $GOPATH, добавив переменные в ~/.profile (добавить строку export GOPATH=$HOME/go)
+При компиляции и установке инструментов Go помещает их в директорию $GOPATH/bin. Для удобства субдиректория /bin рабочего пространства обычно добавляется в переменную PATH в файле ~/.profile:
+export PATH=$PATH:$GOPATH/bin
+
+

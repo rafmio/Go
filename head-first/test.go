@@ -1,12 +1,14 @@
 package main
 
 import (
-    "fmt"
-    "os"
+	"bufio"
+	"os"
+	"fmt"
+	// "fmt"
 )
 
 func main() {
-    fmt.Println(os.Stdin)
-    stdinn := os.Stdin
-    fmt.Printf("Type of stdinn = %T\n", stdinn)
+	reader := bufio.NewReader(os.Stdin)
+	input, err := reader.ReadString('\n')
+	fmt.Println(input, err, reader)
 }

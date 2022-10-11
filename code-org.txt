@@ -1,0 +1,42 @@
+Code organization in Go:
+- outdated (GOPATH, GOROOT)
+- modern - modules
+------------------------------------------------------------------------------------------------------------------------
+MODULES
+https://go.dev/doc/code
+$ go mod init example/user/hello
+
+Create *.go file, write code, save&close
+
+$ go install example/user/hello
+
+This command builds the hello command, producing an executable binary. 
+It then installs that binary as $HOME/go/bin/hello
+The install directory is controlled by the GOPATH and GOBIN environment variables. If GOBIN is set, binaries are installed to that directory. If GOPATH is set, binaries are installed to the bin subdirectory of the first directory in the GOPATH list. Otherwise, binaries are installed to the bin subdirectory of the default GOPATH ($HOME/go or %USERPROFILE%\go)
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+GOPATH (outdated method)
+Tutor https://losst.ru/ustanovka-go-ubuntu
+
+$export PATH=PATH:/opt/go/bin (до этого архив был распакован в папку /opt)
+
+edit file etc/environment by adding path 'opt/go/bin'
+
+Notese Go where directory for projects is:
+$export GOPATH=$HOME/work (прмер)
+
+
+Tutor https://www.digitalocean.com/community/tutorials/how-to-install-go-and-set-up-a-local-programming-environment-on-ubuntu-18-04-ru
+ 
+По Соглашению структура рабочей папки Go должна содержать 2 директории:
+- src
+- bin
+
+Можно задать $GOPATH, добавив переменные в ~/.profile (добавить строку export GOPATH=$HOME/go)
+При компиляции и установке инструментов Go помещает их в директорию $GOPATH/bin. Для удобства субдиректория /bin рабочего пространства обычно добавляется в переменную PATH в файле ~/.profile:
+export PATH=$PATH:$GOPATH/bin
+
+The path was changed from ~/Documents/it/Go to /home/raf/go 

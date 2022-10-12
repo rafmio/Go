@@ -12,4 +12,18 @@ func main() {
 	for i := 0; i < len(notes); i++ {
 		fmt.Println(notes[i])
 	}
+
+  notes2 := [6]string{"mi", "si", "so", "re", "la", "mi"}
+  fmt.Println(notes2[2], notes2[4])
+
+  fmt.Println()
+
+  text := [3]string{
+    "This is a series of long strings",
+    "which would be awkward to place",
+    "together on a single line",
+  }
+
+  fmt.Println(text)
+  fmt.Println(text[2])
 }

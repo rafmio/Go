@@ -3,13 +3,8 @@ package main
 import "fmt"
 
 func main() {
-	var notes [7]string = [7]string{"do", "re", "mi", "fa", "so", "la", "ti"}
-	fmt.Println(notes[3], notes[6], notes[0])
-
-	var primes [5]int = [5]int{2, 4, 6, 10, 127}
-	fmt.Println(primes[0], primes[2], primes[4])
-
-	for i := 0; i < len(notes); i++ {
-		fmt.Println(notes[i])
-	}
+	primes := make([]int, 5)
+	primes[0] = 2
+	primes[1] = 3
+	fmt.Println(primes[0], primes[1])
 }

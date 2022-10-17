@@ -1,6 +1,15 @@
 https://go.dev/doc/tutorial/call-module-code
 
+Периодически терминал "забывает" путь к Go, нужно напоминать:
+export PATH=$PATH:/usr/local/go/bin
+----------------------------------------------------------
+go mod init moduleName
 
+In main module:
+$ go mod edit -replace example.com/greetings=../greetings
+
+$ go mod tidy
+----------------------------------------------------------
 
 Чтобы включить отслеживание зависимостей для кода нужно
 - создать файл go.mod

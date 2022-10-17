@@ -32,3 +32,8 @@ func GetFloats(fileName string) ([3]float64, error) {
     }
     return numbers, nil
 }
+
+// What .NewScanner() returns?
+// What is Text() method?
+// What is ParseFloat() method?
+// What is Err() method?

@@ -1,19 +1,15 @@
 package main
 
 import (
-<<<<<<< HEAD
+
     "fmt"
     "log"
     "datafile"
 )
-=======
-  "fmt"
-  "datafile"
-  "log"
-)
+
 
 func main() {
-  numbers, err := datafile.GetFloats("/home/raf/go/Go/src/head-first/average/data.txt")
+  numbers, err := datafile.GetFloats("data.txt")
   if err != nil {
     log.Fatal(err)
   }
@@ -28,4 +24,3 @@ func main() {
 
   fmt.Printf("The type of numbers is : %T\n", numbers)
 }
->>>>>>> c9916e36585592a71321373748e872f6582d4557

@@ -1,5 +1,7 @@
 https://go.dev/doc/tutorial/call-module-code
 
+
+
 Чтобы включить отслеживание зависимостей для кода нужно
 - создать файл go.mod
 - запустить команду go mod init
@@ -38,6 +40,8 @@ export PATH=$PATH:/usr/local/go/bin
 
 Из папки hello:
 $ go mod edit -replace example.com/greetings=../greetings
+В данном случае второй greetings - это название папки, где лежит одноименный
+модуль
 
 В папке hello в файле go.mod появится строка
 replace example.com/greetings => ../greetings

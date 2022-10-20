@@ -17,4 +17,9 @@ func main() {
 		counts[line]++
 	}
 	fmt.Println(counts)
+	fmt.Println()
+
+	for key, value := range counts {
+		fmt.Println(key, value)
+	}
 }

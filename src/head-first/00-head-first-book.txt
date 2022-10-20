@@ -1,3 +1,3 @@
 Head_First_Izuchaem_Go_2020_Makgavren_Dzhey
-Last stop: page 254 (19 Oct 2022, 16:53)
-maps/votes/votes3.go
+Last stop: page 258 (19 Oct 2022, 16:53)
+maps/votes/votes4.go

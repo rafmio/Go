@@ -3,8 +3,10 @@ package main
 import "fmt"
 
 func main() {
-	primes := make([]int, 5)
-	primes[0] = 2
-	primes[1] = 3
-	fmt.Println(primes[0], primes[1])
+	var testmap map[string]string
+	testmap = make(map[string]string)
+
+	testmap["Kissy"] = "Missy"
+	value, ok := testmap["Kissy"]
+	fmt.Println(value, ok)
 }

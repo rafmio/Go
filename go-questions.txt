@@ -2,3 +2,6 @@ What .NewScanner() returns?
 What is Text() method?
 What is ParseFloat() method?
 What is Err() method?
+
+Закрепить ввод с клавиатуры в переменную
+Закрепить применение модулей

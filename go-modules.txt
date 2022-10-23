@@ -10,7 +10,9 @@ $ go mod edit -replace example.com/greetings=../greetings
 
 $ go mod tidy
 ----------------------------------------------------------
-
+I can't export struct from module (functions and variables 
+exported successfully)
+----------------------------------------------------------
 Чтобы включить отслеживание зависимостей для кода нужно
 - создать файл go.mod
 - запустить команду go mod init

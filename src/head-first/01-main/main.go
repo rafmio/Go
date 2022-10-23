@@ -11,4 +11,7 @@ func main() {
   var c int 
   c = sumfunc.Summ(a, b)
   fmt.Println(c)
+  
+  dd = sumfunc.Summ(150, 150) + sumfunc.ExportedVar
+  fmt.Println(dd)
 }

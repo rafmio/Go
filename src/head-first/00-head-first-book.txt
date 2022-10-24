@@ -1,3 +1,4 @@
 Head_First_Izuchaem_Go_2020_Makgavren_Dzhey
-Last stop: page 317 (24 Oct 2022, 18:08)
-/home/raf/go/src/head-first/definedTypes/defTypes10.go
+Last stop: page 333 (24 Oct 2022, 23:48)
+/home/raf/go/src/head-first/enc-and-emb/02-mod/date.go
+(created 2 folders 02-mod 02-main and empty file date.go in 02-mod)

@@ -1,3 +1,3 @@
 Head_First_Izuchaem_Go_2020_Makgavren_Dzhey
-Last stop: page 313 (24 Oct 2022, 17:07)
-/home/raf/go/src/head-first/definedTypes/defTypes6.go
+Last stop: page 317 (24 Oct 2022, 18:08)
+/home/raf/go/src/head-first/definedTypes/defTypes10.go

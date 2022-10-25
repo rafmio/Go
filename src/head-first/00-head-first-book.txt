@@ -1,3 +1,4 @@
 Head_First_Izuchaem_Go_2020_Makgavren_Dzhey
-Last stop: page 341 (25 Oct 2022, 09:29)
-/home/raf/go/src/head-first/enc-and-emb/03-main/main.go
+Last stop: page 345 (25 Oct 2022, 23:57)
+/home/raf/go/src/he ad-first/enc-and-emb/04-mod
+Added but not finished modes for exaple in book. Finish him!

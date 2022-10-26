@@ -1,16 +1,12 @@
 package mypackage
 
-import (
-  "errors"
-  "fmt"
-)
+import "errors"
 
 // Structure: ----------------------------------------------------------------
 type Date struct {
   year int
   month int
   day int
-  Hour int
 }
 
 // Set-methods (setters): ----------------------------------------------------
@@ -27,7 +23,7 @@ func (d *Date) SetMonth(month int) error {
     return errors.New("invalid month")
   }
   d.month = month
-  return nil
+  return nil 
 }
 
 func (d *Date) SetDay(day int) error {
@@ -49,30 +45,4 @@ func (d *Date) Month() int {
 
 func (d *Date) Day() int {
   return d.day
-}
-
-// ----------------------------------------------------------------
-// Чтобы Date было экспортируемым - пишем с заглавной буквы
-// А чтобы поля структуры не экспортировались - пишем с нижнего регистра
-//
-
-
-// ---------------------------------------------------------------------------
-type Event struct {
-    Title string
-    Date
-}
-// ---------------------------------------------------------------------------
-type MyType struct {
-    EmbeddedType
-}
-
-type EmbeddedType string
-
-func (e EmbeddedType) ExportedMethod() {
-    fmt.Println("Hi from ExportedMethod on EmbeddedType")
-}
-
-func (e EmbeddedType) unexportedMethod() {
-
 }

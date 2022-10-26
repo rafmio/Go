@@ -5,3 +5,6 @@ What is Err() method?
 
 Закрепить ввод с клавиатуры в переменную
 Закрепить применение модулей
+
+Runes
+Package "unicode/utf8"

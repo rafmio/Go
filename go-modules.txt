@@ -1,5 +1,5 @@
 https://go.dev/doc/tutorial/call-module-code
-
+https://golang-blog.blogspot.com/2019/06/go-modules.html
 Периодически терминал "забывает" путь к Go, нужно напоминать:
 export PATH=$PATH:/usr/local/go/bin
 ----------------------------------------------------------
@@ -10,7 +10,7 @@ $ go mod edit -replace example.com/greetings=../greetings
 
 $ go mod tidy
 ----------------------------------------------------------
-I can't export struct from module (functions and variables 
+I can't export struct from module (functions and variables
 exported successfully)
 ----------------------------------------------------------
 Чтобы включить отслеживание зависимостей для кода нужно

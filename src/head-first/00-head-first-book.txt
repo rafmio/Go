@@ -1,3 +1,2 @@
 Head_First_Izuchaem_Go_2020_Makgavren_Dzhey
-Last stop: page 360 (26 Oct 2022, 17:06)
-src/head-first/interfaces/02-mod/myinterface.go
+Last stop: page 369 (27 Oct 2022, 16:00)

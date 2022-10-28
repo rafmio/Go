@@ -15,19 +15,20 @@ func (e *MyError) Error() string {
 }
 
 func run() error {
-  return &MyError{
+  return &MyError {
     time.Now(),
     "it didn't work",
   }
 }
 
 func main() {
-  err := run()
-  if err != nil {
+  if err := run(); err != nil {
     fmt.Println(err)
   }
+
+  tstVar1 := MyError{}
+  fmt.Println(tstVar1.Error())
 }
 
 
-// Errors
-// https://go.dev/tour/methods/19
+//https://go.dev/tour/methods/19

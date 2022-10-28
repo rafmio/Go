@@ -3,9 +3,16 @@ package main
 import "fmt"
 
 func main() {
-	var value int = 2
-	var pointer *int = &value
-	fmt.Println(value)
-	fmt.Println(pointer)
-	fmt.Println(*pointer)
+	var i interface{}
+	descibe(i)
+
+	i = 42
+	descibe(i)
+
+	i = "hello"
+	descibe(i)
+}
+
+func descibe(i interface{}) {
+	fmt.Printf("(%v, %T)\n", i, i)
 }

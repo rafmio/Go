@@ -20,6 +20,7 @@ func checkTemperature(actual float64, safe float64) error {
 
 func main() {
   var err error = checkTemperature(121.379, 100.0)
+  fmt.Println("err's value: ", err)
   if err != nil {
     log.Fatal(err)
   }

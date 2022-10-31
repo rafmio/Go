@@ -6,6 +6,7 @@ What is Err() method?
 Закрепить ввод с клавиатуры в переменную
 Закрепить применение модулей
 
+type assertion
 Runes
 Package "unicode/utf8"
 error realization (type error interface{}, Err(), Error() method, etc)
@@ -18,3 +19,5 @@ ioutil.ReadDir()
 ioutil Name()
 ioutil IsDir
 filepath.Join()
+
+panic, recover, defer

@@ -12,3 +12,9 @@ error realization (type error interface{}, Err(), Error() method, etc)
 bufio Scanner
 bufio NewScanner
 io.Reader (type Reader interface)
+io/ioutil
+path/filepath
+ioutil.ReadDir()
+ioutil Name()
+ioutil IsDir
+filepath.Join()

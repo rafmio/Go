@@ -8,3 +8,7 @@ What is Err() method?
 
 Runes
 Package "unicode/utf8"
+error realization (type error interface{}, Err(), Error() method, etc)
+bufio Scanner
+bufio NewScanner
+io.Reader (type Reader interface)

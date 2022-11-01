@@ -21,3 +21,7 @@ ioutil IsDir
 filepath.Join()
 
 panic, recover, defer
+
+net/http
+http.Get (go doc http Get)
+http.Response (go doc http Response)

@@ -11,6 +11,11 @@ func viewHandler(writer http.ResponseWriter, request *http.Request) {
   if err != nil {
     log.Fatal(err)
   }
+  message2 := []byte("\nKissy-Missy")
+  _, err = writer.Write(message2)
+  if err != nil {
+    log.Fatal(err)
+  }
 }
 
 func main() {

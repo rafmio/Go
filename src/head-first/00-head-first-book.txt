@@ -1,2 +1,4 @@
 Head_First_Izuchaem_Go_2020_Makgavren_Dzhey
-Last stop: page 479 (07 Nov 2022, 16:01)
+Last stop: page 485 (07 Nov 2022, 17:41)
+
+head-first/text-template.go

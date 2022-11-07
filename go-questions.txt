@@ -30,13 +30,16 @@ http.ResponseWriter
 *http.Request
 http.Write
 http.HandleFunc
-http.ListenAndServe 
+http.ListenAndServe
 
 sync Package
 (https://zetcode.com/golang/goroutine/)
 sync.WaitGroup
 sync.Add()
 sync.Done()
-sync.Wait() 
+sync.Wait()
 
-
+text/template
+template.New()
+template.Parse()
+template.Execute()

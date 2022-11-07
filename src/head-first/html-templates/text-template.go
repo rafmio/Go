@@ -4,6 +4,7 @@ import (
   "log"
   "os"
   "text/template"
+  "fmt"
 )
 
 func check(err error) {
@@ -18,4 +19,7 @@ func main() {
   check(err)
   err = tmpl.Execute(os.Stdout, nil)
   check(err)
+  fmt.Printf("Type of tmpl: %T\n", tmpl)
+  fmt.Println(text)
+  fmt.Println(tmpl)
 }

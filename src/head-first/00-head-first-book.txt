@@ -1,4 +1,3 @@
 Head_First_Izuchaem_Go_2020_Makgavren_Dzhey
-Last stop: page 497 (08 Nov 2022, 10:34)
+Last stop: page 502 (08 Nov 2022, 16:31)
 
-head-first/html-templates/task

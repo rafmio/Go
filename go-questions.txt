@@ -45,4 +45,6 @@ template.Parse()
 template.Execute()
 
 html/template
-{{.}} {{if}} {{end}} {{range}} 
+{{.}} {{if}} {{end}} {{range}}
+
+http(html?).FormValue()  

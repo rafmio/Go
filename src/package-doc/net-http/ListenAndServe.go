@@ -7,17 +7,17 @@ import (
 )
 
 func main() {
-  h1 := func(w http.ResponseWriter, _ *http.Request) {
-    io.WriteString(w, "Hello form HandleFunc #1!\n")
+  // Hello world, the web server
+  helloHandler := func(w http.ResponseWriter, req *http.Request) {
+    io.WriteString(w, "Hello, world!\nIt's me again")
   }
 
-  h2 := func(w http.ResponseWriter, _ *http.Request) {
-    io.WriteString(w, "Hello from a HandleFunc #2!\n")
+  shitHandler := func(w http.ResponseWriter, req *http.Request) {
+    io.WriteString(w, "Shit happen. But sometimes")
   }
 
-  http.HandleFunc("/", h1)
-  http.HandleFunc("/endpoint", h2)
-
+  http.HandleFunc("/hello", helloHandler)
+  http.HandleFunc("/shit", shitHandler)
   log.Fatal(http.ListenAndServe(":8080", nil))
 }
 

@@ -58,6 +58,8 @@ func newHandler(writer http.ResponseWriter, request *http.Request) {
 
 func createHandler(writer http.ResponseWriter, request *http.Request) {
     signature := request.FormValue("signature")
+		options := os.O_WRONLY | os.O_APPEND | os.O_CREATE
+		file, err := os.OpenFile("signature.txt", options, os.FileMode(0600))
     _, err := writer.Write([]byte(signature))
     check(err)
 }
@@ -151,3 +153,7 @@ func main() {
 // func (*Template) Execute(wr io.Writer, data any) error
 // Execute applies parsed template to the specified data object, writing the
 // output to wr
+
+// func (r *Request) FormValue(key string) string
+// FormValue returns the first value for the named component of the query.
+// POST and PUT body parameters take precedence over URL query string values.

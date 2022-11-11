@@ -1,3 +1,6 @@
 Head_First_Izuchaem_Go_2020_Makgavren_Dzhey
 Last stop: page 522 (11 Nov 2022, 10:48)
 
+Additional sources:
+https://headfirstgo.com/
+https://www.gopl.io/ch1.pdf (https://www.gopl.io/)

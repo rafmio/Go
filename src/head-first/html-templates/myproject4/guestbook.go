@@ -9,6 +9,7 @@ import (
 	"os"
 )
 
+// Структура для отображения view.html
 type Guestbook struct {
 	SignaturesCount int
 	Signatures      []string
@@ -22,9 +23,9 @@ func getStrings(fileName string) []string {
 	}
 	check(err)
 	defer file.Close()
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		lines = append(lines, scanner.Text())
+	scanner := bufio.NewScanner(file) // создается сканер для содержимого файла
+	for scanner.Scan() {							// <- для каждой строки файла
+		lines = append(lines, scanner.Text()) // <- ее текст присоединяется к сегменту
 	}
 	check(scanner.Err())
 	return lines
@@ -36,38 +37,52 @@ func check(err error) {
 	}
 }
 
+// viewHandler читает записи гостевой книги и выводит их со счетчиком записей
 func viewHandler(writer http.ResponseWriter, request *http.Request) {
 	signatures := getStrings("signatures.txt")
 	fmt.Printf("%#v\n", signatures)
-	html, err := template.ParseFiles("view.html")
+	html, err := template.ParseFiles("view.html") // создает шаблон на осн.view.html
 	check(err)
 	guestbook := Guestbook{
 		SignaturesCount: len(signatures),
 		Signatures:      signatures,
 	}
-	err = html.Execute(writer, guestbook)
-	check(err)
+	err = html.Execute(writer, guestbook) // данные структуры вставляются в шаблон,
+	check(err)														// а результат вписывается в ResponseWriter
 }
 
+// newHandler отображает форму для ввода записи
 func newHandler(writer http.ResponseWriter, request *http.Request) {
-	html, err := template.ParseFiles("new.html")
+	html, err := template.ParseFiles("new.html") // загружает форму HTML из шаблона
 	check(err)
-	err = html.Execute(writer, nil)
-	check(err)
+	err = html.Execute(writer, nil) // Записывает шаблон в ResponseWriter
+	check(err)											// (нет данных для вставки)
 }
 
+// createHandler получает запрос POST с добавляемой записью
+// и присоединяет ее к файлу signatures
 func createHandler(writer http.ResponseWriter, request *http.Request) {
-    signature := request.FormValue("signature")
+    signature := request.FormValue("signature") // получает значение поля формы "signature"
 		options := os.O_WRONLY | os.O_APPEND | os.O_CREATE
-		file, err := os.OpenFile("signature.txt", options, os.FileMode(0600))
-    _, err := writer.Write([]byte(signature))
-    check(err)
+		file, err := os.OpenFile("signatures.txt", options, os.FileMode(0600))
+		check(err)
+		_, err = fmt.Fprintln(file, signature) // добавляет содержимое поля формы в файл
+		check(err)
+		err = file.Close()
+		check(err)
+		// перенаправление браузера на основную страницу гостевой книги:
+		http.Redirect(writer, request, "/guestbook", http.StatusFound)
 }
 
 func main() {
+	// запросы на просмотр списка записей будут обрабатываться функцией viewHandler:
 	http.HandleFunc("/guestbook", viewHandler)
+	// запросы на отправку формы будут обрабатываться createHandler
 	http.HandleFunc("/guestbook/new", newHandler)
+	// запросы на отправку формы будут обрабатываться функцией createHandler
   http.HandleFunc("/guestbook/create", createHandler)
+	// в бесконечном цикле запросы HTTP передаются соответствующим функциям
+	// для обработки
 	err := http.ListenAndServe("localhost:8080", nil)
 	log.Fatal(err)
 }

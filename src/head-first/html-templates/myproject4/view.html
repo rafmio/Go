@@ -1,12 +1,16 @@
-<h1>Guestbook</h1>
+<h1>Guestbook</h1> <!-- Заголовок первого уровня для верхней части страницы -->
 
 <div>
+	<!-- значение "." соответствует структуре Guestbook -->
+	<!-- сюда вставляется ее поле SignatureCount -->
 	{{.SignaturesCount}} total signatures
-	<a href="/guestbook/new">Add Your Signature</a> 
-</div> 
+
+	<!-- ссылка на путь, представляющий форму HTML -->
+	<a href="/guestbook/new">Add Your Signature</a>
+</div>
 
 <div>
 	{{range .Signatures}}
-	<p>{{.}}</p> 
-	{{end}} 
+	<p>{{.}}</p>
+	{{end}}
 </div>

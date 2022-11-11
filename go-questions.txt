@@ -47,4 +47,8 @@ template.Execute()
 html/template
 {{.}} {{if}} {{end}} {{range}}
 
-http(html?).FormValue()  
+http(html?).FormValue()
+
+image
+image/color
+image/gif

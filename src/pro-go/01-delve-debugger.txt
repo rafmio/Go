@@ -1,0 +1,26 @@
+The standard debugger for Go applications is called Delve
+$ go install github.com/go-delve/delve/cmd/dlv@latest
+(doesn't work, error)
+(~/go/bin/dlv) - ?
+
+$ sudo apt install delve
+$ dlv version
+$ man dlv
+
+$ dlv debug main.go
+Creating breakpoint:
+(dlv) break bp1 main.main:3
+    - bp1 - name of the breakpoint
+    - main.main:3 - location
+        - main - package
+        - main - function
+        - :3 - line
+
+Create a condition:
+(dlv) condition bp1 i == 2
+    - execution will be halted only when a spicified
+      expression evaluates to true (when i == 2)
+
+
+To strart execution:
+(dlv) continue

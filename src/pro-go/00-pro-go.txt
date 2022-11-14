@@ -1,5 +1,5 @@
 pro-go
-page 122 (Flow control)
+page 147 (Arrays, Slices, Maps)
 src/pro-go
 src/pro-go/partyinvites
 

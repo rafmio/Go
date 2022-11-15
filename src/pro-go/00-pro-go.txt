@@ -1,5 +1,5 @@
 pro-go
-page 162 (slices)
+page 173 (Specifying ranges when copying slices)
 src/pro-go
 src/pro-go/partyinvites
 

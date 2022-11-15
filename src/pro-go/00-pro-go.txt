@@ -1,5 +1,5 @@
 pro-go
-page 147 (Arrays, Slices, Maps)
+page 162 (slices)
 src/pro-go
 src/pro-go/partyinvites
 

@@ -1,7 +1,7 @@
-What .NewScanner() returns?
 What is Text() method?
-What is ParseFloat() method?
 What is Err() method?
+
+Collection's memory model: arrays, slices, maps, memory, allocations in memory, new variables, copying
 
 Закрепить ввод с клавиатуры в переменную
 Закрепить применение модулей

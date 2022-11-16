@@ -1,9 +1,5 @@
 pro-go
-page 173 (Specifying ranges when copying slices)
-src/pro-go
-src/pro-go/partyinvites
+page 195 Functions
 
 github expamples:
 https://github.com/apress/pro-­go
-
-

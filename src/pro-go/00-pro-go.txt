@@ -1,5 +1,5 @@
 pro-go
-page 231 uning function values directly
+page 238 ~/go/Go/src/pro-go/functionTypes/functionTypes11.go
 
 github expamples:
 https://github.com/apress/pro-­go

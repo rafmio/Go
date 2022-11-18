@@ -1,5 +1,5 @@
 pro-go
-page 195 Functions
+page 231 uning function values directly
 
 github expamples:
 https://github.com/apress/pro-­go

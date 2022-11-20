@@ -65,3 +65,5 @@ http(html?).FormValue()
 image
 image/color
 image/gif
+
+understanding closures

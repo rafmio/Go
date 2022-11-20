@@ -1,0 +1,5 @@
+https://zetcode.com/all/#go
+
+https://zetcode.com/golang/closure/
+Clousure, /home/raf/go/Go/src/zetcode/closures/closure02.go
+Не понял, изучить

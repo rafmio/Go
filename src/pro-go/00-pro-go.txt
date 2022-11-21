@@ -1,5 +1,5 @@
 pro-go
-page 262 Understanding pointers to values
+page 263 Next example - listing 10-21 (create structs17.go)
 
 github expamples:
 https://github.com/apress/pro-­go

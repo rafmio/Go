@@ -1,5 +1,5 @@
 pro-go
-page 260
+page 262 Understanding pointers to values
 
 github expamples:
 https://github.com/apress/pro-­go

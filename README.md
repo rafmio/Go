@@ -67,3 +67,5 @@ image/color
 image/gif
 
 understanding closures
+
+encoding/json

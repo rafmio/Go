@@ -1,5 +1,5 @@
 pro-go
-page 255 
+page 258 
 
 github expamples:
 https://github.com/apress/pro-­go

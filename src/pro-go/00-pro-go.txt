@@ -1,5 +1,5 @@
 pro-go
-page 239 ~/go/Go/src/pro-go/functionTypes/functionTypes12.go
+page 243 
 
 github expamples:
 https://github.com/apress/pro-­go

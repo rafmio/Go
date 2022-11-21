@@ -1,4 +1,4 @@
-// Closures
+// Closing on a pointer to prevent early evaluation
 package main
 
 import "fmt"
@@ -11,9 +11,9 @@ func printPrice(product string, price float64, calculator calcFunc) {
 
 var prizeGiveaway = false
 
-func priceCalcFactory(threshold, rate float64, zeroPrices bool) calcFunc {
+func priceCalcFactory(threshold, rate float64, zeroPrices *bool) calcFunc {
   return func(price float64) float64 {
-    if (zeroPrices) {
+    if (*zeroPrices) {
       return 0
     } else if (price > threshold) {
       return price + (price * rate)
@@ -23,24 +23,30 @@ func priceCalcFactory(threshold, rate float64, zeroPrices bool) calcFunc {
 }
 
 func main() {
-  watersportsProducts := map[string]float64 {
+  watersportProducts := map[string]float64 {
     "Kayak" : 275,
     "Lifejacket" : 48.95,
   }
   soccerProducts := map[string]float64 {
     "Soccer Ball" : 19.50,
-    "Stadium": 79500,
+    "Stadium" : 79500,
   }
 
   prizeGiveaway = false
-  waterCalc := priceCalcFactory(100, 0.2, prizeGiveaway)
-  prizeGiveaway = true
-  soccerCalc := priceCalcFactory(50, 0.1, prizeGiveaway)
+  waterCalc := priceCalcFactory(100, 0.2, &prizeGiveaway)
+  fmt.Println("waterCalc: ", waterCalc)
+  fmt.Printf("Type of waterCalc: %T\n", waterCalc)
 
-  for product, price := range watersportsProducts {
+  prizeGiveaway = true
+  soccerCalc := priceCalcFactory(50, 0.1, &prizeGiveaway)
+  fmt.Println("soccerCalc: ", soccerCalc)
+  fmt.Printf("Type of soccerCalc: %T\n", soccerCalc)
+
+  fmt.Println()
+
+  for product, price := range watersportProducts {
     printPrice(product, price, waterCalc)
   }
-
   for product, price := range soccerProducts {
     printPrice(product, price, soccerCalc)
   }

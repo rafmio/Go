@@ -1,5 +1,5 @@
 pro-go
-page 263 Next example - listing 10-21 (create structs17.go)
+page 271 listing 10-28 (structs23.go)
 
 github expamples:
 https://github.com/apress/pro-­go

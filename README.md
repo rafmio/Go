@@ -67,5 +67,7 @@ image/color
 image/gif
 
 understanding closures
-
 encoding/json
+embedded structs
+pointers to structs
+fields of the struct as a pointers

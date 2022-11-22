@@ -2,27 +2,27 @@
 package main
 
 import (
-  "fmt"
-  "encoding/json"
-  "strings"
+	"encoding/json"
+	"fmt"
+	"strings"
 )
 
 func main() {
-  type Product struct {
-    name, category string
-    price float64
-  }
+	type Product struct {
+		name, category string
+		price          float64
+	}
 
-  prod := Product { name: "Kayak", category: "Watersports", price: 275.00 }
+	prod := Product{name: "Kayak", category: "Watersports", price: 275.00}
 
-  var builder strings.Builder
-  json.NewEncoder(&builder).Encode(struct {
-    ProductName string
-    ProductPrice float64
-  }{
-    ProductName: prod.name,
-    ProductPrice: prod.price,
-  })
-  
-  fmt.Println(builder.String())
+	var builder strings.Builder
+	json.NewEncoder(&builder).Encode(struct {
+		ProductName  string
+		ProductPrice float64
+	}{
+		ProductName:  prod.name,
+		ProductPrice: prod.price,
+	})
+
+	fmt.Println(builder.String())
 }

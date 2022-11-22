@@ -1,5 +1,5 @@
 pro-go
-page 271 listing 10-28 (structs23.go)
+page 278 Defining method parameters and results
 
 github expamples:
 https://github.com/apress/pro-­go

@@ -71,3 +71,20 @@ encoding/json
 embedded structs
 pointers to structs
 fields of the struct as a pointers
+
+----------------------------------------------------
+type Product struct {
+  name, category string
+  price float64
+}
+
+Defining struct (literal):
+kayak := &Product{ "Boat", "Watersports", 150.00 }
+(Kayak is a pointer to var kayak of type *Product)
+
+Defining a slice of pointers to struct:
+products := []*Product {
+  { "Kayak", "Watersports", 275.00 },
+  { "Lifejacket", "Watersports", 48.95 },
+  { "Soccer Ball", "Soccer", 19.50 },
+}

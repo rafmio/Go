@@ -1,5 +1,5 @@
 pro-go
-page 286
+page 292 Using an interface for struct fields
 
 github expamples:
 https://github.com/apress/pro-­go

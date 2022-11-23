@@ -1,5 +1,5 @@
 pro-go
-page 278 Defining method parameters and results
+page 286
 
 github expamples:
 https://github.com/apress/pro-­go

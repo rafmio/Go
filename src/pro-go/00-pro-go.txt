@@ -1,5 +1,5 @@
 pro-go
-page 294 (last created files in interface03)
+page 296 Comparing interface values (new directory interfaces04)
 
 github expamples:
 https://github.com/apress/pro-­go

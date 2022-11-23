@@ -11,7 +11,7 @@ type Expense interface {
 func main() {
   product := Product { "Kayak", "Watersports", 275.00 }
 
-  var expense Expense = product
+  var expense Expense = &product
 
   fmt.Println(product)
   fmt.Println(expense)

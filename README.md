@@ -88,3 +88,34 @@ products := []*Product {
   { "Lifejacket", "Watersports", 48.95 },
   { "Soccer Ball", "Soccer", 19.50 },
 }
+----------------------------------------------------
+INTERFACES
+
+Для работы интерфейса должны быть (без применения указателей):
+1.Объявлен тип (type VariableType string/struct/[]float64)
+2.Объявлена метод с соответствующим типом и параметрами и возвращ.значениями:
+    func(v VariableType) methodName()
+3.Объявлен интерфейс с включением методов:
+    type InterfaceName interface {
+      methodName()
+      methodName2(float64) []float64
+    }
+4.Объявлена переменная типа, который поддерживает интерфейс
+  newVar := VariableType("text if underlying type is string") или
+  newVar2 := VariableType { field1 : value1, field2 : "value2", field3 : 11.33 }
+
+5.Объявить переменную с типом=названием интерфейс и присвоить ей значение
+  ранее объявленной переменной с типом:
+  var varForInterface InterfaceName = newVar
+
+6.Через точку обращаться к последней переменной за методами:
+  varForInterface.methodName()
+  varForInterface.methodName2(3.14)
+
+РАЗОБРАТСЬЯ С УКАЗАТЕЛЯМИ В ИНТЕРФЕЙСАХ
+???Все вышеуказанные действия копируют данные в методы. Для того, чтобы передавать
+по ссылке нужно
+  a) varForInterface присвоить адрес newVar:
+    var varForInterface InterfaceName = &newVar
+  b) в получателях методов расставить * перед типом:
+    func(v *VariableType) methodName 

@@ -1,3 +1,15 @@
 https://go.dev/ref/spec
 
-Next: Lexical elements
+Next: Floating-point literals
+
+Tokens.
+Tokens form the vocabulary of the Go. There are 4 classes:
+  1 - indentifiers
+  2 - keywords
+  3 - operators and punctuation
+  4 - literas
+
+indentifiers - program entities such as variables and types
+keywords - predeclared indentifiers (25)
+operators and punctuation - +-=*&...,{}[] != etc
+integer literals - sequence of digits representing an integer constant

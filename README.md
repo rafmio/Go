@@ -72,6 +72,10 @@ embedded structs
 pointers to structs
 fields of the struct as a pointers
 
+pointers and methods
+assertions
+static and dynamic types (interface)
+
 ----------------------------------------------------
 type Product struct {
   name, category string
@@ -118,4 +122,4 @@ INTERFACES
   a) varForInterface присвоить адрес newVar:
     var varForInterface InterfaceName = &newVar
   b) в получателях методов расставить * перед типом:
-    func(v *VariableType) methodName 
+    func(v *VariableType) methodName

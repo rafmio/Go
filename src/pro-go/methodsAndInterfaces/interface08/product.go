@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type Product struct {
 	name, category string
 	price          float64
@@ -11,4 +13,8 @@ func (p *Product) getName() string {
 
 func (p *Product) getCost(_ bool) float64 {
 	return p.price
+}
+
+func (p *Product) getCostAndPrice(_ bool) {
+	fmt.Println("Product:", p.name, "Price:", p.price)
 }

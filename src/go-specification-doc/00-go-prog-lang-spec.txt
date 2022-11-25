@@ -1,6 +1,6 @@
 https://go.dev/ref/spec
 
-Next: Floating-point literals
+Next: Imaginary literals
 
 Tokens.
 Tokens form the vocabulary of the Go. There are 4 classes:

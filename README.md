@@ -75,6 +75,7 @@ fields of the struct as a pointers
 pointers and methods
 assertions
 static and dynamic types (interface)
+empty interfaces
 
 ----------------------------------------------------
 type Product struct {

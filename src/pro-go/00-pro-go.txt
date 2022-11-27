@@ -1,5 +1,5 @@
 pro-go
-page 296 Comparing interface values (new directory interfaces04)
+page 309 
 
 github expamples:
 https://github.com/apress/pro-­go

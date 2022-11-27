@@ -3,6 +3,8 @@ package main
 import (
     "fmt"
     "packages01/store"
+    currencyFmt "packages01/fmt" // Alias
+//     . "package01/fmt" - dot import 
 )
 
 func main() {
@@ -13,6 +15,11 @@ func main() {
     
     fmt.Println("Name:", product.Name)
     fmt.Println("Category:", product.Category)
+    fmt.Println()
+    
+    fmt.Println("Price:",currencyFmt.ToCurrency(product.Price()))
+//     Dot import:
+//     fmt.Println("Price:", ToCurrency(product.Price()))
     fmt.Println()
 // -----------------------------------------------------
     
@@ -28,3 +35,6 @@ func main() {
 // "store" - package
 // Exported types and fields should be started with 
 // uppercase letter
+
+// currencyFmt "packages/ftm"
+// "currencyFmt" - alias

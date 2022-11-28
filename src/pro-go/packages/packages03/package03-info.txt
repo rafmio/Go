@@ -1,0 +1,15 @@
+Using external packages
+
+$go get github.com/fatih/color@v1.10.0
+
+"go get" - command
+"github.com/fatih/color" - module path
+"@v" - required characters
+"1.10.0" - version
+
+Runned in package03 directory
+
+After running the command the go.sum file was created, it contains checksums
+The go.mod file was updated - a new block "require" has appeared
+
+$go mod tidy - add missing and remove unused modules

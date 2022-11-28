@@ -1,5 +1,5 @@
 pro-go
-page 339
+page 343 Understanding promotion ambiguity
 
 github expamples:
 https://github.com/apress/pro-­go

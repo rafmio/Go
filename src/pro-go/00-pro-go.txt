@@ -1,5 +1,5 @@
 pro-go
-page 354 Understanding how go executed code 
+page 358 Listing 14-8 
 
 github expamples:
 https://github.com/apress/pro-­go

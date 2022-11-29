@@ -12,7 +12,7 @@ var ProductList = []*Product {
   {"Lifejacket", "Watersports", 49.50},
   {"Soccer Ball", "Soccer", 19.50},
   {"Submarine", "Watersports", 90000},
-  {"Corner Floags", "Soccer", 34.95},
+  {"Corner Flags", "Soccer", 34.95},
   {"Stadium", "Soccer", 79500},
   {"Thinking Cap", "Chess", 16},
   {"Unsteady Chair", "Chess", 75},

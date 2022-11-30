@@ -1,5 +1,5 @@
 pro-go
-page 371 Working with channels 
+page 373 Working with channels 
 
 github expamples:
 https://github.com/apress/pro-­go

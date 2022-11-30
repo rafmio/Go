@@ -26,6 +26,9 @@ func main() {
 
   go evenSum(0, 100, evenCh)
   go squareSum(0, 100, sqCh)
-
-  fmt.Println(<- evenCh + <- sqCh)
+  evenVar := <- evenCh
+  sqVar := <- sqCh
+  fmt.Println(evenVar)
+  fmt.Println(sqVar)
+  // fmt.Println(<- evenCh + <- sqCh)
 }

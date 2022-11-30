@@ -1,5 +1,5 @@
 pro-go
-page 358 Listing 14-8 
+page 371 Working with channels 
 
 github expamples:
 https://github.com/apress/pro-­go

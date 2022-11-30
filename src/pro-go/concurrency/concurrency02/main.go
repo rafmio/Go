@@ -8,9 +8,9 @@ import (
 func main() {
   fmt.Println("main function started")
 
-  fmt.Println("Print 'Products':")
-  fmt.Println(Products)
-  fmt.Println()
+  // fmt.Println("Print 'Products':")
+  // fmt.Println(Products)
+  // fmt.Println()
 
   CalcStoreTotal(Products)
   // time.Sleep(time.Second * 4)

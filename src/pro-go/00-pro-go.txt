@@ -1,5 +1,5 @@
 pro-go
-page 376 Restricting channel direction 
+page 381 
 
 github expamples:
 https://github.com/apress/pro-­go

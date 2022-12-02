@@ -2,44 +2,41 @@ package main
 
 import "fmt"
 
-func main() {
-	// recoveryFunc := func() {
-	// 	if arg := recover(); arg != nil {
-	// 		if err, ok := arg.(error); ok {
-	// 			fmt.Println("Error:", err.Error())
-	// 		} else if str, ok := arg.(string); ok {
-	// 			fmt.Println("Message:", str)
-	// 		} else {
-	// 			fmt.Println("Panic recovered")
-	// 		}
-	// 	}
-	// }
-	// defer recoveryFunc()
+type CategoryCountMessage struct {
+	Category string
+	Count int
+}
 
+func processCategory(categories []string, outChan chan<- CategoryCountMessage){
 	defer func() {
 		if arg := recover(); arg != nil {
-			if err, ok := arg.(error); ok {
-				fmt.Println("Error:", err.Error())
-			} else if str, ok := arg.(string); ok {
-				fmt.Println("Message:", str)
-			} else {
-				fmt.Println("Panic recovered")
-			}
+			fmt.Println(arg)
 		}
-	} ()
-
-	categories := []string{"Watersports", "Chess", "Running"}
+	}()
 
 	channel := make(chan ChannelMessage, 10)
-
 	go Products.TotalPriceAsync(categories, channel)
 	for message := range channel {
 		if message.CategoryError == nil {
-			fmt.Println(message.Category, "Total:", ToCurrency(message.Total))
+			outChan <- CategoryCountMessage {
+				Category: message.Category,
+				Count: int(message.Total),
+			}
 		} else {
-			// fmt.Println(message.Category, "(no such category)")
 			panic(message.CategoryError)
 		}
+	}
+	close(outChan)
+}
+
+func main() {
+	categories := []string {"Watersports", "Chess", "Running", "Warship Games"}
+
+	channel := make(chan CategoryCountMessage)
+	go processCategory(categories, channel)
+
+	for message := range channel {
+		fmt.Println(message.Category, "Total:", message.Count)
 	}
 }
 

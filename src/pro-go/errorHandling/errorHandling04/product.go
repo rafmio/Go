@@ -9,7 +9,7 @@ type Product struct {
 
 type ProductSlice []*Product
 
-var Products = ProductSlice{
+var Products  = ProductSlice{
 	{"Kayak", "Watersports", 279},
 	{"Lifejacket", "Watersports", 49.95},
 	{"Soccer Ball", "Soccer", 19.50},

@@ -27,3 +27,5 @@ Clone repo:
 git clone git@github.com:rafmio/Go.git
 
 Sometimes you need to check ssh-agent sometimes it losts
+
+git log

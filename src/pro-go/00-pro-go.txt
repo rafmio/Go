@@ -1,5 +1,11 @@
 pro-go
+<<<<<<< HEAD
 page 385 
+=======
+page 381 (smth with git, check)
+
+Errors handling beginned, page 407
+>>>>>>> d8f0ec696cf888366d7f84700379e7a4398a08cc
 
 github expamples:
 https://github.com/apress/pro-­go

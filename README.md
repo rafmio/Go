@@ -20,7 +20,7 @@ Collection's memory model: arrays, slices, maps, memory, allocations in memory, 
 Закрепить применение модулей
 
 type assertion
-Runes
+Runes - слабо представляю
 Package "unicode/utf8"
 error realization (type error interface{}, Err(), Error() method, etc)
 bufio Scanner
@@ -124,3 +124,11 @@ INTERFACES
     var varForInterface InterfaceName = &newVar
   b) в получателях методов расставить * перед типом:
     func(v *VariableType) methodName
+
+
+--------------------------------------------------------
+Закрепить методы
+Не до конца понимаю работу горутин/блокировки
+Не до конца понимаю работу каналов/блокировки
+Повторить каналы
+Повторить горутины

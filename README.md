@@ -134,3 +134,10 @@ INTERFACES
 Повторить горутины
 
 Regular expressions - basics
+
+//----------------------------------------
+Рандомные инты:
+1.Подключить  "math/rand" и "time"
+2.rand.Seed(time.Now().UnixNano()) - "посеять зерно, от чего будет отталкиваться"
+3.rand.Int()
+4.инт в промежутке : rand.Intn()

@@ -3,23 +3,23 @@
 package main
 
 import (
-  "fmt"
-  "time"
+	"fmt"
+	"time"
 )
 
 func goOne(ch chan string) {
-  time.Sleep(time.Second * 2)
-  ch <- "From goOne goroutine"
+	time.Sleep(time.Second * 2)
+	ch <- "From goOne goroutine"
 }
 
 func main() {
-  ch1 := make(chan string)
-  go goOne(ch1)
+	ch1 := make(chan string)
+	go goOne(ch1)
 
-  select {
-  case msg := <- ch1:
-    fmt.Println(msg)
-  case <- time.After(time.Second * 1):
-    fmt.Println("Timeout")
-  }
+	select {
+	case msg := <-ch1:
+		fmt.Println(msg)
+	case <-time.After(time.Second * 1):
+		fmt.Println("Timeout")
+	}
 }

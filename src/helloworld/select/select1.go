@@ -1,14 +1,17 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 func portal1(channel1 chan string) {
-	for i := 0; i <= 3; i++ {
-		channel1 <- "Welcome to channel 1"
-	}
+	time.Sleep(3 * time.Second)
+	channel1 <- "Welcome to channel 1"
 }
 
 func portal2(channel2 chan string) {
+	time.Sleep(9 * time.Second)
 	channel2 <- "Welcome to channel 2"
 }
 
@@ -22,6 +25,7 @@ func main() {
 	select {
 	case op1 := <-R1:
 		fmt.Println(op1)
+
 	case op2 := <-R2:
 		fmt.Println(op2)
 	}

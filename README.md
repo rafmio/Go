@@ -11,7 +11,9 @@ rand.Seed()
 time.Now() // func
 time.Time // data type
 time.Timer // data type
+time.Ticker // data type
 time.NewTimer
+time.NewTicker
 time.Stop(), C (field of struct)
 time.Reset()
 

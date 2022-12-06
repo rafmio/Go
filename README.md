@@ -10,8 +10,10 @@ strings.TrimSpace
 rand.Seed()
 time.Now() // func
 time.Time // data type
+time.Timer // data type
 time.NewTimer
-time.Stop, C (field of struct)
+time.Stop(), C (field of struct)
+time.Reset()
 
 What is Text() method?
 What is Err() method?

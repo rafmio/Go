@@ -1,13 +1,15 @@
 # Go
 git@github.com:rafmio/Go.git
 
-Learn later:
-os.Stdin
-os.Stat()
-bufio.NewReader(os.Stdin)
-reader.ReadString('\n')
-strings.TrimSpace
-rand.Seed()
+Закрепить ввод с клавиатуры в переменную
+Runes, strings, bytes - слабо представляю (https://go.dev/blog/strings)
+Закрепить методы
+Не до конца понимаю работу горутин/блокировки
+Не до конца понимаю работу каналов/блокировки
+Повторить каналы
+Повторить горутины
+Блокировка, условия блокировки, deadlock
+
 time.Now() // func
 time.Time // data type
 time.Timer // data type
@@ -17,21 +19,48 @@ time.NewTicker
 time.Stop(), C (field of struct)
 time.Reset()
 
-What is Text() method?
-What is Err() method?
+io.`Read`er (type Reader interface)
+io.Reader
+io.Writer
+io.PipeReader
+io.PipeWriter
+
+empty interface{}
+empty struct {}
+
+panic, recover, defer
+
+  understanding closures
+  pointers and methods
+  assertions
+  static and dynamic types (interface)
+  empty interfaces
+
+
+  type assertion
+
+
+  What is Err() method?
+
+Learn later:
+
+os.Stdin
+os.Stat()
+bufio.NewReader(os.Stdin)
+reader.ReadString('\n')
+strings.TrimSpace
+
 
 Collection's memory model: arrays, slices, maps, memory, allocations in memory, new variables, copying
 
-Закрепить ввод с клавиатуры в переменную
 Закрепить применение модулей
 
-type assertion
-Runes - слабо представляю
+What is Text() method?
+
 Package "unicode/utf8"
 error realization (type error interface{}, Err(), Error() method, etc)
 bufio Scanner
 bufio NewScanner
-io.Reader (type Reader interface)
 io/ioutil
 path/filepath
 filepath.Join()
@@ -40,7 +69,6 @@ ioutil Name()
 ioutil IsDir
 
 
-panic, recover, defer
 
 net/http
 http.Get (go doc http Get)
@@ -72,16 +100,11 @@ image
 image/color
 image/gif
 
-understanding closures
 encoding/json
 embedded structs
 pointers to structs
 fields of the struct as a pointers
 
-pointers and methods
-assertions
-static and dynamic types (interface)
-empty interfaces
 
 ----------------------------------------------------
 type Product struct {
@@ -133,17 +156,14 @@ INTERFACES
 
 
 --------------------------------------------------------
-Закрепить методы
-Не до конца понимаю работу горутин/блокировки
-Не до конца понимаю работу каналов/блокировки
-Повторить каналы
-Повторить горутины
 
 Regular expressions - basics
 
 //----------------------------------------
-Рандомные инты:
+Рандомные инты (случайные значения):
 1.Подключить  "math/rand" и "time"
 2.rand.Seed(time.Now().UnixNano()) - "посеять зерно, от чего будет отталкиваться"
 3.rand.Int()
 4.инт в промежутке : rand.Intn()
+
+rand.Seed()

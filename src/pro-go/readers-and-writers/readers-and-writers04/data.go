@@ -32,4 +32,4 @@ func ConsumeData(reader io.Reader) {
           }
         }
         Printfln("Read data: %v", string(data))
-      }
+    }

@@ -1,0 +1,41 @@
+strings
+characters
+runes
+bytes
+letters and digits
+
+Unicode and character sets:
+https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/
+
+String
+String - read-only slice of bytes.
+
+Go source code is always UTF-8
+String holds arbitrary bytes, but string literal always contain UTF-8 text.
+Indexing string yields its bytes, not its characters: a string is just a bunch
+of bytes.
+
+The Unicode standard uses the term "code point" to refer to the item represented
+by a single value. Go introduces a shorter term for the concept: 'rune'.
+'Unicode code point' = 'Go rune' (with one addition)
+
+String literals - concatenating a sequence of characters.
+String literals:
+  - raw string literals (in single quotes ``)
+  - interpreted string literals
+
+
+rune - alias for the int32
+rune constant - ?
+'⌘' - is rune with integer value 0x2318
+
+
+Quotes
+Double quotes "" - used to define a string. String defined within "" will honor
+                   escaping characters
+Back quotes   `` - also used to define a string. string within '' - raw literal
+                   string and doesn't honor any kind of escaping
+Single quotes '' - to declare byte or rune.
+                   While declaring byte we have to specify the type. If we don't
+                   the type, then the default type is meant as a rune.
+                   A single quote will allow only one character.

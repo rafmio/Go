@@ -24,12 +24,6 @@ String literals:
   - raw string literals (in single quotes ``)
   - interpreted string literals
 
-
-rune - alias for the int32
-rune constant - ?
-'⌘' - is rune with integer value 0x2318
-
-
 Quotes
 Double quotes "" - used to define a string. String defined within "" will honor
                    escaping characters
@@ -39,3 +33,9 @@ Single quotes '' - to declare byte or rune.
                    While declaring byte we have to specify the type. If we don't
                    the type, then the default type is meant as a rune.
                    A single quote will allow only one character.
+
+
+Rune 
+ rune - alias for the int32 - alias for the 'unicode code point'
+ rune constant - ?
+ '⌘' - is rune with integer value 0x2318

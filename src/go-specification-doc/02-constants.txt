@@ -1,0 +1,11 @@
+https://go.dev/ref/spec#Constants
+
+Constants
+
+There are constants:
+- boolean
+- rune            (numeric constants)
+- integer         (numeric constants)
+- floating-point  (numeric constants)
+- complex         (numeric constants)
+- string

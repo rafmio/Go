@@ -35,7 +35,8 @@ Single quotes '' - to declare byte or rune.
                    A single quote will allow only one character.
 
 
-Rune 
+Rune
  rune - alias for the int32 - alias for the 'unicode code point'
  rune constant - ?
  '⌘' - is rune with integer value 0x2318
+Runes literal expressed as one or more character enclosed in single quotes ''

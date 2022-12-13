@@ -1,9 +1,9 @@
 # Go
 git@github.com:rafmio/Go.git
 
-Runes, strings, bytes - слабо представляю (https://go.dev/blog/strings)
-Закрепить ввод с клавиатуры в переменную
-Закрепить методы
+v - Runes, strings, bytes - слабо представляю (https://go.dev/blog/strings)
+v - Закрепить ввод с клавиатуры в переменную
+v - Закрепить методы
 Не до конца понимаю работу горутин/блокировки
 Не до конца понимаю работу каналов/блокировки
 Повторить каналы
@@ -27,6 +27,8 @@ io.PipeWriter
 
 empty interface{}
 empty struct {}
+
+stringers
 
 panic, recover, defer
 

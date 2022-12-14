@@ -4,22 +4,22 @@ package main
 import "fmt"
 
 func squares(c chan int) {
-  for i := 0; i <= 9; i++ {
-    c <- i * i
-  }
+	for i := 0; i <= 9; i++ {
+		c <- i * i
+	}
 
-  close(c)
+	close(c)
 }
 
 func main() {
-  fmt.Println("main() started")
-  c := make(chan int)
+	fmt.Println("main() started")
+	c := make(chan int)
 
-  go squares(c)
+	go squares(c)
 
-  for val := range c {
-    fmt.Println(val)
-  }
+	for val := range c {
+		fmt.Println(val)
+	}
 
-  fmt.Println("main() stopped")
+	fmt.Println("main() stopped")
 }

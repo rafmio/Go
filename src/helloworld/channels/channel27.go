@@ -13,12 +13,12 @@ func init() {
 }
 
 func service1(c chan string) {
-	fmt.Println("Service1() started", time.Since(start))
+	time.Sleep(3 * time.Second)
 	c <- "Hello from service1"
 }
 
 func service2(c chan string) {
-	fmt.Println("Service2() started", time.Since(start))
+	time.Sleep(5 * time.Second)
 	c <- "Hello from service2"
 }
 
@@ -36,7 +36,7 @@ func main() {
 		fmt.Println("Response from service1", res, time.Since(start))
 	case res := <-chan2:
 		fmt.Println("Response from service2", res, time.Since(start))
-	default:
+	case <-time.After(2 * time.Second):
 		fmt.Println("No response received", time.Since(start))
 	}
 

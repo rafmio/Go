@@ -5,25 +5,24 @@ import "fmt"
 import "time"
 
 func main() {
-  fmt.Println("main() started")
-  c := make(chan string)
+	fmt.Println("main() started")
+	c := make(chan string)
 
-  go func(c chan string) {
-    fmt.Println("Hello " + <-c + "!")
-  } (c)
+	go func(c chan string) {
+		fmt.Println("Hello " + <-c + "!")
+	}(c)
 
-  c <- "John"
-  fmt.Println("main() stopped")
+	c <- "John"
+	fmt.Println("main() stopped")
 
-  go func() {
-    fmt.Println("Anonymous func")
-  } ()
+	go func() {
+		fmt.Println("Anonymous func")
+	}()
 
+	anfun := func() {
+		fmt.Println("Init anfun")
+	}
+	go anfun()
 
-  anfun := func() {
-    fmt.Println("Init anfun")
-  }
-  go anfun()
-
-  time.Sleep(time.Second * 1)
+	time.Sleep(time.Second * 1)
 }

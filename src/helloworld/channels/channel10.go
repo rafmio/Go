@@ -4,20 +4,20 @@ package main
 import "fmt"
 
 func greet(c chan string) {
-  <-c
-  <-c
+	<-c
+	<-c
 }
 
 func main() {
-  fmt.Println("main() started")
+	fmt.Println("main() started")
 
-  c := make(chan string, 1)
+	c := make(chan string, 1)
 
-  go greet(c)
-  c <- "John"
+	go greet(c)
+	c <- "John"
 
-  close(c)
+	close(c)
 
-  c <- "Mike"
-  fmt.Println("main() stopped")
+	c <- "Mike"
+	fmt.Println("main() stopped")
 }

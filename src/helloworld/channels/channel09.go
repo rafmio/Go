@@ -3,8 +3,9 @@ package main
 
 import "fmt"
 
-func greet(roc <-chan string) {
-	fmt.Println("Hello" + <-roc + "!")
+func greet(c chan string) {
+	fmt.Println("Hello " + <-c + "!")
+	defer close(c)
 }
 
 func main() {
@@ -14,6 +15,5 @@ func main() {
 	go greet(c)
 
 	c <- "John"
-
 	fmt.Println("main() stopped")
 }

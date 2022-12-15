@@ -1,8 +1,11 @@
 # Go
 git@github.com:rafmio/Go.git
 
-interface - https://golangbyexample.com/interface-in-golang/
-empty interface{}
+io package 
+io.`Read`er (type Reader interface)
+io.Reader
+io.Writer
+
 empty struct {}
 
 functions: variadic argumets/parameters
@@ -16,9 +19,6 @@ time.NewTicker
 time.Stop(), C (field of struct)
 time.Reset()
 
-io.`Read`er (type Reader interface)
-io.Reader
-io.Writer
 io.PipeReader
 io.PipeWriter
 
@@ -30,11 +30,8 @@ init functions
 panic, recover, defer
 
   understanding closures
-  pointers and methods
   assertions
   static and dynamic types (interface)
-  empty interfaces
-
 
   type assertion
 

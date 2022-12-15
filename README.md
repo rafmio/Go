@@ -1,6 +1,7 @@
 # Go
 git@github.com:rafmio/Go.git
 
+interface - https://golangbyexample.com/interface-in-golang/
 empty interface{}
 empty struct {}
 
@@ -109,6 +110,7 @@ fields of the struct as a pointers
 паттерны конкурентного программирования
 fan-in, fan-out
 
+парсинг CSV файлов https://golangify.com/parsing-csv
 
 ----------------------------------------------------
 type Product struct {

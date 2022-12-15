@@ -1,15 +1,10 @@
 # Go
 git@github.com:rafmio/Go.git
 
-v - Runes, strings, bytes - слабо представляю (https://go.dev/blog/strings)
-v - Закрепить ввод с клавиатуры в переменную
-v - Закрепить методы
-Не до конца понимаю работу горутин/блокировки
-Не до конца понимаю работу каналов/блокировки
-https://habr.com/ru/post/490336/ - остановился Пул воркеров + WaitGroup
-Повторить каналы
-Повторить горутины
-Блокировка, условия блокировки, deadlock
+empty interface{}
+empty struct {}
+
+functions: variadic argumets/parameters
 
 time.Now() // func
 time.Time // data type
@@ -26,8 +21,6 @@ io.Writer
 io.PipeReader
 io.PipeWriter
 
-empty interface{}
-empty struct {}
 
 stringers
 
@@ -90,6 +83,9 @@ sync.WaitGroup
 sync.Add()
 sync.Done()
 sync.Wait()
+sync.Mutex - data type
+sync.Lock()
+sync.Unlock()
 
 text/template
 template.New()
@@ -109,6 +105,9 @@ encoding/json
 embedded structs
 pointers to structs
 fields of the struct as a pointers
+
+паттерны конкурентного программирования
+fan-in, fan-out
 
 
 ----------------------------------------------------

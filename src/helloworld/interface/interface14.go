@@ -8,6 +8,10 @@ type animal interface {
 	walk()
 }
 
+type mammal interface {
+	feed()
+}
+
 type lion struct {
 	age int
 }
@@ -20,14 +24,19 @@ func (l lion) walk() {
 	fmt.Println("Lion walk")
 }
 
+func (l lion) feed() {
+	fmt.Println("Lion feeds young")
+}
+
 func main() {
 	var a animal
-	a = lion{age: 10}
+	l := lion{}
+	a = l
+
 	a.breathe()
 	a.walk()
-	fmt.Printf("Type of a: %T\n", a)
 
-	cat := lion{age: 10}
-	cat.breathe()
-	cat.walk()
+	var m mammal
+	m = l
+	m.feed()
 }

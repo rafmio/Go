@@ -3,61 +3,59 @@ package main
 import "fmt"
 
 type animal interface {
-    walker
-    runner
+	walker
+	runner
 }
 
 type bird interface {
-    walker
-    flier
+	walker
+	flier
 }
 
 type flier interface {
-    fly()
+	fly()
 }
 
 type walker interface {
-    walk()
+	walk()
 }
 
 type runner interface {
-    run() 
+	run()
 }
 
 type cat struct{}
 type eagle struct{}
 
-
 func (c *cat) walk() {
-    fmt.Println("cat is walking")
+	fmt.Println("cat is walking")
 }
 
-func (c * cat) run() {
-    fmt.Println("cat is running")
+func (c *cat) run() {
+	fmt.Println("cat is running")
 }
-
 
 func (e *eagle) walk() {
-    fmt.Println("eagle is walking")
+	fmt.Println("eagle is walking")
 }
 
 func (e *eagle) fly() {
-    fmt.Println("eagle is flying")
+	fmt.Println("eagle is flying")
 }
 
 func walk(w walker) {
-    w.walk()
+	w.walk()
 }
 
 func main() {
-    var c animal = &cat{}
-    c.walk()
-    c.run()
-    
-    fmt.Println()
-    
-    var e bird = &eagle{}
-    
-    walk(c)
-    walk(e)
+	var c animal = &cat{}
+	c.walk()
+	c.run()
+
+	fmt.Println()
+
+	var e bird = &eagle{}
+
+	walk(c)
+	walk(e)
 }

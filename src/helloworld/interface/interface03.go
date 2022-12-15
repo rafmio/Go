@@ -3,24 +3,24 @@ package main
 import "fmt"
 
 type animal interface {
-    makeSound()
+	makeSound()
 }
 
-type cat struct {}
-type dog struct {}
+type cat struct{}
+type dog struct{}
 
 func (c *cat) makeSound() {
-    fmt.Println("meow!")
+	fmt.Println("meow!")
 }
 
 func (d *dog) makeSound() {
-    fmt.Println("woof!")
+	fmt.Println("woof!")
 }
 
 func main() {
-    var c, d animal = &cat{}, &dog{}
-    c.makeSound()
-    d.makeSound()
-    
-    fmt.Printf("Type of c is %T, type of d is: %T\n", c, d)
+	var c, d animal = &cat{}, &dog{}
+	c.makeSound()
+	d.makeSound()
+
+	fmt.Printf("Type of c is %T, type of d is: %T\n", c, d)
 }

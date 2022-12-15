@@ -20,14 +20,32 @@ func (l lion) walk() {
 	fmt.Println("Lion walk")
 }
 
-func main() {
-	var a animal
-	a = lion{age: 10}
-	a.breathe()
-	a.walk()
-	fmt.Printf("Type of a: %T\n", a)
+type dog struct {
+	age int
+}
 
-	cat := lion{age: 10}
-	cat.breathe()
-	cat.walk()
+func (d *dog) breathe() {
+	fmt.Println("Dog breathes")
+}
+
+func (d *dog) walk() {
+	fmt.Println("Dog walk")
+}
+
+func main() {
+	l := lion{age: 10}
+	callBreathe(&l)
+	callWalk(&l)
+
+	d := dog{age: 5}
+	callBreathe(&d)
+	callWalk(&d)
+}
+
+func callBreathe(a animal) {
+	a.breathe()
+}
+
+func callWalk(a animal) {
+	a.walk()
 }

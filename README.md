@@ -1,12 +1,27 @@
 # Go
 git@github.com:rafmio/Go.git
 
-io package 
+io package - (2 times)
 io.`Read`er (type Reader interface)
 io.Reader
 io.Writer
+io.PipeReader
+io.PipeWriter
 
-empty struct {}
+strings pakcage - (2 times)
+strings.Reader
+strings.TrimSpace
+stringers
+
+os package
+os.Stdin
+os.Stat()
+
+bufio package (2 times)
+bufio.NewReader(os.Stdin)
+bufio Scanner
+bufio NewScanner
+bufio.ReadString('\n')
 
 functions: variadic argumets/parameters
 
@@ -19,33 +34,28 @@ time.NewTicker
 time.Stop(), C (field of struct)
 time.Reset()
 
-io.PipeReader
-io.PipeWriter
+sync Package
+sync.WaitGroup
+sync.Add()
+sync.Done()
+sync.Wait()
+sync.Mutex - data type
+sync.Lock()
+sync.Unlock()
 
 
-stringers
 
 init functions
 
 panic, recover, defer
 
   understanding closures
-  assertions
+
   static and dynamic types (interface)
-
-  type assertion
-
 
   What is Err() method?
 
 Learn later:
-
-os.Stdin
-os.Stat()
-bufio.NewReader(os.Stdin)
-reader.ReadString('\n')
-strings.TrimSpace
-
 
 Collection's memory model: arrays, slices, maps, memory, allocations in memory, new variables, copying
 
@@ -55,16 +65,12 @@ What is Text() method?
 
 Package "unicode/utf8"
 error realization (type error interface{}, Err(), Error() method, etc)
-bufio Scanner
-bufio NewScanner
 io/ioutil
 path/filepath
 filepath.Join()
 ioutil.ReadDir()
 ioutil Name()
 ioutil IsDir
-
-
 
 net/http
 http.Get (go doc http Get)
@@ -75,15 +81,6 @@ http.Write
 http.HandleFunc
 http.ListenAndServe
 
-sync Package
-(https://zetcode.com/golang/goroutine/)
-sync.WaitGroup
-sync.Add()
-sync.Done()
-sync.Wait()
-sync.Mutex - data type
-sync.Lock()
-sync.Unlock()
 
 text/template
 template.New()

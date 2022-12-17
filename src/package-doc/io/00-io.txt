@@ -1,0 +1,2 @@
+var EOF = errors.New("EOF")
+EOF - is the error returned by Read when no more input is available

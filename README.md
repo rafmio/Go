@@ -1,18 +1,6 @@
 # Go
 git@github.com:rafmio/Go.git
 
-io package - (2 times)
-io.`Read`er (type Reader interface)
-io.Reader
-io.Writer
-io.PipeReader
-io.PipeWriter
-
-strings pakcage - (2 times)
-strings.Reader
-strings.TrimSpace
-stringers
-
 os package
 os.Stdin
 os.Stat()
@@ -22,6 +10,8 @@ bufio.NewReader(os.Stdin)
 bufio Scanner
 bufio NewScanner
 bufio.ReadString('\n')
+
+bytes package
 
 functions: variadic argumets/parameters
 

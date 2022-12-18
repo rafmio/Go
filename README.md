@@ -1,10 +1,6 @@
 # Go
 git@github.com:rafmio/Go.git
 
-os package
-os.Stdin
-os.Stat()
-
 bufio package (2 times)
 bufio.NewReader(os.Stdin)
 bufio Scanner

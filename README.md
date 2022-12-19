@@ -1,6 +1,8 @@
 # Go
 git@github.com:rafmio/Go.git
 
+buffered io (concept)
+
 bufio package (2 times)
 bufio.NewReader(os.Stdin)
 bufio Scanner

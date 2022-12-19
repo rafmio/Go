@@ -1,14 +1,14 @@
 package main
 
 import (
-  "io"
+	"io"
 )
 
 func main() {
-  pipeReader, pipeWriter := io.Pipe()
-  go func() {
-    GenerateData(pipeWriter)
-    pipeWriter.Close()
-  }()
-  ConsumeData(pipeReader)
+	pipeReader, pipeWriter := io.Pipe()
+	go func() {
+		GenerateData(pipeWriter)
+		pipeWriter.Close()
+	}()
+	ConsumeData(pipeReader)
 }

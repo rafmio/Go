@@ -1,4 +1,5 @@
 // JSON tags
+// https://golang.cafe/blog/golang-json-marshal-example.html
 package main
 
 import (

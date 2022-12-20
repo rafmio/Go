@@ -9,8 +9,8 @@ import (
 )
 
 func main() {
-	m := map[string]float64 {
-		"Kayak": 279,
+	m := map[string]float64{
+		"Kayak":      279,
 		"Lifejacket": 49.95,
 	}
 
@@ -31,8 +31,8 @@ func main() {
 	fmt.Println("---------------------------------------------")
 
 	// Effect of promiotion in JSON in Encoding (embedded struct)
-	dp := DiscountedProduct {
-		Product: &Kayak,
+	dp := DiscountedProduct{
+		Product:  &Kayak,
 		Discount: 10.50,
 	}
 

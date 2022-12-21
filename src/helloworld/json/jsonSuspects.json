@@ -1,0 +1,20 @@
+{
+  "Department":"DEA",
+  "Agent":"Hank Schrader",
+  "Suspects":[
+    {
+      "FirstName":"Tuko",
+      "LastName":"Salamanka",
+      "Post":"Distributor",
+      "Age":38,
+      "Residence":"ABQ"
+    },
+    {
+      "FirstName":"Gus",
+      "LastName":"Fring",
+      "Post":"Distributor",
+      "Age":45,
+      "Residence":"ABQ"
+    }
+  ]
+}

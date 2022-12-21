@@ -1,6 +1,10 @@
 # Go
 git@github.com:rafmio/Go.git
 
+Exercises:
+  - open file, close file
+  - marshal/unmarshal JSON (Encode()/Decode() + Marshal()/Unmarshal())
+
 buffered io (concept)
 
 bufio package (2 times)

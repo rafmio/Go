@@ -1,0 +1,7 @@
+Time: Thu 09:00:43, Total: $80674.40
+Time: Thu 09:00:46, Total: $80674.40
+ 09:01:18 up 23:56,  1 user,  load average: 0.23, 0.36, 0.36
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+raf      tty2     tty2             Wed09   23:56m  0.03s  0.03s /usr/libexec/gnome-session-binary --session=ubuntu
+Time: Thu 09:01:24, Total: $80674.40
+Time: Thu 09:01:35, Total: $80674.40

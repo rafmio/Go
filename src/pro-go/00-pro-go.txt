@@ -1,7 +1,6 @@
 pro-go
 
-page 606 
-
+page 607 Trimming Whitespace (/go/src/pro-go/htmltext/htmltext06)
 
 github expamples:
 https://github.com/apress/pro-­go

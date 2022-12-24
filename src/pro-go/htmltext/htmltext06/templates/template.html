@@ -10,5 +10,16 @@
 <h1></h1>
 
 <h1>
-  Name: {{ .Name }}, Category: {{ .C}}
+  Name: {{ .Name }}, Category: {{ .Category }}, Price,
+    {{ printf "$%.2f" .Price }}
+</h1>
+
+<h1>
+  Name: {{ .Name }}, Category: {{ .Category }}, Price,
+    {{- printf "$%.2f" .Price -}}
+</h1>
+
+<h1>
+  {{- "" -}} Name: {{ .Name }}, Category: {{ .Category }}, Price,
+    {{- printf "$%.2f" .Price -}}
 </h1>

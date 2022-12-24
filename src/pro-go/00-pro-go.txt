@@ -1,6 +1,6 @@
 pro-go
 
-page 622 
+page 623 
 
 github expamples:
 https://github.com/apress/pro-­go

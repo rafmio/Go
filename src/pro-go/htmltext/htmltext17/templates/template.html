@@ -1,0 +1,9 @@
+<!-- Defining template variables -->
+{{ define "mainTemplate" -}}
+  <h1>There are {{ len . }} products in the source data</h1>
+  {{- range getCats . -}}
+    {{ if ne ($char := slice (lower .) 0 1) "s" }}
+      <h1>{{$char}}: {{.}}</h1>
+    {{- end }}
+  {{- end }}
+{{- end }}

@@ -1,7 +1,7 @@
 <!-- Defining template variables -->
 {{ define "mainTemplate" -}}
   {{ $length := len . }}
-  <h1>There are {{ $length }} products in the source data</h1>
+    <h1>There are {{ $length }} products in the source data</h1>
   {{ range getCats . -}}
     <h1>Category: {{ lower . }}</h1>
   {{ end }}

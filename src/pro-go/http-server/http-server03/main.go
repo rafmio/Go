@@ -1,8 +1,8 @@
 package main
 
 import (
-	"net/http"
 	"io"
+	"net/http"
 )
 
 type StringHandler struct {
@@ -16,24 +16,24 @@ type StringHandler struct {
 
 func (sh StringHandler) ServeHTTP(writer http.ResponseWriter,
 	request *http.Request) {
-		if (request.URL.Path == "/favicon.ico") {				// net/url: type URL struct {...}
-			Printfln("Request for icon detected - returning 404")
-			writer.WriteHeader(http.StatusNotFound)
-			return
-		}
-		Printfln("Request for %v", request.URL.Path)
-		io.WriteString(writer, sh.message)
+	if request.URL.Path == "/favicon.ico" { // net/url: type URL struct {...}
+		Printfln("Request for icon detected - returning 404")
+		writer.WriteHeader(http.StatusNotFound)
+		return
 	}
+	Printfln("Request for %v", request.URL.Path)
+	io.WriteString(writer, sh.message)
+}
 
-	func main() {
-		err := http.ListenAndServe(":5000", StringHandler{message: "Hello-Mello Kissy-Missy"})
-		if (err != nil) {
-			Printfln("Error: %v", err.Error())
-		}
+func main() {
+	err := http.ListenAndServe(":5000", StringHandler{message: "Hello-Mello Kissy-Missy"})
+	if err != nil {
+		Printfln("Error: %v", err.Error())
 	}
+}
 
-	// You may find that subsequent requests from the browser for 
-	// http://localhost:5000 do not trigger a second request for the icon file.
-	// That’s because the browser notes the 404 response and knows that there
-	// is no icon file for this URL. Clear the browser’s cache and request
-	// http://localhost:5000 to return to the original behavior.
+// You may find that subsequent requests from the browser for
+// http://localhost:5000 do not trigger a second request for the icon file.
+// That’s because the browser notes the 404 response and knows that there
+// is no icon file for this URL. Clear the browser’s cache and request
+// http://localhost:5000 to return to the original behavior.

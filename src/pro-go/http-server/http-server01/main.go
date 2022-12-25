@@ -1,8 +1,8 @@
 package main
 
 import (
-	"net/http"
 	"io"
+	"net/http"
 )
 
 type StringHandler struct {
@@ -11,12 +11,12 @@ type StringHandler struct {
 
 func (sh StringHandler) ServeHTTP(writer http.ResponseWriter,
 	request *http.Request) {
-		io.WriteString(writer, sh.message)
-	}
+	io.WriteString(writer, sh.message)
+}
 
 func main() {
-	err := http.ListenAndServe(":5000", StringHandler{ message: "Hello, World"})
-	if (err != nil) {
+	err := http.ListenAndServe(":5000", StringHandler{message: "Hello, World"})
+	if err != nil {
 		Printfln("Error: %v", err.Error())
 	}
 }

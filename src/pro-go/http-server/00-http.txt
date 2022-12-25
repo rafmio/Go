@@ -1,0 +1,100 @@
+HTTP - HyperText Transfer Protocol
+Основа HTTP - технология клиент-сервер
+Основной объект манипуляции в HTTP - ресурс, на который указывает URL (Uniform
+Resource Identifier) в запросе клиента.  Такими ресурсами обяно являются файлы,
+но могут быть и логические объекты.
+
+HTTP - протокол прикладного уровня, аналоги -  FTP, SMTP.
+
+HTTP не сохраняет своего состояния, т.е. нет промежуточного состония между парами
+"запрос-ответ".
+
+Большинство протоколов предусматривает установление TCP-сессии, где один раз
+происходит авторизация и дальнейшие действия вывполняются в контексте этой
+авторизации.
+
+HTTP же устанавливает отдельную TCP-сессию на каждый запрос.
+Для поддержки авторизованного (неанонимного) доступа в HTTP используются cookies,
+причем такой способ авторизации позволяет сохранить сессию даже после перезагрузки
+клиента и сервера.
+
+Куки - небольшой фрагмент данных, отправленный веб-сервером и хранимый на компе
+пользователя.
+Веб-клиент (обычно браузер) при попытке открыть страницу пересылает этот фрагмент
+данных веб-серверу в составе HTTP-запроса.
+
+ПО
+Всё ПО для работы с HTTP разделяется на 3 категории:
+  - серверы, как основные поставщики услуг и хранения и обраб-ки инфы (обр-ка запросов)
+  - клиенты - конечные потребители услуг сервера (отправки запроса)
+  - прокси (посредники) для выполнения транспортных служб
+
+Для отличия конечн.серверов от прокси в оф.док-ции исп-ся термин "исходный сервер"
+(origin server).
+Одно и то же ПО может осущ.ф-ции сервера, клиента и посредника
+
+Структура HTTP-сообщения:
+ - Start line - стартовая строка - определяет тип сообщения
+ - Headers - заголовки - характеризует тело сообщения, параметры передачи и проч.
+ - Message Body - тело сообщения - само сообщение. Обязательно должно отделяться
+                  от заголовков пустой строкой
+
+Тело может отсутствовать, но стартовая строка и заголовки - обязательны.
+
+Для версии HTTP 1.1 сообщение обязательно должно содержать заголовок Host
+
+Стартовая строка запроса:
+  Метод URI HTTP/Версия
+
+Стартова строка ответа:
+  HTTP/Версия КодСостояния Пояснение (пример: HTTP/1.0 200 Ok)
+
+==============================================================================
+
+  type Handler interface { ServeHTTP(ResponseWriter, *Request)}
+  A Handler responds to an HTTP request
+  ServeHTTP()
+  ServeHTTP(ResponseWriter, *Request)
+  ServeHTTP should write reply headers and data to the ResponseWriter and then
+  return
+
+  ListenAndServe()
+  func ListenAndServe(addr string, handler Handler) error
+  listen on the TCP network address 'addr' and then calls Serve with handler
+  requests on incoming connections
+
+  This function starts listening for HTTP requests on a specified
+  address and passes requests onto the specified handler.
+
+  When a request arrives, it is passed onto a hanler, which is responsible
+  for producing a response.
+  Hanlder must implement the Hanlder interface (with method
+  inside ServeHTTP(writer, request))
+
+  func ListenAndServe(addr string, handler Handler) error {
+  	server := &Server{Addr: addr, Handler: handler}
+  	return server.ListenAndServe()
+  }
+
+  ResponseWriter
+  type ResponseWriter interface {
+  		Header() Header
+  		Write([]byte)(int, err)
+   	WriteHeader(statusCode int)
+  }
+
+  Type Header
+  type Header map[string][]string
+  A Header represents the key-value pairs in an HTTP header
+  The keys should be in canonical form
+  Hanlder() returns the header map that will be sent by WriteHeader
+  The Header map also is the mechanism with which Handlers cat set HTTP trailers
+
+  Request
+  type Request struct {
+  	Method string
+  	URL *url.URL
+  	...
+  	Host string
+  	...
+  }

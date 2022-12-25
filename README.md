@@ -1,6 +1,9 @@
 # Go
 git@github.com:rafmio/Go.git
 
+net/http: Context() method for Request struct
+net/url: URL struct
+
 Exercises:
   - open file, close file
   - marshal/unmarshal JSON (Encode()/Decode() + Marshal()/Unmarshal())

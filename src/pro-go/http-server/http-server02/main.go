@@ -9,6 +9,7 @@ type StringHandler struct {
 	message string
 }
 
+// ServeHTTP записывает заголовки ответа и данные в ResponseWriter и возвращает
 func (sh StringHandler) ServeHTTP(writer http.ResponseWriter,
 request *http.Request) {
 	Printfln("Method: %v", request.Method)

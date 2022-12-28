@@ -101,6 +101,9 @@ fan-in, fan-out
 
 парсинг CSV файлов https://golangify.com/parsing-csv
 
+runtime package
+runtime.GOMAXPROCS(1) // context: use only 1 processor core for several http-servers
+
 ----------------------------------------------------
 type Product struct {
   name, category string

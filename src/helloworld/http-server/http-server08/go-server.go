@@ -10,6 +10,7 @@ import (
 func createServer(name string, port int) *http.Server {
 	// create `ServeMux`
 	mux := http.NewServeMux()
+	fmt.Printf("Hanlder for '%v' server is created. Type of mux: %T\n", name, mux)
 
 	// create a default route handler
 	mux.HandleFunc("/", func(res http.ResponseWriter, req *http.Request) {
@@ -22,13 +23,16 @@ func createServer(name string, port int) *http.Server {
 		Handler: mux,
 	}
 
+	fmt.Printf("Server '%v' is created\n", name)
+
 	// return new server (pointer)
 	return &server
 }
 
 func main() {
 	// create a WaitGroup
-	wg := new(sync.WaitGroup)
+	// wg := new(sync.WaitGroup)
+	var wg sync.WaitGroup
 
 	// add two gorotines to `wg` WaitGroup
 	wg.Add(2)

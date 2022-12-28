@@ -1,0 +1,22 @@
+Чтобы выпустить серт.для локального домена, понадобится корневой сертификат
+Помимо корневого сертификата для полноценной защиты сайту нужены
+  - промежуточный сертификат
+  - индивидуальный сертификат
+
+Совокупность этих сертификатов - "цепочка сертификатов"
+
+-------
+?Квалифицированный сертификат
+1.Create a certificate signing request (CSR) with a private key.
+  A CSR contains details about location, organization, and FQDN (Fully
+  Qualified Domain Name)
+2.Send the CSR to the trusted authority
+3.The CA authority will send you the SSL certificate signed by their root
+  certificate authority and private key
+4.You can then validate and use the SSL certificate with your applications
+
+Корневой сертификат - серт.авториз.центра
+Запрос на подпись (CSR, Certificate Sing Request) - этот запрос на подпись генерируется
+и отправляется авториз.центру, который вернет подписанный сертификат
+
+Корневым сертификатом будут подписываться другие сертификаты

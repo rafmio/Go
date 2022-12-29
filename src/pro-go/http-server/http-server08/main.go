@@ -33,8 +33,9 @@ request *http.Request) {
 }
 
 func HTTPSRedirect(writer http.ResponseWriter, request *http.Request) {
+	Printfln("request.Host: '%v'", request.Host)
 	host := strings.Split(request.Host, ":")[0]
-	Printfln("host: %v", host)
+	Printfln("host: '%v'", host)
 	target := "https://" + host + ":5500" + request.URL.Path
 	if len(request.URL.RawQuery) > 0 {
 		target += "?" + request.URL.RawQuery

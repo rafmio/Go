@@ -6,7 +6,7 @@ Learn:
 3 https://medium.com/rungo/secure-https-servers-in-go-a783008b36da
 ...and than https://yandex.ru/search/?text=golang+https&clid=2574587&win=572&lr=43 ('golang https' request)
 
-page 640
+page 642
 
 github expamples:
 https://github.com/apress/pro-­go

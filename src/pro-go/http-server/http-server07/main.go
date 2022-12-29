@@ -21,7 +21,7 @@ func main() {
 	http.Handle("/", http.RedirectHandler("/message", http.StatusTemporaryRedirect))
 
 	go func() {
-		err := http.ListenAndServeTLS(":5500", "certificateA.crt", "certificate.key", nil)
+		err := http.ListenAndServeTLS(":5500", "certificate.crt", "certificate.key", nil)
 		if (err != nil) {
 			Printfln("HTTPS Error: %v", err.Error())
 		}

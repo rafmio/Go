@@ -45,10 +45,11 @@ func HTTPSRedirect(writer http.ResponseWriter, request *http.Request) {
 	if len(request.URL.RawQuery) > 0 {
 		target += "?" + request.URL.RawQuery
 	}
+	Printfln("request.URL.RawQuery: %v", request.URL.RawQuery)
 
 	Printfln("target: '%v'", target)
 
-	http.Redirect(writer, request, target, http.StatusTemporaryRedirect)
+	http.Redirect(writer, request, target, http.StatusTemporaryRedirect) // Кому переадресует?
 }
 
 func main() {

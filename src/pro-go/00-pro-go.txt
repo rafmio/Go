@@ -1,12 +1,6 @@
 pro-go
 
-Learn:
-1 https://medium.com/rungo/creating-a-simple-hello-world-http-server-in-go-31c7fd70466e
-2 https://medium.com/rungo/running-multiple-http-servers-in-go-d15300f4e59f
-3 https://medium.com/rungo/secure-https-servers-in-go-a783008b36da
-...and than https://yandex.ru/search/?text=golang+https&clid=2574587&win=572&lr=43 ('golang https' request)
-
-page 642
+page 643 Creating Static HTTP Server
 
 github expamples:
 https://github.com/apress/pro-­go

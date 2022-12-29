@@ -4,16 +4,32 @@ import (
 	"net/http"
 	"io"
 	"strings"
+	"fmt"
 )
 
 type StringHandler struct {
 	message string
 }
 
+type HomePage struct {
+	pattern	 string
+	host string
+}
+
 func (sh StringHandler) ServeHTTP(writer http.ResponseWriter,
 request *http.Request) {
 	Printfln("Request for %v", request.URL.Path)
 	io.WriteString(writer, sh.message)
+}
+
+func (hp HomePage) ServeHTTP(writer http.ResponseWriter,
+request *http.Request) {
+	Printfln("Handler for HomePage is in action")
+	io.WriteString(writer, "HomePage handler is in action\n")
+	io.WriteString(writer, hp.pattern)
+	io.WriteString(writer, "\n")
+	io.WriteString(writer, hp.host)
+	fmt.Fprint(writer, "\n\nUsing fmt.Fprint()")
 }
 
 func HTTPSRedirect(writer http.ResponseWriter, request *http.Request) {
@@ -31,6 +47,7 @@ func main() {
 	http.Handle("/message", StringHandler{message: "Hello, redirected World"})
 	http.Handle("/favico.ico", http.NotFoundHandler())
 	http.Handle("/", http.RedirectHandler("/message", http.StatusTemporaryRedirect))
+	http.Handle("/homepage", HomePage{pattern: "homepage", host: "localhost"})
 
 	go func() {
 		err := http.ListenAndServeTLS(":5500", "certificate.crt", "certificate.key", nil)

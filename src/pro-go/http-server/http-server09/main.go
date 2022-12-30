@@ -4,32 +4,17 @@ import (
 	"net/http"
 	"io"
 	"strings"
-	"fmt"
+
 )
 
 type StringHandler struct {
 	message string
 }
 
-type HomePage struct {
-	pattern	 string
-	host string
-}
-
 func (sh StringHandler) ServeHTTP(writer http.ResponseWriter,
 request *http.Request) {
 	Printfln("Request for %v", request.URL.Path)
 	io.WriteString(writer, sh.message)
-}
-
-func (hp HomePage) ServeHTTP(writer http.ResponseWriter,
-request *http.Request) {
-	Printfln("Handler for HomePage is in action")
-	io.WriteString(writer, "HomePage handler is in action\n")
-	io.WriteString(writer, hp.pattern)
-	io.WriteString(writer, "\n")
-	io.WriteString(writer, hp.host)
-	fmt.Fprint(writer, "\n\nUsing fmt.Fprint()")
 }
 
 func HTTPSRedirect(writer http.ResponseWriter, request *http.Request) {
@@ -49,14 +34,24 @@ func HTTPSRedirect(writer http.ResponseWriter, request *http.Request) {
 
 	Printfln("target: '%v'", target)
 
-	http.Redirect(writer, request, target, http.StatusTemporaryRedirect) // Кому переадресует?
+	http.Redirect(writer, request, target, http.StatusTemporaryRedirect)
+	 // Запрос идет на адрес, порт и путь target с соотв.кодом
+	 // А там уже нужный порт слушает соответствующий (в горутине слушальщик, кот
+   // запускается ListenAndServeTLS)
 }
 
 func main() {
-	http.Handle("/message", StringHandler{message: "Hello, redirected World"})
+	http.Handle("/message", StringHandler{"Hello-Mello, Tosy-Bosy StringHandler field"})
 	http.Handle("/favico.ico", http.NotFoundHandler())
 	http.Handle("/", http.RedirectHandler("/message", http.StatusTemporaryRedirect))
-	http.Handle("/homepage", HomePage{pattern: "homepage", host: "localhost"})
+
+	fsHandler := http.FileServer(http.Dir("./static"))
+	// Можно указывать путь к файлам и напрямую, но так можно легко позволить
+	// запросам обращаться к файлам за пределы целевой папки, поэтому безопаснее
+	// использовать Dir
+	Printfln("fsHandler: %#v", fsHandler)
+
+	http.Handle("/files/", http.StripPrefix("/files", fsHandler))
 
 	go func() {
 		err := http.ListenAndServeTLS(":5500", "certificate.crt", "certificate.key", nil)

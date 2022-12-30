@@ -1,4 +1,5 @@
-https://golangify.com/structure-web-app
+Begin:
+https://golangify.com/customizing-http-headers
 
 Обработчик - MVC паттерн проектирования, обработчики напоминают контроллеры.
 Они отвечают за выполнение логики приложения, а также за заголовок и тело HTTP ответа.

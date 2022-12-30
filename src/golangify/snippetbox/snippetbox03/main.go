@@ -5,27 +5,24 @@ import (
   "net/http"
 )
 
-// Main page handler
 func home(w http.ResponseWriter, r *http.Request) {
   if (r.URL.Path != "/") {
     http.NotFound(w, r)
+    return
   }
-  w.Write([]byte("Hello from inside of SnippetBox"))
+
+  w.Write([]byte("Hello inside of SnippetBox"))
 }
 
-// Handler for displaying the contents of the note
 func showSnippet(w http.ResponseWriter, r *http.Request) {
   w.Write([]byte("Displaying the note..."))
 }
 
-// Handler for creating a new note
 func createSnippet(w http.ResponseWriter, r *http.Request) {
-  w.Write([]byte("Form for creating a new note..."))
+  w.Write([]byte("Form for creating the new note..."))
 }
 
 func main() {
-  // Регистирует два новых обработчика и соотв. URL-шаблоны в
-  // маршутизаторе servemux
   mux := http.NewServeMux()
   mux.HandleFunc("/", home)
   mux.HandleFunc("/snippet", showSnippet)

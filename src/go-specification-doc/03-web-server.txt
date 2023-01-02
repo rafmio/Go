@@ -1,0 +1,155 @@
+func ListenAndServe(add string, handler Hanlder) error
+Слушает порт addr.
+Когда прибывает запрос - он помещается в обработчик, который отвечает за
+создание ответа.
+Пораждает http-сервер с конфигурацией по умолчанию.
+Использование nil вместо значения handler включает обработчик по умолчанию
+(http.DefaultServeMux - глобальный инстанс),который направляет (маршутизирует)
+запросы обработчикам на основе правил, установленных функциями:
+func Handle(pattern string, handler Handler)
+func HandleFunc(pattern string, handler func(ResponseWriter, *Request))
+
+http.ListenAndServe(), стартуя http-сервер, блокиирует вызывающий процесс.
+Начинает слушать входящие HTTP запросы и обслуживать запросы, используя
+функцию http.Serve() под капотом
+
+Под капотом создает прослушиватель TCP по адресу add, используяя функцию
+net.Listen() (net.Listen() возвращает net.Listener и использует его с помощью
+функции http.Serve())
+
+Весь код после 'las' будет заблокирован
+
+После запуска 'las' любой входящий запрос запускает http.ServeHTTP() метод
+
+Мы не можем запустить два 'las', т.к. первый блокирует процесс, а второй
+никогда не будет вызван.
+// ------------------------------------------------------------------------
+// Request
+type Request struct {
+
+	Method string
+
+	URL *url.URL
+
+	Proto      string // "HTTP/1.0"
+	ProtoMajor int    // 1
+	ProtoMinor int    // 0
+	Header Header
+	Body io.ReadCloser
+	GetBody func() (io.ReadCloser, error)
+	ContentLength int64
+	TransferEncoding []string
+	Close bool
+	Host string
+	Form url.Values
+	PostForm url.Values
+	MultipartForm *multipart.Form
+	Trailer Header
+	RemoteAddr string
+	RequestURI string
+	TLS *tls.ConnectionState
+	Cancel <-chan struct{
+	Response *Response
+}
+
+// ------------------------------------------------------------------------
+// Response
+type Response struct {
+	Status     string // e.g. "200 OK"
+	StatusCode int    // e.g. 200
+	Proto      string // e.g. "HTTP/1.0"
+	ProtoMajor int    // e.g. 1
+	ProtoMinor int    // e.g. 0
+	Header Header
+	Body io.ReadCloser
+	ContentLength int64
+	TransferEncoding []string
+	Close bool
+	Uncompressed bool
+	Trailer Header
+	Request *Request
+	TLS *tls.ConnectionState
+}
+// ------------------------------------------------------------------------
+// ResponseWriter interface
+type ResponseWriter interface {
+	Header() Header  // type Header map[string][]string
+	Write([]byte) (int, error)
+	WriteHeader(statusCode int)
+}
+
+Header() возвращает карту заголовков, котора будет отправлена с помощью
+WriteHeader()
+
+Write() - пишет данные в соединение, как часть http-ответа.
+Если WriteHeader() еще не был вызван, Write() вызывает WriteHeader(http.StatusOK).
+
+Если WriteHeader() не был вызван явно, первый вызов Write() неявно
+запустит WriteHeader(StatusOK).
+
+Для записи в ResponseWriter:          // ResponseWriter implements Writer interface
+func WriteString(w Writer, s string) (n int, err error) // w implements Writer interface
+func Fprint(w io.Writer, a ...any) (n int, err error)   // w implements Writer interface
+
+
+// ------------------------------------------------------------------------
+
+type Header map[string][]string
+// ------------------------------------------------------------------------
+// type http.Header
+type Handler interface {
+	ServeHTTP(ResponseWriter, *Request)
+}
+Отвечает на HTTP-запрос
+ServeHTTP() должен записать заголовки ответа и данные в http.ResponseWriter,
+а затем вернуть ('return'). Возврат сигнализирует от том, что запрос завершен.
+
+Главная работа ServeHTTP() - отвечать на запросы
+// ------------------------------------------------------------------------
+// URL - type url.URL
+type URL struct {
+	Scheme      string
+	Opaque      string    // encoded opaque data
+	User        *Userinfo // username and password information
+	Host        string    // host or host:port
+	Path        string    // path (relative paths may omit leading slash)
+	RawPath     string    // encoded path hint (see EscapedPath method)
+	OmitHost    bool      // do not emit empty host (authority)
+	ForceQuery  bool      // append a query ('?') even if RawQuery is empty
+	RawQuery    string    // encoded query values, without '?'
+	Fragment    string    // fragment for references, without '#'
+	RawFragment string    // encoded fragment hint (see EscapedFragment method)
+}
+// ------------------------------------------------------------------------
+
+func Handle(pattern string, handler Handler)
+Регистрирует обработчик для заданного паттерна в DefaultServeMux.
+Создает правило, которое вовлекает, которое вызывает указанный метод указанного
+обработчика для запросов, соответствующих шаблону.
+
+func HandleFunc(pattern string, handler func(ResponseWriter, *Request))
+Регистрирует функцию обработчика для данного шаблона в DefaultServeMux.
+Создает правило, которое вовлекает указанную функцию.
+
+// ------------------------------------------------------------------------
+// http.Server
+http.Server определяет параметры для запуска HTTP-сервера. Нулевое заначение
+для Server является допустимой конфигурацией.
+
+type Server struct {
+	Addr     string  // опционально указывает TCP-адрес для прослушивания (":http", ":4000")
+	Handler  Handler // handler to invoke, http.DefaultServeMux if nil
+	TLSConfig *tls.Config
+	ReadTimeout time.Duration
+	ReadHeaderTimeout time.Duration
+	WriteTimeout time.Duration
+	IdleTimeout time.Duration
+	MaxHeaderBytes int
+	TLSNextProto map[string]func(*Server, *tls.Conn, Handler)
+	ConnState func(net.Conn, ConnState)
+	ErrorLog *log.Logger
+	BaseContext func(net.Listener) context.Context
+	ConnContext func(ctx context.Context, c net.Conn) context.Context
+}
+
+// ------------------------------------------------------------------------

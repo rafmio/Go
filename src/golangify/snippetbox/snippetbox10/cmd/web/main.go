@@ -6,8 +6,12 @@ import (
   "path/filepath"
 )
 
+type neuteredFileSystem struct {
+  fs http.FileSystem
+}
+
 func main() {
-  mux := http.NewServeMux()
+  mux := http.NewServeMux() // Новый маршутизатор
 
   fileServer := http.FileServer(neuteredFileSystem{http.Dir("./static")})
   mux.Handle("/static", http.NotFoundHandler())
@@ -17,15 +21,10 @@ func main() {
   log.Fatal(err)
 }
 
-type neuteredFileSystem struct {
-  fs http.FileSystem
-}
-
-
 // Open() вызывается каждый раз, когда http.FileServer получает запрос
 func (nfs neuteredFileSystem) Open(path string) (http.File, error) {
-  f, err := nfs.fs.Open(path)
-  if err != nil {
+  f, err := nfs.fs.Open(path) // http.Open() inmplements http.FileSystem interface
+  if err != nil {             // using os.Open()
     return nil, err
   }
 

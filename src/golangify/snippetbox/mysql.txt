@@ -1,0 +1,136 @@
+СУБД MySQL и MariaDB - почти одинаковы, первая открытая и прориетарная,
+вторая - открытая и оупенсорсная.
+
+Установка:
+Ищем среди репозитариев:
+$ sudo apt-cache search mysql-server
+
+Находим, устанавливаем. Среди всего есть MariaDB. Говорят, сойдет для обучения
+$ sudo apt install default-mysql-server
+
+Для целей туториала создаем базу (предварительно войдя в MariaDB)
+$ sudo mysql
+(точка с запятой обязательна)
+> CREATE DATABASE snippetbox CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+> USE snippetbox;
+
+Посмотреть существующие базы:
+> show databases;
+
+Удалить ненужную базу:
+DROP DATABASE [DB_name без квадратных скобок];
+
+-- Создание таблицы `snippets`
+CREATE TABLE snippets (
+    id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(100) NOT NULL,
+    content TEXT NOT NULL,
+    created DATETIME NOT NULL,
+    expires DATETIME NOT NULL
+);
+
+У каждой записи в таблице будет столбик id поле с данными типа integer,
+которые будут действовать как уникальный идентификатор для каждой заметки.
+Будет текстовое поле title(заголовок), и поле content для хранения текста самой
+заметки.
+Метаданные о времени заметки будут храниться в поле created
+Срок жизни заметки - в поле expires
+
+
+Не добавлять по привычке, как в Go, в конце последней строки запятую
+
+-- Добавление индекса для созданного столбца
+CREATE INDEX idx_snippets_created ON snippets(created);
+
+
+Вручную заполняем таблицу
+-- Добавляем несколько тестовых записей
+INSERT INTO snippets (title, content, created, expires) VALUES (
+    'Не имей сто рублей',
+    'Не имей сто рублей,\nа имей сто друзей.',
+    UTC_TIMESTAMP(),
+    DATE_ADD(UTC_TIMESTAMP(), INTERVAL 365 DAY)
+);
+
+INSERT INTO snippets (title, content, created, expires) VALUES (
+    'Лучше один раз увидеть',
+    'Лучше один раз увидеть,\nчем сто раз услышать.',
+    UTC_TIMESTAMP(),
+    DATE_ADD(UTC_TIMESTAMP(), INTERVAL 365 DAY)
+);
+
+INSERT INTO snippets (title, content, created, expires) VALUES (
+    'Не откладывай на завтра',
+    'Не откладывай на завтра,\nчто можешь сделать сегодня.',
+    UTC_TIMESTAMP(),
+    DATE_ADD(UTC_TIMESTAMP(), INTERVAL 7 DAY)
+);
+
+
+Создание web пользователя с привелегиями выполнения SELECT и INSERT только для
+его базы данных
+CREATE USER 'web'@'localhost';
+GRANT SELECT, INSERT, UPDATE ON snippetbox.* TO 'web'@'localhost';
+
+-- Важно: Не забудьте заменить 'qwerty' на свой пароль, иначе это и будет паролем.
+ALTER USER 'web'@'localhost' IDENTIFIED BY 'qwerty';
+
+
+Тестирование нового пользователя
+$ mysql -D snippetbox -u web -p
+Enter password:
+mysql>
+ (вводим пароль 'qwerty')
+
+Просмотреть таблицу
+mysql> SELECT id, title, expires FROM snippets;
+
+https://golangify.com/go-sql-driver-mysql
+Для использования MySQL из веб-приложения на Go, нужно установить драйвер для БД.
+Он действует как посредник, переводя команды между Go и самой БД MySQL.
+Для нашего приложения мы будем использовать популярный драйвер go-sql-driver/mysql.
+
+$ cd $HOME/code/snippetbox
+$ go get github.com/go-sql-driver/mysql@v1
+go: downloading github.com/go-sql-driver/mysql v1.5.0
+
+
+Если вы хотите установить последнюю версию, независимо от ее номера,
+можно просто опустить суффикс @version. К примеру:
+$ go get github.com/go-sql-driver/mysql
+
+Если нужна определенная версия пакета:
+$ go get github.com/go-sql-driver/mysql@v1.0.3
+
+После того, как пакет был загружен и добавлен в файл go.mod, название пакета и
+его версия «замораживаются» и самостоятельно они себя не будут обновлять.
+
+Документация к нашему драйверу:
+https://github.com/go-sql-driver/mysql#dsn-data-source-name
+
+
+Пул подключения к базе данных MySQL
+https://golangify.com/mysql-connection-pool-go
+Сейчас наша база данных настроена и установлен драйвер для работы с MySQL
+из Golang, теперь можно попробовать подключиться к базе данных из веб-приложения.
+
+// Функция sql.Open() инициализирует новый объект sql.DB, который по сути
+// является пулом подключения к базе данных.
+db, err := sql.Open("mysql", "web:pass@/snippetbox?parseTime=true")
+if err != nil {
+    ...
+}
+
+Формат названия источника данных будет зависеть от того, какую базу данных и
+драйвер вы используете. Как правило, эту информацию можно найти в документации
+к вашему конкретному драйверу
+
+Функция sql.Open() возвращает объект sql.DB
+Это не соединение с базой данных — это пул множества соединений.
+Go управляет этими подключениями по мере необходимости,автоматически открывая
+и закрывая подключения к базе данных через драйвер;
+
+Пул соединений рассчитан на долгий срок службы. В веб-приложении, пул соединений
+обычно инициализируется в функции main(), а затем этот пул передается
+обработчикам. Не нужно вызывать sql.Open() в каждом обработчике — это будет
+пустой тратой памяти и сетевых ресурсов.

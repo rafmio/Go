@@ -1,3 +1,4 @@
 Started:
-https://golangify.com/executing-sql-statements
-Папка snippetbox19 (создать)
+https://golangify.com/single-record-sql-queries
+Папка snippetbox20 (создать)
+Плохо разобрался в MySQL

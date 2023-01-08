@@ -32,7 +32,7 @@ type Request struct {
 	Proto      string // "HTTP/1.0"
 	ProtoMajor int    // 1
 	ProtoMinor int    // 0
-	Header Header
+	Header Header			// map[string][]string
 	Body io.ReadCloser
 	GetBody func() (io.ReadCloser, error)
 	ContentLength int64
@@ -93,8 +93,9 @@ func Fprint(w io.Writer, a ...any) (n int, err error)   // w implements Writer i
 // ------------------------------------------------------------------------
 
 type Header map[string][]string
+
 // ------------------------------------------------------------------------
-// type http.Header
+// type http.Handler
 type Handler interface {
 	ServeHTTP(ResponseWriter, *Request)
 }
@@ -164,7 +165,7 @@ type ServeMux struct {
 	hosts bool       // whether any patterns contain hostnames
 }
 
-? Маршутизарот http-запросов
+? Маршутизатор http-запросов
 Сравнивает URL от каждого входящего запроса со списком зарегистрированных паттернов
 и вызывает обработчик дл соответствующего паттерна.
 Также заботится о чистоте URL запроса и заголовка хоста, удаляя номер порта и
@@ -173,7 +174,7 @@ type ServeMux struct {
 // ------------------------------------------------------------------------
 // http.Serve
 func Serve(l net.Listener, handler Handler) error
-Принимает водящие соединения на прослушиватель l, создавая новую обслуживающую
+Принимает входящие соединения на прослушиватель l, создавая новую обслуживающую
 горутину для каждого соединения.
 Обслуживающие горутины читают запросы и затем вызывают обработчик для ответа на них.
 

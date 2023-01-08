@@ -1,3 +1,3 @@
 Started:
-https://golangify.com/helpers-error-handling
-Папка snippetbox15, начать заново
+https://golangify.com/mysql-web-site
+Папка snippetbox17

@@ -5,15 +5,31 @@ import (
   "os"
 )
 
+func GetCategories(products []Product) (categories []string) {
+  catMap := map[string]string {}
+  for _, p := range products {
+    if (catMap[p.Category] == "") {
+      catMap[p.Category] = p.Category
+      categories = append(categories, p.Category)
+    }
+  }
+  return
+}
+
 func Exec(t *template.Template) error {
-  return t.Execute(os.Stdout, &Kayak)
+  return t.Execute(os.Stdout, Products)
 }
 
 func main() {
-  allTemplates, err := template.ParseGlob("templates/*.html")
+  allTemplates := template.New("allTemplates")
+  allTemplates.Funcs(map[string]interface{} {
+    "getCats": GetCategories,
+  })
+  allTemplates, err := allTemplates.ParseGlob("templates/*.html")
+
   if (err == nil) {
-    selectedTemplated := allTemplates.Lookup("template.html")
-    err = Exec(selectedTemplated)
+    selecetedTemplated := allTemplates.Lookup("mainTemplate")
+    err = Exec(selecetedTemplated)
   }
   if (err != nil) {
     Printfln("Error: %v", err.Error())

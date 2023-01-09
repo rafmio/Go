@@ -9,7 +9,7 @@ func ListenAndServe(add string, handler Hanlder) error
 func Handle(pattern string, handler Handler)
 func HandleFunc(pattern string, handler func(ResponseWriter, *Request))
 
-http.ListenAndServe(), стартуя http-сервер, блокиирует вызывающий процесс.
+http.ListenAndServe(), стартуя http-сервер, блокирует вызывающий процесс.
 Начинает слушать входящие HTTP запросы и обслуживать запросы, используя
 функцию http.Serve() под капотом
 
@@ -42,7 +42,7 @@ type Request struct {
 	Form url.Values
 	PostForm url.Values
 	MultipartForm *multipart.Form
-	Trailer Header
+	Trailer Header		// map[string][]string
 	RemoteAddr string
 	RequestURI string
 	TLS *tls.ConnectionState
@@ -58,13 +58,13 @@ type Response struct {
 	Proto      string // e.g. "HTTP/1.0"
 	ProtoMajor int    // e.g. 1
 	ProtoMinor int    // e.g. 0
-	Header 		 Header
+	Header 		 Header	// map[string][]string
 	Body 		io.ReadCloser
 	ContentLength int64
 	TransferEncoding []string
 	Close bool
 	Uncompressed bool
-	Trailer Header
+	Trailer Header		// map[string][]string
 	Request *Request
 	TLS *tls.ConnectionState
 }
@@ -76,7 +76,7 @@ type ResponseWriter interface {
 	WriteHeader(statusCode int)
 }
 
-Header() возвращает карту заголовков, котора будет отправлена с помощью
+Header() возвращает карту заголовков, которая будет отправлена с помощью
 WriteHeader()
 
 Write() - пишет данные в соединение, как часть http-ответа.
@@ -167,7 +167,7 @@ type ServeMux struct {
 
 ? Маршутизатор http-запросов
 Сравнивает URL от каждого входящего запроса со списком зарегистрированных паттернов
-и вызывает обработчик дл соответствующего паттерна.
+и вызывает обработчик для соответствующего паттерна.
 Также заботится о чистоте URL запроса и заголовка хоста, удаляя номер порта и
 перенаправляя любой запрос, содержащий '.', '..', '//'
 

@@ -2,5 +2,7 @@ pro-go
 
 page 646 Creating Static HTTP Server
 
+let's repeat: page 602
+
 github expamples:
 https://github.com/apress/pro-­go

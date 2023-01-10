@@ -13,19 +13,19 @@ type Context struct {
 
 var htmlTemplates *template.Template
 
-func HandleTemplateRequest(writer http.ResponseWriter, request *http.Request) {
-  path := request.URL.Path
+func HandleTemplateRequest(w http.ResponseWriter, r *http.Request) {
+  path := r.URL.Path
   if (path == "") {
     path = "products.html"
   }
 
   t := htmlTemplates.Lookup(path)
   if (t == nil) {
-    http.NotFound(writer, request)
+    http.NotFound(w, r)
   } else {
-    err := t.Execute(writer, Context { request, Products })
+    err := t.Execute(w, Context {r, Products})
     if (err != nil) {
-      http.Error(writer, err.Error(), http.StatusInternalServerError)
+      http.Error(w, err.Error(), http.StatusInternalServerError)
     }
   }
 }
@@ -36,8 +36,7 @@ func init() {
   htmlTemplates.Funcs(map[string]interface{} {
     "intVal": strconv.Atoi,
   })
-
-  htmlTemplates, err = htmlTemplates.ParseGlob("templates/*html")
+  htmlTemplates, err = htmlTemplates.ParseGlob("templates/*.html")
   if (err == nil) {
     http.Handle("/templates/", http.StripPrefix("/templates/",
       http.HandlerFunc(HandleTemplateRequest)))

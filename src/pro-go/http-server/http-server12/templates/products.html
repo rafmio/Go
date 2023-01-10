@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<!-- ================================================================== -->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <title>Pro Go</title>
+  </head>
+<!-- ================================================================== -->
+  <body>
+    <table>
+      <!-- ==================================================== -->
+      <thead>
+        <tr>
+          <th>Index</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <!-- ==================================================== -->
+      <tbody>
+        {{ range $index, $product := .Data }}
+        <tr>
+          <td>{{ $index }}</td>
+          <td>{{ $product.Name }}</td>
+          <td>{{ $product.Category }}</td>
+          <td>{{ printf "$%.2f" $product.Price }}</td>
+        </tr>
+        {{ end }}
+      </tbody>
+      <!-- ==================================================== -->
+    </table>
+  </body>
+<!-- ================================================================== -->
+</html>

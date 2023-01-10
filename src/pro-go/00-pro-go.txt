@@ -2,7 +2,7 @@ pro-go
 
 page 646 Creating Static HTTP Server
 
-let's repeat: page 630 Defining function result encoding
+let's repeat: page 638 
 
 github expamples:
 https://github.com/apress/pro-­go

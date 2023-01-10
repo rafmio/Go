@@ -1,6 +1,5 @@
-{{ define "mainTemplate" -}}
-  <h1>There are {{ len . }} products is the source data</h1>
-  {{ range getCats . -}}
-    <h1>Category: {{ . }}</h1>
+{{ define "mainTemplate" }}
+  {{ range $key, $value := . -}}
+    <h1>{{ $key }}: {{ printf "$%.2f" $value.Price }}</h1>
   {{ end }}
 {{- end }}

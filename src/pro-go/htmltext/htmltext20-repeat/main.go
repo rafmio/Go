@@ -3,10 +3,12 @@ package main
 import (
   "html/template"
   "os"
+  "strings"
+  "math"
 )
 
 func GetCategories(products []Product) (categories []string) {
-  catMap := map[string]string {}
+  catMap := map[string]string{}
   for _, p := range products {
     if (catMap[p.Category] == "") {
       catMap[p.Category] = p.Category
@@ -17,19 +19,25 @@ func GetCategories(products []Product) (categories []string) {
 }
 
 func Exec(t *template.Template) error {
-  return t.Execute(os.Stdout, Products)
+  productMap := map[string]Product {}
+  for _, p := range Products {
+    productMap[p.Name] = p
+  }
+  return t.Execute(os.Stdout, &productMap)
 }
 
 func main() {
   allTemplates := template.New("allTemplates")
   allTemplates.Funcs(map[string]interface{} {
     "getCats": GetCategories,
+    "lower": strings.ToLower,
+    "sqrt": math.Sqrt,
   })
   allTemplates, err := allTemplates.ParseGlob("templates/*.html")
 
   if (err == nil) {
-    selecetedTemplated := allTemplates.Lookup("mainTemplate")
-    err = Exec(selecetedTemplated)
+    selectedTemplated := allTemplates.Lookup("mainTemplate")
+    err = Exec(selectedTemplated)
   }
   if (err != nil) {
     Printfln("Error: %v", err.Error())

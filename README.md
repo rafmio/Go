@@ -84,6 +84,9 @@ template.Execute()
 
 html/template
 {{.}} {{if}} {{end}} {{range}}
+func (t *Template) Funcs(funcMap FuncMap) *Template
+variables
+define template
 
 http(html?).FormValue()
 

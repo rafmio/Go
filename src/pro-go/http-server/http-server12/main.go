@@ -1,10 +1,9 @@
 package main
 
 import (
-	"net/http"
 	"io"
+	"net/http"
 	"strings"
-
 )
 
 type StringHandler struct {
@@ -12,7 +11,7 @@ type StringHandler struct {
 }
 
 func (sh StringHandler) ServeHTTP(writer http.ResponseWriter,
-request *http.Request) {
+	request *http.Request) {
 	Printfln("Request for %v", request.URL.Path)
 	io.WriteString(writer, sh.message)
 }
@@ -35,9 +34,9 @@ func HTTPSRedirect(writer http.ResponseWriter, request *http.Request) {
 	Printfln("target: '%v'", target)
 
 	http.Redirect(writer, request, target, http.StatusTemporaryRedirect)
-	 // Запрос идет на адрес, порт и путь target с соотв.кодом
-	 // А там уже нужный порт слушает соответствующий (в горутине слушальщик, кот
-   // запускается ListenAndServeTLS)
+	// Запрос идет на адрес, порт и путь target с соотв.кодом
+	// А там уже нужный порт слушает соответствующий (в горутине слушальщик, кот
+	// запускается ListenAndServeTLS)
 }
 
 func main() {
@@ -55,13 +54,13 @@ func main() {
 
 	go func() {
 		err := http.ListenAndServeTLS(":5500", "certificate.crt", "certificate.key", nil)
-		if (err != nil) {
+		if err != nil {
 			Printfln("HTTPS Error: %v", err.Error())
 		}
-		}()
+	}()
 
-		err := http.ListenAndServe(":5000", http.HandlerFunc(HTTPSRedirect))
-		if (err != nil) {
-			Printfln("Error: %v", err.Error())
-		}
+	err := http.ListenAndServe(":5000", http.HandlerFunc(HTTPSRedirect))
+	if err != nil {
+		Printfln("Error: %v", err.Error())
+	}
 }

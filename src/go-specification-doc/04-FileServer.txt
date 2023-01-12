@@ -33,26 +33,49 @@ func StripPrefix(prefix string, h Handler) Handler
 вызывая обработчик h
 
 -----------------------------------------------
-http.HandlerFunc():
+Пример:
+1.Создаем 2 файла index.html и about.html и кладем все к папку static
+2.В корневой папке, в файле main.go запускаем:
+	http.ListenAndServe(":8181", http.FileServer(http.Dir("static")))
+	(Note: оба варианта "./static" и "static" работают)
+3.Запускаем приложение
+3.В браузере переходим по адресу http://localhost:8181/
+4.Браузер выдает там содержимое файла index.html из папки static
+5.Путь к корню веб-сайта автоматически сопоставляется с файлом index.html - это все равно,  если бы мы обратились по адресу http://localhost:8181/index.html
 
-type HandlerFunc func(ResponseWriter, *Request)
-Это адаптер чтобы позволить использование обычной функции как
-http-обработчик. Работает путем автоматического добавления метода ServeHTTP() для
-адаптируемой фукции. Это обходной способ заставить обычную функцию
-соответствовать требованиям интерфейса http.Handler
+6.Данный подход очень ограничен, т.е. сервер отдает нам только статич.файлы.
+  Выход: в main():
+    fs := http.FileServer(http.Dir("./static"))	
+  http.Handle("/", fs)
+  http.HandleFunc("/about", func(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprint(w, "About Page")
+  })
+  http.HandleFunc("/contact", func(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprint(w, "Contact Page")
+  })
 
------------------------------------------------
-У ServeMux тоже есть метод ServeHTTP(). ServeMux тоже соответствует требованиям
-интерфейса http.Handler
-
-Проще думать о ServeMux как об особом обработчике, который вместо предоставления
-ответа передает запрос второму обработчику.
-
-Когда сервер получает новый HTTP-запрос, он вызывает метод ServeHTTP() от
-ServeMux. Он ищет соответствующий обработчик на основе URL-запроса и, в свою
-очередь, вызывает метод ServeHTTP() этого обработчика.
-
-Можно рассматривать веб-приложение как цепочку из ServeHTTP() методов,
-вызываемых один за другим.
-
-Все входящие HTTP-запросы выполняются в собственной горутине.
+  fmt.Println("Server is listening...")
+  http.ListenAndServe(":8181", nil)
+  
+  Теперь если в вводим:
+  http://localhost:8181 - (c "/" в конце или без) - переходим в файл index.html
+  http://localhost:8181/about - в браузере выводится сообщение "About Page"
+  http://localhost:8181/about.html - в браузере выводится файл about.html
+  http://localhost:8181/contact - в браузере выводится сообщение "Contact Page"
+  
+  Таким образом, будет работать как динамическая генерация контента, так и статические файлы
+  
+  -----------------------------------------------
+  Также для отправки файлов можно использовать функцию http.ServeFile()
+  Она отправляет единичный файл по определенному пути:
+  в main():
+  
+    http.HandleFunc("/about", func(w http.ResponseWriter, r *http.Request) {
+    http.ServeFile(w, r, "static/about.html")
+  })
+  http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+    http.ServeFile(w, r, "static/index.html")
+  })
+  fmt.Println("Server is listening...")
+  http.ListenAndServe(":8181", nil)
+  

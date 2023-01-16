@@ -1,8 +1,6 @@
 pro-go
 
-page 652 Creating Static HTTP Server
-Directory http-server13, analyzing what forms.go is do 
+page 663 
 
-
-github expamples:
+Github expamples:
 https://github.com/apress/pro-­go

@@ -1,6 +1,12 @@
 # Go
 git@github.com:rafmio/Go.git
 
+Применение метода Close() после
+data, err := io.ReadAll(response.Body)
+os.Stdout.Write(data)
+defer response.Body.Close()
+Когда произошло Open()?
+
 net/http: Context() method for Request struct
 net/http: FormFile()
 net/url: URL struct

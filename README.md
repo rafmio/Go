@@ -1,6 +1,9 @@
 # Go
 git@github.com:rafmio/Go.git
 
+Что такое MIME?
+mime/multipart
+
 Применение метода Close() после
 data, err := io.ReadAll(response.Body)
 os.Stdout.Write(data)

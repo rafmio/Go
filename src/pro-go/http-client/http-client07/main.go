@@ -32,6 +32,6 @@ func main() {
       Printfln("Request Init Error: %v", err.Error())
     }
   } else {
-    Printfln("Ecnoder Error: %v", err.Error())
+    Printfln("Ecnoder Error: %v", err.Error() )
   }
 }

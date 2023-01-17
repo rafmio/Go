@@ -1,0 +1,14 @@
+Распарсить сырой текстовый адрес в структуру *url.URL:
+  reqURL, err := url.Parse("http://localhost:5000/echo")
+
+------------------------------------------------------------
+http.Client
+
+type Client struct {
+
+	Transport RoundTripper
+	CheckRedirect func(req *Request, via []*Request) error
+	Jar CookieJar
+  Timeout time.Duration
+}
+------------------------------------------------------------

@@ -6,7 +6,7 @@ import (
   "time"
   "io"
   "encoding/json"
-  "stirngs"
+  "strings"
   "net/url"
 )
 
@@ -15,4 +15,31 @@ func main() {
   time.Sleep(time.Second)
 
   var builder strings.Builder
+  err := json.NewEncoder(&builder).Encode(Products[0])
+  if (err == nil) {
+    reqURL, err := url.Parse("http://localhost:5000/echo")
+    if (err == nil) {
+      req := http.Request {
+        Method: http.MethodPost,
+        URL: reqURL,
+        Header: map[string][]string {
+          "Content-Type": {"application.json"},
+          "User-Agent": {"Super-puper go-client"},
+
+        },
+        Body: io.NopCloser(strings.NewReader(builder.String())),
+      }
+      response, err := http.DefaultClient.Do(&req)
+      if (err == nil && response.StatusCode == http.StatusOK) {
+        io.Copy(os.Stdout, response.Body)
+        defer response.Body.Close()
+      } else {
+        Printfln("Request Error: %v", err.Error())
+      }
+    } else {
+      Printfln("Parse Error: %v", err.Error())
+    }
+  } else {
+    Printfln("Encoder Error: %v", err.Error())
+  }
 }

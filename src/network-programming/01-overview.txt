@@ -1,0 +1,34 @@
+The organization of nodes in a network is called its topology.
+Topology types:
+  1. point-to-point (simplest)
+  2. dasiy chain (series of p2p connections)
+  3. bus
+  4. ring
+  5. star
+  6. mesh
+  7. hybrid
+
+Daisy chain
+Series of p2p connections. Intermediate nodes between an origin node and a
+destination node are commonly known as 'hops'.
+
+Bus topology
+Common network link. Wired bus network aren't common, but this type of topology
+drives wireless networks.
+
+Star topology
+Will likely encounter this network topology in wired networks.
+Central node - network switch
+
+ISP - internet service provider
+
+Latency - measure of the time that passes between sending a request and
+receiving a response.
+
+CDN - content delivery network. Географически распределенная сетевая
+инфраструктура. Входящие в CDN серверы расположены т.о., чтобы сделать время
+ответа для пользователей сайта/сервиса минимальными.
+
+Caching strategy
+
+SDU - service data unit = message body = payload

@@ -1,0 +1,5 @@
+IPv4 consists of 2 components:
+  - network ID
+  - host ID
+
+CIDR - Classes Inter-Domain Routing

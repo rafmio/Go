@@ -3,3 +3,20 @@ IPv4 consists of 2 components:
   - host ID
 
 CIDR - Classes Inter-Domain Routing
+
+The combination of an IP address and a port number is a socket address (address:port)
+
+Ports:
+0 to 1023 - well-known ports assigned to common services by the IANA (Internet
+            Assigned Numbers Authority)
+1024 to 49151 - for lesser common services
+49152 to 65535 -  for client sockets
+
+The web server sends its response to the socket address corresponding to the
+socket your web browser is monitoring. Your OS receives the response and passes
+it onto your web browser through the socket.
+
+NAT - network address translation
+
+Unicast addressing - sending packets from one IP to another IP
+Broadcastring - for all

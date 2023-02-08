@@ -1,0 +1,8 @@
+ICMP
+Internet Control Message Protocol
+It is used by network devices, including routers, to send error messages and
+optional information indicating success or failure when communication with
+another IP address.
+Messages are typically used for diagnostic or control purposes or generated in
+response to errors in IP operations. ICMP errors are directed to the source IP
+addresses of the originating packet.

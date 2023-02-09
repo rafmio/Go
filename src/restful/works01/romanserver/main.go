@@ -1,3 +1,4 @@
+
 package main
 
 import (
@@ -8,12 +9,11 @@ import (
   "strings"
   "time"
 
-  "romanNumerals"
+  "example/romanNumbers"
 )
 
 
 func main() {
-  voidFunc()
   http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
     urlPathElements := strings.Split(r.URL.Path, "/")
 
@@ -25,8 +25,16 @@ func main() {
         w.WriteHeader(http.StatusNotFound)
         w.Write([]byte("404 - Not Found"))
       } else {
+
+        w.WriteHeader(http.StatusOK)
+        for name, values := range r.Header {
+          for _, value := range values {
+            fmt.Fprint(w, "%s : %s", name, value)
+          }
+        }
         fmt.Fprintf(w, "%q",
-        html.EscapeString(romanNumerals.Numerals[number]))
+        html.EscapeString(romanNumbers.Numerals[number]))
+        fmt.Fprintf(w, "\n")
       }
     } else {
       // for all other requests, tell that Client sent a bad request

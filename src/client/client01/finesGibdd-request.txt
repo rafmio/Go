@@ -1,0 +1,5 @@
+regnum: E761AB
+regreg: 716
+stsnum: 9917164145
+captchaWord: 56441
+captchaToken: jv12D0GHwdwoNe%2BEd7LnW80V5uBBY3oEW4bnMugQFMo%3D

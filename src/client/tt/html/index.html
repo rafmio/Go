@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Truck Tracker</title>
+  </head>
+  <body>
+
+    <table>
+         <caption>Данные по перевозкам</caption>
+         <thead>
+           <tr>
+             <th>Дата загрузки</th>
+             <th>Грузоотправитель</th>
+             <th>№</th>
+             <th>Код АТИ</th>
+             <th>Город отпр</th>
+             <th>Город назн</th>
+             <th>Водитель</th>
+             <th>Диспетчер</th>
+             <th>Телефон Диспетчера</th>
+             <th>Стоимость</th>
+             <th>Примечание</th>
+             <th>Руб/т-кл</th>
+             <th>Автомобиль</th>
+             <th>Срок оплаты</th>
+             <th>Оплата</th>
+             </tr>
+
+         </thead>
+         <tbody>
+           {{ range .Entries }}
+           <tr>
+             <td>{ .LoadingDate }</td>
+             <td>{ .Shipper }</td>
+             <td>{ .Index }</td>
+             <td>{ .CodeATI }</td>
+             <td>{ .DepatureCity }</td>
+             <td>{ .DestinationCity }</td>
+             <td>{ .Driver }</td>
+             <td>{ .Dispatcher }</td>
+             <td>{ .DispatcherPhoneNum }</td>
+             <td>{ .Price }</td>
+             <td>{ .Note }</td>
+             <td>{ .PricePerKm }</td>
+             <td>{ .Truck }</td>
+             <td>{ .PaymentTerm }</td>
+             <td>{ .Payment }</td>
+             </tr>
+             {{ end }}
+         </tbody>
+       </table>
+
+
+  </body>
+</html>

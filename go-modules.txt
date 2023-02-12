@@ -68,3 +68,20 @@ replace example.com/greetings => ../greetings
 require, чтобы указать, что example.com/hello требует example.com/greetings
 
 Вы создали эту зависимость, когда импортировали пакет приветствий в hello.go
+
+=============================================================================
+$ go install example/user/hello
+It then installs binary as $HOME/go/bin/hello.
+The install directory is controlled by GOPATH and GOBIN environment variables.
+If GOBIN is set, binaries are installed to that directory.
+If GOPATH is set, binaries are installed to the bin subdirectory of the first 
+directory in the GOPATH list. Otherwise, binaries are installed to the bin 
+subdirectory of the default GOPATH ($HOME/go).
+
+go env -w GOBIN=/somewhere/else/bin
+
+to unset a variable previously set by go env -w, use go env -u:
+
+go env -u GOBIN
+
+

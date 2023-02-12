@@ -1,0 +1,2 @@
+curl -X GET "http://localhost:8000/roman_number/5" # Valid request
+curl -X GET "http://localhost:8000/roman_number/12" # Resource out of range

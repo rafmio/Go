@@ -1,3 +1,4 @@
+// https://networkbit.ch/golang-dns-lookup/
 package main
 
 import (
@@ -6,9 +7,10 @@ import (
 )
 
 func main() {
-  printLookupAddr("8.8.8.8")
-  printLookupAddr("77.88.8.8")
-  printLookupAddr("77.88.8.1")
+  var ip string
+  fmt.Printf("Enter IP: ")
+  fmt.Scanf("%s\n", &ip)
+  printLookupAddr(ip)
 }
 
 

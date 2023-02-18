@@ -1,5 +1,10 @@
 # Go
-git@github.com:rafmio/Go.git
+# git@github.com:rafmio/Go.git
+# The task of this repository is to have access from any host to an unstructured
+# dump of pieces of code in the Go language. There is no structure here.
+# Sometimes it doesn't even make sense
+
+https://www.devdungeon.com/content/go
 
 Что такое MIME?
 mime/multipart

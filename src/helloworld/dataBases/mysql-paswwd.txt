@@ -1,0 +1,4 @@
+Run mysql:
+sudo -u root -p
+
+mysql password: root

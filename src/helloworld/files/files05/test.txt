@@ -1,0 +1,2 @@
+ABCBuffered string
+e more byte

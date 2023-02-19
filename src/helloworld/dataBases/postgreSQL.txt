@@ -1,0 +1,14 @@
+PostgreSQL
+
+Debian includes PostgreSQL by default
+$ sudo apt install postgresql-13
+$ sudo apt install pastgresql
+$ sudo apt install postgresql-client
+$ sudo apt install postgresql-doc
+
+
+Рекомендуемые пакеты:
+
+postgresql-doc - документация.
+pgadmin3 - PostgreSQL administration GUI.
+phppgadmin - веб-интерфес для утилит администратора

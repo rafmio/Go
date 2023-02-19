@@ -1,0 +1,46 @@
+Run MariaDB [(none)]> :
+$ sudo mysql -u root -p
+Enter password: root
+
+Check status:
+$ sudo systemctl status mysql.service
+
+
+Check status inside of MariaDB:
+MariaDB [(none)]> status
+
+Check for existing databases:
+MariaDB [(none)]> SHOW DATABASES;
+
+Delete database:
+MariaDB [(none)]> DROP DATABASE <DBName>;
+
+Create database:
+MariaDB [(none)]> CREATE DATABASE <DBName>;
+
+Use DB as current:
+MariaDB [(none)]> USE <DBName>;
+All follwen requests will be addressed to the current DB
+
+MariaDB [DBName]> SHOW TABLES;
+
+Create table in DB (example):
+MariaDB [DBName]> CREATE TABLE users ( id INT (5) AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(64), surname VARCHAR(64), age TINYINT(3), email VARCHAR(64),
+status VARCHAR(128)) DEFAULT CHARACTER SET UTF8;
+
+Check the structure of table:
+MariaDB [DBName]> DESCRIBE tableName
+
+Insert the row:
+MariaDB [DBName]> INSERT INTO users(name, surname, age, email, status)
+-> VALUES('Ivan', 'Petrov', '25', 'petrov@company.ru', 'work');
+
+Display table's values:
+MariaDB [DBName]> SELECT * FROM <tableName>;
+
+Update values of the entry in the column:
+MariaDB [DBName]> UPDATE <tableName> SET status='valueOfstatus' WHERE name='valueofName';
+
+Delete entry:
+MariaDB [DBName]> DELETE FROM <tableName> WHERE <fieldName> = 'value';

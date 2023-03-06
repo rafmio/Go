@@ -1,0 +1,9 @@
+
+*.cc
+*.co
+*mod*
+*.info
+*.lock
+*.zip
+*.ziphash
+*.sum

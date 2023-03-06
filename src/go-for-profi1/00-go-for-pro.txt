@@ -2,7 +2,7 @@ Golang for pro
 Second edition
 2020
 
-page 71
+page 97
 
 
 https://github.com/PacktPublishing/Mastering-Go-Second-Edition

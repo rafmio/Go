@@ -6,6 +6,11 @@
 
 https://www.devdungeon.com/content/go
 
+Если перед любой командой go run поставить GODEBUG=gctrace=1, то Go выводит
+аналитические данные о работе сборщика мусора
+$ GODEBUG=gctrace=1 go run gColl.go
+$ GODEBUG=gctrace=1 go run <filename.go>
+
 Что такое MIME?
 mime/multipart
 

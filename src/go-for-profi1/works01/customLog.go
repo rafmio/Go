@@ -22,3 +22,6 @@ func main() {
 	iLog.Println("Hello there")
 	iLog.Println("Another log entry")
 }
+
+// logging
+// логирование логи

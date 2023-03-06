@@ -29,3 +29,6 @@ func main() {
 	log.Println("LOG_MAIL: Logging in Go")
 	fmt.Println("Will you see this?")
 }
+
+// system log logging
+// системное логгирование

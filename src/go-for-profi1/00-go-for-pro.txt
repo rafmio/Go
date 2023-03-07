@@ -2,10 +2,28 @@ Golang for pro
 Second edition
 2020
 
-page 97
+page 102
 
 
 https://github.com/PacktPublishing/Mastering-Go-Second-Edition
 
 Color illustrations:
 https://static.packt-cdn.com/downloads/9781838559335.pdf
+
+Отслеживать системные вызовы
+$ strace <app-name>
+$ strace ls
+$ strace w
+
+В выходных данных strace(1) отображаются все системные вызовы вместе с их параметрами,
+а также возвращаемыми значениями. Если функция возвращает 0 - значит все ок.
+
+Параметр -c позволяет выводить счетчик времени, вызовы и ошибки для каждого системного
+вызова:
+$ strace -c <app-name>
+
+Чтобы не выводился результат app можно перенаправить на null:
+$ strace -c <app-name> 1>/dev/null
+
+Для использования команды dtrace(1) нужно установить systemtap-sdt-dev 
+$ sudo apt install systemtap-sdt-dev

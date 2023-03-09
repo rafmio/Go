@@ -2,7 +2,7 @@ Golang for pro
 Second edition
 2020
 
-page 102
+page 120
 
 
 https://github.com/PacktPublishing/Mastering-Go-Second-Edition
@@ -27,3 +27,22 @@ $ strace -c <app-name> 1>/dev/null
 
 Для использования команды dtrace(1) нужно установить systemtap-sdt-dev 
 $ sudo apt install systemtap-sdt-dev
+
+Вывод компилируемого кода в ассемблер:
+$ GOOS=linux GOARCH=amd64 go build -gcflags -S <fileName.go>
+
+Чтобы увидеть что перемещается в двоичный файл после линковки:
+$ go tool objdump -s main.main <goBuildedExeFile>
+
+Посмотреть на некоторые внутренние операции
+$ GOOS=linux GOARCH=amd64 go build -gcflags -W <filaName.go>
+
+Параметр -Ц дает команду компиляции вывести на экран дерево
+синтаксического анализа отладки (debug parse tree) после 
+проверки соответствия типов
+
+Чтобы узнать больше что происходит внутри компилтора - добавить флаг -x:
+$ go build -x defer.go
+
+Скомпилировать исходный код Go в WebAssembly:
+$ GOOS=js GOARCH=wasm go build -o main.wasm <fileName.go>

@@ -6,6 +6,9 @@
 
 https://www.devdungeon.com/content/go
 
+context.Backgound
+context package
+
 Если перед любой командой go run поставить GODEBUG=gctrace=1, то Go выводит
 аналитические данные о работе сборщика мусора
 $ GODEBUG=gctrace=1 go run gColl.go

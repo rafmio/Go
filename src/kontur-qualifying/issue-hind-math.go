@@ -12,14 +12,18 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"sort"
 	"strconv"
 )
 
 func main() {
 	// Эмулируем вход данных и вызоваем функцию
-	var num int = 4965
+	reader := bufio.NewReader(os.Stdin)
+	var num int
+	fmt.Fscan(reader, &num)
 	dif := digitsPremutation(num)
 
 	// Выводим результат

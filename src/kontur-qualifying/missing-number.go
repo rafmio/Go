@@ -14,7 +14,7 @@ func main() {
 	fillSlice(num, numSlice)
 
 	desiredValue := mapValues(numSlice)
-	fmt.Println(desiredValue)
+	fmt.Println(desiredValue * -1)
 }
 
 func fillSlice(num int, numSlice []int) {
@@ -30,6 +30,9 @@ func mapValues(numSlice []int) int {
 	var desiredValue int
 	var valuesPairs = make(map[int]int)
 	for _, val := range numSlice {
+		if val < 0 {
+			val *= -1
+		}
 		valuesPairs[val] += 1
 	}
 

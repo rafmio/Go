@@ -18,7 +18,7 @@ func main() {
 	teamAteamBSls := strings.Split(teamAteamBStr, "-")
 	teamA, teamB := teamAteamBSls[0], teamAteamBSls[1]
 
-	position := calculatePosition(teamMap, teamA, teamB)
+	position := positions(teamMap, teamA, teamB)
 }
 
 func fillTeamMap(teamMap map[string]int, num int) string {
@@ -47,10 +47,16 @@ func fillTeamMap(teamMap map[string]int, num int) string {
 
 }
 
-func calculatePosition(teamMap map[string]int, teamA string, teamB string) []int {
+func positions(teamMap map[string]int, teamA string, teamB string) []int {
 	var victory int = 3 // Победа
 	var defeat int = 0  // Поражение
 	var draw int = 1    // Ничья
 
 	position := make([]int, 3)
+
+	// position[0]
+}
+
+func calculatePosition(teamMap map[string]int, teamA string, teamB string, result int) int {
+
 }

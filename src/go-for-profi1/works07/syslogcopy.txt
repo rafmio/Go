@@ -1,0 +1,10 @@
+Mar 26 00:00:01 raf systemd[1]: rsyslog.service: Sent signal SIGHUP to main process 481 (rsyslogd) on client request.
+Mar 26 00:00:01 raf systemd[1]: logrotate.service: Succeeded.
+Mar 26 00:00:01 raf systemd[1]: Finished Rotate log files.
+Mar 26 00:00:01 raf systemd[1]: man-db.service: Succeeded.
+Mar 26 00:00:01 raf systemd[1]: Finished Daily man-db regeneration.
+Mar 26 00:01:07 raf gnome-shell[3094]: [2023-03-26 00:01:07] [info] asio async_connect error: system:111 (Connection refused)
+Mar 26 00:01:07 raf gnome-shell[3094]: [2023-03-26 00:01:07] [info] Error getting remote endpoint: system:107 (Transport endpoint is not connected)
+Mar 26 00:01:07 raf gnome-shell[3094]: [2023-03-26 00:01:07] [error] handle_connect error: Underlying Transport Error
+Mar 26 00:01:40 raf gnome-shell[3094]: [3134:3140:0326/000140.840364:ERROR:ssl_client_socket_impl.cc(1229)] handshake failed; returned -1, SSL error code 1, net_error -101
+Mar 26 00:01:40 raf gnome-shell[3094]: [3134:3140:0326/000140.894515:ERROR:ssl_client_socket_impl.cc(1229)] handshake failed; returned -1, SSL error code 1, net_error -101

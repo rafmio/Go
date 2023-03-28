@@ -1,4 +1,5 @@
 strings
+string literal
 characters
 runes
 bytes
@@ -40,3 +41,32 @@ Rune
  rune constant - ?
  '⌘' - is rune with integer value 0x2318
 Runes literal expressed as one or more character enclosed in single quotes ''
+
+
+
+
+String - read-only(?) slice of bytes. String holds arbitrary bytes.
+It is not required to hold Unicode text, UTF-8 text, or any other predefined format.
+String - is just a bunch of bytes.
+Go source code is UTF-8, so the code for string literal is UTF-8 text.
+Conclusion:
+Strings - arbitrary bytes
+String literals - UTF-8
+
+Строковые литералы:
+- необработанные строковые литералы
+- интерпретируемые строковые литералы
+
+Необработанные строковые литералы:
+`foo`, `bar` - внутри `` может быть все, кроме обратной кавычки (`)
+Значение небработанного строкового литерала - UTF-8
+Символы типа '\r' отбрасываются
+
+Интерпретируемые строковыве литералы:
+"foo", "bar" - внутри "" может быть все, короме \n и неэкранированной ""
+
+Code point == rune
+rune - alias for int32
+
+Syscalls are costly. The perfomance of IO is greatly improved when we accumulate
+data into a buffer. This reduces the numeber of syscalls we needed.

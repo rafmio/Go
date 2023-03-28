@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -14,11 +15,14 @@ func main() {
 	fmt.Fscan(reader, &num)
 
 	teamMap := make(map[string]int)
-	teamAteamBStr := fillTeamMap(teamMap, num)
+
+	teamAteamBStr := fillTeamMap(teamMap, num) // Заполняет карту - ок
+
 	teamAteamBSls := strings.Split(teamAteamBStr, "-")
 	teamA, teamB := teamAteamBSls[0], teamAteamBSls[1]
 
-	position := positions(teamMap, teamA, teamB)
+	positions := positions(teamMap, teamA, teamB)
+	fmt.Println(positions)
 }
 
 func fillTeamMap(teamMap map[string]int, num int) string {
@@ -41,22 +45,60 @@ func fillTeamMap(teamMap map[string]int, num int) string {
 			scanner.Scan()
 			teamAteamB = scanner.Text()
 
-			return teamAteamB
 		}
 	}
-
+	return teamAteamB
 }
 
 func positions(teamMap map[string]int, teamA string, teamB string) []int {
-	var victory int = 3 // Победа
-	var defeat int = 0  // Поражение
-	var draw int = 1    // Ничья
+	results := []string{"victory", "draw", "defeat"}
+	resultsSls := make([]int, len(results))
 
-	position := make([]int, 3)
+	for i, value := range results {
+		position := calculatePosition(teamMap, teamA, teamB, value)
+		resultsSls[i] = position
+	}
 
-	// position[0]
+	return resultsSls
 }
 
-func calculatePosition(teamMap map[string]int, teamA string, teamB string, result int) int {
+func calculatePosition(teamMap map[string]int, teamA string, teamB string, result string) int {
+	victory := 3
+	defeat := 0
+	draw := 1
 
+	var position int
+
+	teamMapCalculate := make(map[string]int)
+	for key, value := range teamMap {
+		teamMapCalculate[key] = value
+	}
+
+	if result == "victory" {
+		teamMapCalculate[teamA] += victory
+		teamMapCalculate[teamB] += defeat
+	} else if result == "draw" {
+		teamMapCalculate[teamA] += draw
+		teamMapCalculate[teamB] += draw
+	} else if result == "defeat" {
+		teamMapCalculate[teamA] += defeat
+		teamMapCalculate[teamB] += victory
+	}
+
+	scores := make([]int, 0)
+	for _, value := range teamMapCalculate {
+		scores = append(scores, value)
+	}
+
+	sort.Ints(scores)
+
+	for idx, value := range scores {
+		if value == teamMap[teamA] {
+			position = idx + 1
+		}
+	}
+
+	fmt.Println("position: ", position)
+
+	return len(teamMap) - position
 }

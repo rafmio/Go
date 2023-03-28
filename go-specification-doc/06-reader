@@ -1,0 +1,64 @@
+// Reader
+
+Read(p []byte) (n int, err error)
+
+
+// io package:
+type Reader interface {
+	Read(p []byte) (n int, err error)
+}
+
+type Writer interface {
+	Write(p []byte) (n int, err error)
+}
+
+// You won't be calling Read directly.
+
+// io.ReadAll    - to read all bytes from source into one long byte slice
+// bufio.Scan()  - to read a file line-by-line from bufio.Scanner
+
+// Метод Read применим к любому типу данных, который может быть считан в
+// слайс байтов []byte
+
+
+
+type Reader
+type Writer
+type Scanner
+
+
+bufio package
+
+bufio.Reader:
+type Reader struct {
+	buf          []byte
+	rd           io.Reader // reader provided by the client
+	r, w         int       // buf read and write positions
+	err          error
+	lastByte     int // last byte read for UnreadByte; -1 means invalid
+	lastRuneSize int // size of last rune read for UnreadRune; -1 means invalid
+}
+
+bufio.Writer:
+type Writer struct {
+	err error
+	buf []byte
+	n   int
+	wr  io.Writer
+}
+
+
+strings package
+
+strings.Reader:
+type Reader struct {
+	s        string
+	i        int64 // current reading index
+	prevRune int   // index of previous rune; or < 0
+}
+
+strings.Builder:
+type Builder struct {
+	addr *Builder // of receiver, to detect copies by value
+	buf  []byte
+}

@@ -16,7 +16,7 @@ func main() {
 
 	teamMap := make(map[string]int)
 
-	teamAteamBStr := fillTeamMap(teamMap, num) // Заполняет карту - ок
+	teamAteamBStr := fillTeamMap(teamMap, num)
 
 	teamAteamBSls := strings.Split(teamAteamBStr, "-")
 	teamA, teamB := teamAteamBSls[0], teamAteamBSls[1]
@@ -86,10 +86,6 @@ func calculatePosition(teamMap map[string]int, teamA string, teamB string, resul
 	}
 
 	for key, value := range teamMapCalculate {
-		fmt.Println("copy teamMap: ", key, ":", value)
-	}
-
-	for key, value := range teamMapCalculate {
 		if value == teamMapCalculate[teamA] && key != teamA {
 			for i := 0; i < len(teamA) || i < len(key); i++ {
 				if teamA[i] == key[i] {
@@ -112,16 +108,11 @@ func calculatePosition(teamMap map[string]int, teamA string, teamB string, resul
 
 	sort.Ints(scores)
 
-	fmt.Println("scores: ", scores)
-
 	for idx, value := range scores {
 		if value == teamMapCalculate[teamA] {
 			position = idx
 		}
 	}
 
-	fmt.Println("position: ", position, "position when", result, ":", len(teamMap)-position)
-
 	return len(teamMap) - position
-
 }

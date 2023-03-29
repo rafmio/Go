@@ -1,2 +1,0 @@
-Last stop (26 Sep 2022, 17:30):
-https://go.dev/tour/methods/21

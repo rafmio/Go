@@ -14,7 +14,7 @@ func main() {
 	fillSlice(num, numSlice)
 
 	desiredValue := mapValues(numSlice)
-	fmt.Println(desiredValue * -1)
+	fmt.Println(desiredValue)
 }
 
 func fillSlice(num int, numSlice []int) {

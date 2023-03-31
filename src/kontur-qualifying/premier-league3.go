@@ -28,25 +28,21 @@ func main() {
 func fillTeamMap(teamMap map[string]int, num int) string {
 	var teamAteamB string
 
-	for i := 0; i <= num; i++ {
-		if i < num {
-			scanner := bufio.NewScanner(os.Stdin)
-			scanner.Scan()
-			line := scanner.Text()
-			spltSls := strings.Split(line, " ")
-			team := spltSls[0]
-			score, err := strconv.Atoi(spltSls[1])
-			if err != nil {
-				fmt.Println("converting string to int: ", err.Error())
-			}
-			teamMap[team] = score
-		} else {
-			scanner := bufio.NewScanner(os.Stdin)
-			scanner.Scan()
-			teamAteamB = scanner.Text()
-
+	for i := 0; i < num; i++ {
+		scanner := bufio.NewScanner(os.Stdin)
+		scanner.Scan()
+		line := scanner.Text()
+		spltSls := strings.Split(line, " ")
+		team := spltSls[0]
+		score, err := strconv.Atoi(spltSls[1])
+		if err != nil {
+			fmt.Println("converting string to int: ", err.Error())
 		}
 	}
+	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Scan()
+	teamAteamB = scanner.Text()
+
 	return teamAteamB
 }
 

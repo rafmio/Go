@@ -24,11 +24,10 @@ func main() {
 }
 
 func fillSlice(num int, numSlice []int) {
-	reader := bufio.NewReader(os.Stdin)
-	var elem int
 	for i := 0; i < num; i++ {
-		// reader := bufio.NewReader(os.Stdin)
-		fmt.Fscan(reader, &elem)
-		numSlice[i] = elem
+		var line int
+		reader := bufio.NewReader(os.Stdin)
+		fmt.Fscanf(reader, "%d\n", line)
+		numSlice[i] = line
 	}
 }

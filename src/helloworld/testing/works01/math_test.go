@@ -1,6 +1,9 @@
 package math
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 type addTest struct {
 	arg1, arg2, expected int
@@ -42,14 +45,25 @@ func TestSubtract(t *testing.T) {
 
 func BenchmarkAdd(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		Add(4, 6)
+		// Add(4, 6)
+		for _, value := range addTests {
+			Add(value.arg1, value.arg2)
+		}
 	}
 }
 
 func BenchmarkSubtract(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		Subtract(340, 60)
+		// Subtract(340, 60)
+		for _, value := range subtractTests {
+			Subtract(value.arg1, value.arg2)
+		}
 	}
+}
+
+func ExampleAdd() {
+	fmt.Println(Add(4, 6))
+	// Output: 10
 }
 
 // go test

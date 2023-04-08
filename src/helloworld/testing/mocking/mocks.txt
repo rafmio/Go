@@ -1,0 +1,49 @@
+package golang/mock
+
+Installation:
+go install github.com/golang/mock/mockgen@v1.6.0
+
+Check version:
+mockgen version [-version] [--version]
+Running mockgen:
+mockgen -source=foo.go [other options]
+
+Result: 
+bash: mockgenn: command not found
+
+Note:
+executable file 'mockgen' appeared at 'home/go/bin'
+
+Solution
+
+Если есть исполняемый файл, значит что-то может делать.
+Попробовал запустить, указав полный путь:
+$HOME/go/bin/mockgen
+
+добавил остальные параметры, указанные в туториале:
+$HOME/go/bin/mockgen -destination=mocks/mock_doer.go -package=mocks github.com/sgreben/testing-with-gomock/doer Doer
+
+ругнулся на отсутствие зависимостей, предложил скачать:
+go get github.com/golang/mock/mockgen/model (часть библиотеки видимо)
+go get github.com/sgreben/testing-with-gomock/doer (однозначно часть примера автора тутора)
+
+Скачал, повторил запуск
+Сгенерировался файл 
+Сгенерировался в ту директорию, которую предварительно по туториалу нужно было создать
+
+Details:
+Here’s what the arguments given to mockgen mean:
+-destination=mocks/mock_doer.go: put the generated mocks in the file mocks/mock_doer.go
+-package=mocks: put the generated mocks in the package mocks
+github.com/sgreben/testing-with-gomock/doer: generate mocks for this package
+Doer: generate mocks for this interface. This argument is required — we need to specify the interfaces to generate mocks for explicitly. We can, however specify multiple interfaces here as a comma-separated list (e.g. Doer1,Doer2)
+
+TODO:
+- разобраться с общей концепцией уже сгенеренных моков - их понимание вне каких-либо моих шаблонов:
+  интерфейсы, объекты
+- научиться генерить моки для собственных нужд
+
+Есть зацепки с общей концепцией, но тест запустить не получается из-за зависимостей:
+в туторе автор поменял структуру репозитариев, исправленное не вставляется, локально
+скопировать не получается, пробую
+

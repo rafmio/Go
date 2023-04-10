@@ -1,7 +1,7 @@
 https://quii.gitbook.io/learn-go-with-tests/go-fundamentals/install-go
 
 Last:
-https://quii.gitbook.io/learn-go-with-tests/go-fundamentals/arrays-and-slices
+https://quii.gitbook.io/learn-go-with-tests/go-fundamentals/structs-methods-and-interfaces
 
 Install godoc:
 go install golang.org/x/tools/cmd/godoc@latest

@@ -1,7 +1,7 @@
 https://quii.gitbook.io/learn-go-with-tests/go-fundamentals/install-go
 
 Last:
-https://quii.gitbook.io/learn-go-with-tests/go-fundamentals/maps#write-the-test-first-2
+https://quii.gitbook.io/learn-go-with-tests/go-fundamentals/maps#write-the-test-first-5
 
 Install godoc:
 go install golang.org/x/tools/cmd/godoc@latest

@@ -6,104 +6,12 @@
 
 https://www.devdungeon.com/content/go
 
-context.Backgound
-context package
 
 Если перед любой командой go run поставить GODEBUG=gctrace=1, то Go выводит
 аналитические данные о работе сборщика мусора
 $ GODEBUG=gctrace=1 go run gColl.go
 $ GODEBUG=gctrace=1 go run <filename.go>
 
-Что такое MIME?
-mime/multipart
-
-Применение метода Close() после
-data, err := io.ReadAll(response.Body)
-os.Stdout.Write(data)
-defer response.Body.Close()
-Когда произошло Open()?
-
-net/http: Context() method for Request struct
-net/http: FormFile()
-net/url: URL struct
-
-Exercises:
-  - open file, close file
-  - marshal/unmarshal JSON (Encode()/Decode() + Marshal()/Unmarshal())
-
-buffered io (concept)
-
-bufio package (2 times)
-bufio.NewReader(os.Stdin)
-bufio Scanner
-bufio NewScanner
-bufio.ReadString('\n')
-
-bytes package
-
-functions: variadic argumets/parameters
-
-time.Now() // func
-time.Time // data type
-time.Timer // data type
-time.Ticker // data type
-time.NewTimer
-time.NewTicker
-time.Stop(), C (field of struct)
-time.Reset()
-
-sync Package
-sync.WaitGroup
-sync.Add()
-sync.Done()
-sync.Wait()
-sync.Mutex - data type
-sync.Lock()
-sync.Unlock()
-
-
-
-init functions
-
-panic, recover, defer
-
-  understanding closures
-
-  static and dynamic types (interface)
-
-  What is Err() method?
-
-Learn later:
-
-Collection's memory model: arrays, slices, maps, memory, allocations in memory, new variables, copying
-
-Закрепить применение модулей
-
-What is Text() method?
-
-Package "unicode/utf8"
-error realization (type error interface{}, Err(), Error() method, etc)
-io/ioutil
-path/filepath
-filepath.Join()
-ioutil.ReadDir()
-ioutil Name()
-ioutil IsDir
-
-net/http
-http.Get (go doc http Get)
-http.Response (go doc http Response)
-http.ResponseWriter
-*http.Request
-http.Write
-http.HandleFunc
-http.ListenAndServe
-
-
-text/template
-template.New()
-template.Parse()
-template.Execute()
 
 html/template
 {{.}} {{if}} {{end}} {{range}}
@@ -113,39 +21,7 @@ define template
 
 http(html?).FormValue()
 
-image
-image/color
-image/gif
 
-encoding/json
-embedded structs
-pointers to structs
-fields of the struct as a pointers
-
-паттерны конкурентного программирования
-fan-in, fan-out
-
-парсинг CSV файлов https://golangify.com/parsing-csv
-
-runtime package
-runtime.GOMAXPROCS(1) // context: use only 1 processor core for several http-servers
-
-----------------------------------------------------
-type Product struct {
-  name, category string
-  price float64
-}
-
-Defining struct (literal):
-kayak := &Product{ "Boat", "Watersports", 150.00 }
-(Kayak is a pointer to var kayak of type *Product)
-
-Defining a slice of pointers to struct:
-products := []*Product {
-  { "Kayak", "Watersports", 275.00 },
-  { "Lifejacket", "Watersports", 48.95 },
-  { "Soccer Ball", "Soccer", 19.50 },
-}
 ----------------------------------------------------
 INTERFACES
 
@@ -180,8 +56,6 @@ INTERFACES
 
 
 --------------------------------------------------------
-
-Regular expressions - basics
 
 //----------------------------------------
 Рандомные инты (случайные значения):

@@ -20,6 +20,8 @@ func TestIsomorphicStrings(t *testing.T) {
 		{str1: "aab", str2: "xxy", result: true},
 		{str1: "aab", str2: "xyz", result: false},
 		{str1: "acab", str2: "xcxy", result: true},
+		{str1: "a", str2: "a", result: true},
+		{str1: "badc", str2: "baba", result: false},
 	}
 
 	for _, tst := range TableTstCases {

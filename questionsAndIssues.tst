@@ -1,3 +1,5 @@
+Отсутствие четкого понимания использования writers/readers
+
 linked lists
 
 Bitwise operations

@@ -1,7 +1,7 @@
 https://quii.gitbook.io/learn-go-with-tests/go-fundamentals/install-go
 
 Last:
-https://quii.gitbook.io/learn-go-with-tests/go-fundamentals/concurrency#write-a-test
+https://quii.gitbook.io/learn-go-with-tests/go-fundamentals/select#write-enough-code-to-make-it-pass-1
 
 Install godoc:
 go install golang.org/x/tools/cmd/godoc@latest

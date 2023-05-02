@@ -3,22 +3,27 @@ package main
 
 import "fmt"
 
-func greet(c chan string) {
-	fmt.Println("Hello " + <-c + "!")
+func squares(c chan int) {
+	for i := 0; i <= 1000; i++ {
+		c <- i * i
+	}
+
+	close(c)
 }
 
-func main() { // enter the main goroutine
-	fmt.Println("main() started") // print text
-	c := make(chan string) // creating the new channel of type string
+func main() {
+	runChannel()
+}
 
-	go greet(c) // pass c (cannel of type string) to greet func and run greet() in goroutine
+func runChannel() {
+	fmt.Println("runChannel() started")
+	c := make(chan int, 16)
 
-	// now greet running somwhere in goroutine
-	
-	// ? main goroutine is blocked before receiver gets the value
+	go squares(c)
 
-	c <- "John" // pass the string to the channel
-	
+	for val := range c {
+		fmt.Printf("%d ", val)
+	}
 
 	fmt.Println("main() stopped")
 }

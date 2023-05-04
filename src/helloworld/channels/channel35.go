@@ -1,29 +1,30 @@
 // https://habr.com/ru/articles/490336/
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+)
 
-func squares(c chan int) {
-	for i := 0; i <= 1000; i++ {
-		c <- i * i
-	}
+var j int 
 
-	close(c)
+func worker(wg *sync.WaitGroup, m *sync.Mutex) {
+	m.Lock()
+	j = j + 1
+	m.Unlock()
+	wg.Done()
 }
 
 func main() {
-	runChannel()
-}
+	var wg sync.WaitGroup
+	var m sync.Mutex
 
-func runChannel() {
-	fmt.Println("runChannel() started")
-	c := make(chan int, 16)
-
-	go squares(c)
-
-	for val := range c {
-		fmt.Printf("%d ", val)
+	for i := 0; i < 1000; i++ {
+		wg.Add(1)
+		go worker(&wg, &m)
 	}
 
-	fmt.Println("main() stopped")
+	wg.Wait()
+
+	fmt.Println("value of j after 1000 operations is: ", j)
 }

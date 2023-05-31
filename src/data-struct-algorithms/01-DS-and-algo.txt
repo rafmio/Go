@@ -1,0 +1,16 @@
+Classifying data structures:
+- linear
+- nonlinear
+- homogemeus
+- heterogeneous
+- dynamic
+types
+
+Abstract datatypes:
+- container
+- list
+- set
+- map
+- graph
+- stack
+- queue

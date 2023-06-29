@@ -6,6 +6,12 @@ Classifying data structures:
 - dynamic
 types
 
+Linear DS: 		  lists, sets, tuples, queues, stacks, heaps
+Nonlinear DS: 	  trees, tables, containers
+Homogeneous DS:   2d and multy-d arrays
+Heterogeneous DS: linked, ordered, unordered lists 
+Dynamic DS:       dictionaries, tree sets, sequences
+
 Abstract datatypes:
 - container
 - list
@@ -14,3 +20,7 @@ Abstract datatypes:
 - graph
 - stack
 - queue
+
+
+Data structure (DS) - organization of data in a computer's memory
+

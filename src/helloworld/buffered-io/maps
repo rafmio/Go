@@ -1,0 +1,56 @@
+55a8b039b000-55a8b039f000 r--p 00000000 08:11 1836586                    /usr/bin/cp
+55a8b039f000-55a8b03b7000 r-xp 00004000 08:11 1836586                    /usr/bin/cp
+55a8b03b7000-55a8b03bf000 r--p 0001c000 08:11 1836586                    /usr/bin/cp
+55a8b03bf000-55a8b03c0000 r--p 00023000 08:11 1836586                    /usr/bin/cp
+55a8b03c0000-55a8b03c1000 rw-p 00024000 08:11 1836586                    /usr/bin/cp
+55a8b18ff000-55a8b1920000 rw-p 00000000 00:00 0                          [heap]
+7f01ce1a4000-7f01ce1c6000 rw-p 00000000 00:00 0 
+7f01ce1c6000-7f01ce4ae000 r--p 00000000 08:11 1845599                    /usr/lib/locale/locale-archive
+7f01ce4ae000-7f01ce4b1000 rw-p 00000000 00:00 0 
+7f01ce4b1000-7f01ce4b7000 r--p 00000000 08:11 1873335                    /usr/lib/x86_64-linux-gnu/libpthread-2.31.so
+7f01ce4b7000-7f01ce4c7000 r-xp 00006000 08:11 1873335                    /usr/lib/x86_64-linux-gnu/libpthread-2.31.so
+7f01ce4c7000-7f01ce4cd000 r--p 00016000 08:11 1873335                    /usr/lib/x86_64-linux-gnu/libpthread-2.31.so
+7f01ce4cd000-7f01ce4ce000 r--p 0001b000 08:11 1873335                    /usr/lib/x86_64-linux-gnu/libpthread-2.31.so
+7f01ce4ce000-7f01ce4cf000 rw-p 0001c000 08:11 1873335                    /usr/lib/x86_64-linux-gnu/libpthread-2.31.so
+7f01ce4cf000-7f01ce4d5000 rw-p 00000000 00:00 0 
+7f01ce4d5000-7f01ce4d6000 r--p 00000000 08:11 1873322                    /usr/lib/x86_64-linux-gnu/libdl-2.31.so
+7f01ce4d6000-7f01ce4d8000 r-xp 00001000 08:11 1873322                    /usr/lib/x86_64-linux-gnu/libdl-2.31.so
+7f01ce4d8000-7f01ce4d9000 r--p 00003000 08:11 1873322                    /usr/lib/x86_64-linux-gnu/libdl-2.31.so
+7f01ce4d9000-7f01ce4da000 r--p 00003000 08:11 1873322                    /usr/lib/x86_64-linux-gnu/libdl-2.31.so
+7f01ce4da000-7f01ce4db000 rw-p 00004000 08:11 1873322                    /usr/lib/x86_64-linux-gnu/libdl-2.31.so
+7f01ce4db000-7f01ce4dd000 r--p 00000000 08:11 1837211                    /usr/lib/x86_64-linux-gnu/libpcre2-8.so.0.10.1
+7f01ce4dd000-7f01ce548000 r-xp 00002000 08:11 1837211                    /usr/lib/x86_64-linux-gnu/libpcre2-8.so.0.10.1
+7f01ce548000-7f01ce571000 r--p 0006d000 08:11 1837211                    /usr/lib/x86_64-linux-gnu/libpcre2-8.so.0.10.1
+7f01ce571000-7f01ce572000 r--p 00095000 08:11 1837211                    /usr/lib/x86_64-linux-gnu/libpcre2-8.so.0.10.1
+7f01ce572000-7f01ce573000 rw-p 00096000 08:11 1837211                    /usr/lib/x86_64-linux-gnu/libpcre2-8.so.0.10.1
+7f01ce573000-7f01ce595000 r--p 00000000 08:11 1873320                    /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7f01ce595000-7f01ce6ee000 r-xp 00022000 08:11 1873320                    /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7f01ce6ee000-7f01ce73d000 r--p 0017b000 08:11 1873320                    /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7f01ce73d000-7f01ce741000 r--p 001c9000 08:11 1873320                    /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7f01ce741000-7f01ce743000 rw-p 001cd000 08:11 1873320                    /usr/lib/x86_64-linux-gnu/libc-2.31.so
+7f01ce743000-7f01ce747000 rw-p 00000000 00:00 0 
+7f01ce747000-7f01ce749000 r--p 00000000 08:11 1836576                    /usr/lib/x86_64-linux-gnu/libattr.so.1.1.2448
+7f01ce749000-7f01ce74c000 r-xp 00002000 08:11 1836576                    /usr/lib/x86_64-linux-gnu/libattr.so.1.1.2448
+7f01ce74c000-7f01ce74d000 r--p 00005000 08:11 1836576                    /usr/lib/x86_64-linux-gnu/libattr.so.1.1.2448
+7f01ce74d000-7f01ce74e000 r--p 00005000 08:11 1836576                    /usr/lib/x86_64-linux-gnu/libattr.so.1.1.2448
+7f01ce74e000-7f01ce74f000 rw-p 00006000 08:11 1836576                    /usr/lib/x86_64-linux-gnu/libattr.so.1.1.2448
+7f01ce74f000-7f01ce751000 r--p 00000000 08:11 1835418                    /usr/lib/x86_64-linux-gnu/libacl.so.1.1.2253
+7f01ce751000-7f01ce756000 r-xp 00002000 08:11 1835418                    /usr/lib/x86_64-linux-gnu/libacl.so.1.1.2253
+7f01ce756000-7f01ce758000 r--p 00007000 08:11 1835418                    /usr/lib/x86_64-linux-gnu/libacl.so.1.1.2253
+7f01ce758000-7f01ce759000 r--p 00008000 08:11 1835418                    /usr/lib/x86_64-linux-gnu/libacl.so.1.1.2253
+7f01ce759000-7f01ce75a000 rw-p 00009000 08:11 1835418                    /usr/lib/x86_64-linux-gnu/libacl.so.1.1.2253
+7f01ce75a000-7f01ce761000 r--p 00000000 08:11 1837219                    /usr/lib/x86_64-linux-gnu/libselinux.so.1
+7f01ce761000-7f01ce77a000 r-xp 00007000 08:11 1837219                    /usr/lib/x86_64-linux-gnu/libselinux.so.1
+7f01ce77a000-7f01ce782000 r--p 00020000 08:11 1837219                    /usr/lib/x86_64-linux-gnu/libselinux.so.1
+7f01ce782000-7f01ce783000 r--p 00027000 08:11 1837219                    /usr/lib/x86_64-linux-gnu/libselinux.so.1
+7f01ce783000-7f01ce784000 rw-p 00028000 08:11 1837219                    /usr/lib/x86_64-linux-gnu/libselinux.so.1
+7f01ce784000-7f01ce788000 rw-p 00000000 00:00 0 
+7f01ce7a8000-7f01ce7a9000 r--p 00000000 08:11 1873312                    /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7f01ce7a9000-7f01ce7c9000 r-xp 00001000 08:11 1873312                    /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7f01ce7c9000-7f01ce7d1000 r--p 00021000 08:11 1873312                    /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7f01ce7d2000-7f01ce7d3000 r--p 00029000 08:11 1873312                    /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7f01ce7d3000-7f01ce7d4000 rw-p 0002a000 08:11 1873312                    /usr/lib/x86_64-linux-gnu/ld-2.31.so
+7f01ce7d4000-7f01ce7d5000 rw-p 00000000 00:00 0 
+7fffbd5ab000-7fffbd5cc000 rw-p 00000000 00:00 0                          [stack]
+7fffbd5e9000-7fffbd5ed000 r--p 00000000 00:00 0                          [vvar]
+7fffbd5ed000-7fffbd5ef000 r-xp 00000000 00:00 0                          [vdso]

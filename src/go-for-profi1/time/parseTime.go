@@ -23,4 +23,6 @@ func main() {
 	} else {
 		fmt.Println(err)
 	}
+
+	os.Exit(0)
 }

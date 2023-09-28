@@ -1,14 +1,11 @@
 https://quii.gitbook.io/learn-go-with-tests/go-fundamentals/install-go
 
 Last:
-https://quii.gitbook.io/learn-go-with-tests/go-fundamentals/reflection
+https://quii.gitbook.io/learn-go-with-tests/go-fundamentals/integers
 
 Install godoc:
 go install golang.org/x/tools/cmd/godoc@latest
 How to run godoc?
 Error: 'bash: godoc: command not found'
-
-testing.Run()
-Expamles, documentation
 
 

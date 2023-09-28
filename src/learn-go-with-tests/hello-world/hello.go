@@ -1,13 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 const (
-	french  = "French"
-	spanish = "Spanish"
-
+	french             = "French"
+	spanish            = "Spanish"
 	englishHelloPrefix = "Hello, "
-	spanishHelloPrefix = "Hola, "
+	spanishHelloPresix = "Hola, "
 	frenchHelloPrefix  = "Bonjour, "
 )
 
@@ -16,22 +17,21 @@ func Hello(name string, language string) string {
 		name = "World"
 	}
 
-	return greeingPrefix(language) + name
+	return greetingPrefix(language) + name
 }
 
-func greeingPrefix(language string) (prefix string) {
+func main() {
+	fmt.Println(Hello("Chris", ""))
+}
+
+func greetingPrefix(language string) (prefix string) {
 	switch language {
 	case french:
 		prefix = frenchHelloPrefix
 	case spanish:
-		prefix = spanishHelloPrefix
+		prefix = spanishHelloPresix
 	default:
 		prefix = englishHelloPrefix
 	}
-
 	return
-}
-
-func main() {
-	fmt.Println(Hello("world", ""))
 }

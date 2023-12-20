@@ -5,32 +5,48 @@ import (
 	"io"
 	"log"
 	"net/http"
-	"time"
+	"sync"
 )
 
+var wg sync.WaitGroup
+var num int
+
 func responseSize(url string) {
-	fmt.Println("Step1: ", url)
+	defer wg.Done()
+
+	num++
+	fmt.Println(num, "Step1: ", url)
 	response, err := http.Get(url)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Println("Step2: ", url)
+	num++
+	fmt.Println(num, "Step2: ", url)
 	defer response.Body.Close()
 
-	fmt.Println("Step3: ", url)
+	num++
+	fmt.Println(num, "Step3: ", url)
 	body, err := io.ReadAll(response.Body)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Println("Step4: ", len(body))
+	num++
+	fmt.Println(num, "Step4: len(body)", len(body))
 }
 
 func main() {
-	go responseSize("https://coderwall.com")
-	go responseSize("https://stackoverflow.com")
-	go responseSize("https://ya.ru/")
+	// wg.Add(3)
+	fmt.Println("Start Goroutines")
 
-	time.Sleep(10 * time.Second)
+	go responseSize("https://rafmio.ru")
+	wg.Add(1)
+	go responseSize("http://himpostavka.ru")
+	wg.Add(1)
+	go responseSize("https://ya.ru")
+	wg.Add(1)
+
+	wg.Wait()
+	fmt.Println("Terminated Program")
 }

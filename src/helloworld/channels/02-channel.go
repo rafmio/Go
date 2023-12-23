@@ -1,15 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func myfunc(ch chan int) {
 	fmt.Println(234 + <-ch)
 }
 
 func main() {
-	fmt.Println("Start main method")
+	fmt.Println("Start main mathod")
 
-	// Creating a channel:
 	ch := make(chan int)
 
 	go myfunc(ch)
@@ -17,6 +18,3 @@ func main() {
 
 	fmt.Println("End main method")
 }
-
-// Channel
-// https://www.geeksforgeeks.org/channel-in-golang/

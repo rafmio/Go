@@ -1,7 +1,10 @@
 // https://habr.com/ru/post/490336/
+
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func greet(c chan string) {
 	fmt.Println("Hello " + <-c + "!")
@@ -9,11 +12,15 @@ func greet(c chan string) {
 }
 
 func main() {
+	var name string
+	fmt.Scanf("%s", &name)
+
 	fmt.Println("main() started")
 	c := make(chan string)
 
 	go greet(c)
 
-	c <- "John"
+	c <- name
+
 	fmt.Println("main() stopped")
 }

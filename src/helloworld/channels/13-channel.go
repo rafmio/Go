@@ -1,28 +1,32 @@
 // https://golangify.com/goroutines
 // Размер буфера канала
+
 package main
 
-import "fmt"
-import "time"
+import (
+	"fmt"
+	"time"
+)
 
-func squares(c chan int) {
+func squares(ch chan int) {
 	for i := 0; i <= 3; i++ {
-		num := <-c
+		num := <-ch
 		fmt.Println(num * num)
 	}
 }
 
 func main() {
 	fmt.Println("main() started")
-	c := make(chan int, 3)
+	ch := make(chan int, 3)
 
-	go squares(c)
+	go squares(ch)
 
-	c <- 1
-	c <- 2
-	c <- 3
-	c <- 4
+	ch <- 1
+	ch <- 2
+	ch <- 4
+	ch <- 8
 
 	defer time.Sleep(time.Second * 2)
+
 	fmt.Println("main() stopped")
 }

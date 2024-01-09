@@ -3,22 +3,22 @@ package main
 
 import "fmt"
 
-func squares(c chan int) {
+func squares(cn chan int) {
 	for i := 0; i <= 9; i++ {
-		c <- i * i
+		cn <- i * i
 	}
 
-	close(c)
+	close(cn)
 }
 
 func main() {
 	fmt.Println("main() started")
-	c := make(chan int)
+	cn := make(chan int)
 
-	go squares(c)
+	go squares(cn)
 
 	for {
-		val, ok := <-c
+		val, ok := <-cn
 		if ok == false {
 			fmt.Println(val, ok, "<--loop is broken!")
 			break

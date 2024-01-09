@@ -3,40 +3,39 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"runtime"
 )
 
-func squares(c chan int) {
+func squares(ch chan int) {
 	for i := 0; i < 4; i++ {
-		num := <-c
+		num := <-ch
 		fmt.Println(num * num)
 	}
 }
 
 func main() {
-	fmt.Println("main() started")
-	c := make(chan int, 3)
+	fmt.Println("main() started, PID:", os.Getpid())
+	ch := make(chan int, 3)
 
-	go squares(c)
-
-	fmt.Println("active goroutines", runtime.NumGoroutine())
-	c <- 1
-	c <- 2
-	c <- 3
-	c <- 4 // block here
+	go squares(ch)
 
 	fmt.Println("active goroutines", runtime.NumGoroutine())
-
-	go squares(c)
+	for i := 1; i <= 4; i++ {
+		ch <- i
+	}
 
 	fmt.Println("active goroutines", runtime.NumGoroutine())
 
-	c <- 5
-	c <- 6
-	c <- 6
-	c <- 8
-	c <- 9
+	go squares(ch)
 
 	fmt.Println("active goroutines", runtime.NumGoroutine())
+
+	for i := 5; i <= 9; i++ {
+		ch <- i
+	}
+
+	fmt.Println("active goroutines", runtime.NumGoroutine())
+
 	fmt.Println("main() stopped")
 }

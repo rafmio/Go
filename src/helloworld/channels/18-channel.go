@@ -1,19 +1,22 @@
 // https://habr.com/ru/post/490336/
 // Работа с несколькими горутинами
+
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
-func square(c chan int) {
+func square(ch chan int) {
 	fmt.Println("[square] reading")
-	num := <-c
-	c <- num * num
+	num := <-ch
+	ch <- num * num
 }
 
-func cube(c chan int) {
+func cube(ch chan int) {
 	fmt.Println("[cube] reading")
-	num := <-c
-	c <- num * num * num
+	num := <-ch
+	ch <- num * num * num
 }
 
 func main() {
@@ -26,6 +29,7 @@ func main() {
 	go cube(cubeChan)
 
 	testNum := 3
+
 	fmt.Println("[main] sent testNum to squareChan")
 
 	squareChan <- testNum
@@ -36,7 +40,7 @@ func main() {
 	cubeChan <- testNum
 
 	fmt.Println("[main] resuming")
-	fmt.Println("[main] reading from channels")
+	fmt.Println("[main] from channels")
 
 	squareVal, cubeVal := <-squareChan, <-cubeChan
 	sum := squareVal + cubeVal

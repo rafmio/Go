@@ -1,7 +1,9 @@
 // https://habr.com/ru/post/490336/
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
 	roc := make(<-chan int)

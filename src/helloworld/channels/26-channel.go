@@ -13,13 +13,13 @@ func init() {
 }
 
 func service1(c chan string) {
-	fmt.Println("service1() started", time.Since(start))
-	c <- "Hello from service1"
+	fmt.Println("service 1: ", time.Since(start))
+	c <- "Hello from service 1"
 }
 
 func service2(c chan string) {
-	fmt.Println("service2() started", time.Since(start))
-	c <- "Hello from service2"
+	fmt.Println("service 2:", time.Since(start))
+	c <- "Hello from service 2"
 }
 
 func main() {
@@ -35,9 +35,9 @@ func main() {
 
 	select {
 	case res := <-chan1:
-		fmt.Println("Response from service1", res, time.Since(start))
+		fmt.Println("Response from service 1", res, time.Since(start))
 	case res := <-chan2:
-		fmt.Println("Response from service2", res, time.Since(start))
+		fmt.Println("Responce from service 2", res, time.Since(start))
 	default:
 		fmt.Println("No response received", time.Since(start))
 	}

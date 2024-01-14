@@ -13,13 +13,13 @@ func init() {
 }
 
 func service1(c chan string) {
-	time.Sleep(3 * time.Second)
-	c <- "Hello from service1"
+	time.Sleep(time.Second * 3)
+	c <- "Hello from service 1"
 }
 
 func service2(c chan string) {
-	time.Sleep(5 * time.Second)
-	c <- "Hello from service2"
+	time.Sleep(time.Second * 4)
+	c <- "Hello from service 2"
 }
 
 func main() {
@@ -33,12 +33,15 @@ func main() {
 
 	select {
 	case res := <-chan1:
-		fmt.Println("Response from service1", res, time.Since(start))
+		fmt.Println("Response from service 1", res, time.Since(start))
 	case res := <-chan2:
-		fmt.Println("Response from service2", res, time.Since(start))
-	case <-time.After(2 * time.Second):
+		fmt.Println("Response from servise 2", res, time.Since(start))
+	case <-time.After(time.Second * 2):
 		fmt.Println("No response received", time.Since(start))
 	}
+
+	close(chan1)
+	close(chan2)
 
 	fmt.Println("main() stopped", time.Since(start))
 }

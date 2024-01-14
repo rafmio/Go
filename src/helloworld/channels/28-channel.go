@@ -8,7 +8,7 @@ import (
 )
 
 func service(wg *sync.WaitGroup, instance int) {
-	time.Sleep(2 * time.Second)
+	time.Sleep(time.Second * 2)
 	fmt.Println("Service called on instance", instance)
 	wg.Done() // Decrement counter
 }
@@ -16,7 +16,7 @@ func service(wg *sync.WaitGroup, instance int) {
 func main() {
 	fmt.Println("main() started")
 
-	var wg sync.WaitGroup // Create waitgrout (empty struct)
+	var wg sync.WaitGroup // Create waitgroup (empty struct)
 
 	for i := 0; i <= 3; i++ {
 		wg.Add(1) // Increment counter

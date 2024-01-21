@@ -6,7 +6,7 @@ import (
 	"sync"
 )
 
-var j int 
+var j int
 
 func worker(wg *sync.WaitGroup, m *sync.Mutex) {
 	m.Lock()

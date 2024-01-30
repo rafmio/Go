@@ -1,22 +1,25 @@
 package main
-import "fmt"
+
+import (
+	"fmt"
+)
 
 type Animal struct {
-    name string
+	name string
 }
 
 func (a Animal) Run() {
-    fmt.Println(a.name, "is running...")
+	fmt.Println(a.name, "is running...")
 }
 
 func (a *Animal) RunFaster() {
-    fmt.Println(a.name, "sometimes eat somebody...")
+	fmt.Println(a.name, "sometimes eat somebody...")
 }
 
 func main() {
-    a := Animal{"Lion"}
-    a.Run()
-    a.RunFaster()
+	a := Animal{"Lion"}
+	a.Run()
+	a.RunFaster()
 }
 
 // Methods

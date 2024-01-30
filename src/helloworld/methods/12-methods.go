@@ -1,20 +1,25 @@
 package main
-import "fmt"
+
+import (
+	"fmt"
+)
 
 type Human struct {
-    name string
-    age int
+	name string
+	age  int
 }
 
-func (h Human) Describe() {
-    fmt.Println(h.name, "is", h.age, "years old")
+func (h *Human) Describe() {
+	fmt.Println(h.name, "is", h.age, "years old")
+	fmt.Println("Changing the name...")
+	h.name = "Chandler"
 }
 
 func main() {
-    h := Human{"John", 23}
-    h.Describe()
+	h := &Human{"Harry", 32}
+	h.Describe()
+	fmt.Println("name now is:", h.name)
 }
-
 
 // Method on structs
 // Methods can be defined by structs. It is really useful to do so

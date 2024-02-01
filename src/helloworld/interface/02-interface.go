@@ -1,6 +1,9 @@
+// https://golangdocs.com/interfaces-in-golang
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Person interface {
 	greet() string
@@ -25,6 +28,3 @@ func main() {
 
 	isAPerson(&a)
 }
-
-// Interface
-// https://golangdocs.com/interfaces-in-golang

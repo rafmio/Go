@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type animal interface {
 	walker
@@ -26,6 +28,7 @@ type runner interface {
 
 type cat struct{}
 type eagle struct{}
+type mouse struct{}
 
 func (c *cat) walk() {
 	fmt.Println("cat is walking")
@@ -43,6 +46,14 @@ func (e *eagle) fly() {
 	fmt.Println("eagle is flying")
 }
 
+func (m *mouse) walk() {
+	fmt.Println("mouse is walking")
+}
+
+func (m *mouse) run() {
+	fmt.Println("mouse is running")
+}
+
 func walk(w walker) {
 	w.walk()
 }
@@ -52,10 +63,16 @@ func main() {
 	c.walk()
 	c.run()
 
-	fmt.Println()
-
 	var e bird = &eagle{}
+	e.walk()
+	e.fly()
 
+	var m animal = &mouse{}
+	m.walk()
+	m.run()
+
+	fmt.Println()
 	walk(c)
 	walk(e)
+	walk(m)
 }

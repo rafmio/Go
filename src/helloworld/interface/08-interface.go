@@ -11,7 +11,7 @@ type martian struct {
 }
 
 func (m martian) talk() string {
-	return "nack nack"
+	return "nack nack!"
 }
 
 type laser int

@@ -12,7 +12,7 @@ type Book struct {
 	Author string
 }
 
-func (b Book) String() string {
+func (b *Book) String() string {
 	return fmt.Sprintf("Book: %s - %s", b.Title, b.Author)
 }
 
@@ -27,7 +27,7 @@ func WriteLog(s fmt.Stringer) {
 }
 
 func main() {
-	book := Book{"Alice in Wonderland", "Lewis Carrol"}
+	book := &Book{"Alice in Woderland", "Lewis Carrol"}
 	WriteLog(book)
 
 	count := Count(3)

@@ -1,7 +1,9 @@
 // https://golangbyexample.com/interface-in-golang/
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type animal interface {
 	breathe()
@@ -20,14 +22,26 @@ func (l lion) walk() {
 	fmt.Println("Lion walk")
 }
 
+type dog struct {
+	age int
+}
+
+func (l dog) breathe() {
+	fmt.Println("Dog breathes")
+}
+
+func (l dog) walk() {
+	fmt.Println("Dog walk")
+}
+
 func main() {
 	var a animal
+
 	a = lion{age: 10}
 	a.breathe()
 	a.walk()
-	fmt.Printf("Type of a: %T\n", a)
 
-	cat := lion{age: 10}
-	cat.breathe()
-	cat.walk()
+	a = dog{age: 10}
+	a.breathe()
+	a.walk()
 }

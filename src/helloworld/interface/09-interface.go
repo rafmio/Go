@@ -31,5 +31,4 @@ func main() {
 
 	fmt.Printf("Type of talker: %T\n", talker)
 	fmt.Println()
-
 }

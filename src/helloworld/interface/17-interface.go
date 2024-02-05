@@ -9,7 +9,7 @@ type employee interface {
 
 type finansist interface {
 	employee
-	accrue()
+	accure()
 	calculate()
 }
 
@@ -23,11 +23,11 @@ func (a accountant) typing() {
 }
 
 func (a accountant) walking() {
-	fmt.Println("The accountant comes to work on time")
+	fmt.Println("Tne accountant comes to work on time")
 }
 
-func (a accountant) accrue() {
-	fmt.Println("Accuals: mr.Presley + $1000, mr.Johnson + $2000")
+func (a accountant) accure() {
+	fmt.Println("Accruals: mr.Presley: + $1000, mr.Johnson + $2000")
 }
 
 func (a accountant) calculate() {
@@ -40,6 +40,6 @@ func main() {
 	buh = &accountant{experience: 15, age: 39}
 	buh.typing()
 	buh.walking()
-	buh.accrue()
+	buh.accure()
 	buh.calculate()
 }

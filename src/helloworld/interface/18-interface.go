@@ -2,7 +2,9 @@
 // https://golangbyexample.com/interface-in-golang/
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type animal interface {
 	breathe()
@@ -46,5 +48,4 @@ func main() {
 	fmt.Println(p2.name)
 	p2.breathe()
 	p2.walk()
-
 }

@@ -11,7 +11,7 @@ func main() {
 		fmt.Fprint(res, "Hello-mello, Tosy-Bosy, Kissy-Missy")
 	})
 
-	http.HandleFunc("hello/golang", func(res http.ResponseWriter, req *http.Request) {
+	http.HandleFunc("/hello", func(res http.ResponseWriter, req *http.Request) {
 		fmt.Fprint(res, "<b>Hello for 'hello/golang'\n</b>")
 	})
 

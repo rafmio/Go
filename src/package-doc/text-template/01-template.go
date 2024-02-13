@@ -1,25 +1,27 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"text/template"
 )
 
 type Inventory struct {
-	Material string
-	Count    uint
+	Meterial string
+	Count    int
 }
 
 func main() {
 	sweaters := &Inventory{"wool", 17}
-	forParse := "{{.Count}} items are made of {{.Material}}\n"
+	forParse := "{{.Count}} items are made of {{.Meterial}}.\n"
 
 	tmpl, err := template.New("test").Parse(forParse)
 	if err != nil {
-		panic(err)
+		fmt.Println("Error parsing:", err)
 	}
+
 	err = tmpl.Execute(os.Stdout, sweaters)
 	if err != nil {
-		panic(err)
+		fmt.Println("Error os.Execute:", err)
 	}
 }

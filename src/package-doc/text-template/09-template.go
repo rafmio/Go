@@ -7,9 +7,8 @@ import (
 )
 
 func main() {
-	t := template.New("")
-	t.Parse(`{{ if . -}} {{ . }} {{ else }}
-    No data is available {{ end }}`)
+	t := template.New("09-template.go")
+	t.Parse(`{{ if . - }} {{ . }} {{ else }} No data is available {{ end }}`)
 	t.Execute(os.Stdout, "42")
 	t.Execute(os.Stdout, "")
 }

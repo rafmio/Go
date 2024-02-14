@@ -8,8 +8,8 @@ import (
 )
 
 func main() {
-	t := template.New("")
-	t.Parse(`Keeping just 2 decimals of π: {{printf "%.2f" .}}`)
-	// t.Parse(`Keeping just 2 decimals of π: {{.}}`)
+	t := template.New("One more template")
+	textForParsing := `Keeping just 2 decimals of π: {{printf "%.2f" .}}`
+	t.Parse(textForParsing)
 	t.Execute(os.Stdout, math.Pi)
 }

@@ -18,14 +18,15 @@ type Person struct {
 }
 
 func main() {
-	family := Family{
+	family := &Family{
 		Father:        Person{"Tarzan", "male"},
 		Mother:        Person{"Jane", "female"},
 		ChildrenCount: 2,
 	}
 
 	t := template.New("Father")
-	text := "The father's name is {{.Father.Name}}\n"
+	text := `The father's name is {{.Father.Name}}`
 	t.Parse(text)
 	t.Execute(os.Stdout, family)
+	// fmt.Println()
 }

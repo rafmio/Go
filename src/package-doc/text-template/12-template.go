@@ -2,6 +2,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"text/template"
 )
@@ -21,7 +22,7 @@ func main() {
 {{- $.Comment -}}
 {{range .Ids}}
 vlan {{ .Id }} name {{ .Name -}}
-{{end}}
+{{ end }}
 `
 	vlans := Vlans{
 		Comment: "Vlans:",
@@ -29,12 +30,13 @@ vlan {{ .Id }} name {{ .Name -}}
 			{1, "One"},
 			{2, "Two"},
 			{3, "Three"},
+			{4, "Four"},
 		},
 	}
 
 	err := RunTemplate(config, vlans)
 	if err != nil {
-		panic(err)
+		fmt.Println("Error: ", err)
 	}
 }
 
@@ -43,6 +45,7 @@ func RunTemplate(c string, v Vlans) error {
 	if err != nil {
 		return err
 	}
+
 	err = tmpl.Execute(os.Stdout, v)
 	if err != nil {
 		return err

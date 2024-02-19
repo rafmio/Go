@@ -1,0 +1,8 @@
+Number of dogs: {{ . | len -}}
+{{ range . }}
+---
+Name:  {{ .Name }} ({{ if eq .Sex "Male" }}boy{{ else }}girl{{ end }})
+Sex:   {{ .Sex  }} ({{ if .Intact }}intact{{ else }}fixed{{ end }})
+Age:   {{ .Age  }}
+Breed: {{ .Breed}}
+{{ end }}

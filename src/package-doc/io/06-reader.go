@@ -22,7 +22,7 @@ func main() {
 }
 
 func output(reader *bytes.Reader) {
-	buf := make([]byte, 40)
+	buf := make([]byte, 32)
 	for {
 		n, err := reader.Read(buf)
 		if err == io.EOF {

@@ -3,3 +3,6 @@
 2. сетевая маска
 3. DNS-серверы
 4. шлюз или маршутизатор, используемый по умолчанию для данного компа
+
+Output net interfaces: '$ip addr'
+Linux IP routing table: '$netstat -nr'

@@ -6,3 +6,7 @@
 
 Output net interfaces: '$ip addr'
 Linux IP routing table: '$netstat -nr'
+
+NS Record
+NS record (nameserver record) is a DNS record that contains the name 
+of the authoritative name server within a domaing or DNS zone.

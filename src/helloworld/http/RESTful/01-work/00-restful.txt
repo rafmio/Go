@@ -1,0 +1,11 @@
+https://go.dev/doc/tutorial/web-service-gin
+
+Endpoints:
+
+/albums
+    GET - get a list of all albums, returned as JSON
+    POST - Add a new album from request data sent as JSON
+
+/albums/:id
+    GET - get an album by its ID, returning the album data as JSON 
+

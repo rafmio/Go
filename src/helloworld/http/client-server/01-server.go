@@ -10,8 +10,8 @@ import (
 func timeHandler(w http.ResponseWriter, r *http.Request) {
 	t := time.Now().Format(time.RFC1123)
 	body := "The current time is:"
-	fmt.Fprintf(w, "<h1 align=\"center\"%s</h1>", body)
-	fmt.Fprintf(w, "<h2 align=\"center\"%s</h2>\n", t)
+	fmt.Fprintf(w, "<h1 align=\"center\">%s</h1>", body)
+	fmt.Fprintf(w, "<h2 align=\"center\">%s</h2>\n", t)
 	fmt.Fprintf(w, "Serving: %s\n", r.URL.Path)
 	fmt.Printf("Served time for %s\n", r.Host)
 }

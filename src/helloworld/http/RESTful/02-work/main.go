@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"strconv"
 )
 
 type album struct {
@@ -22,12 +23,73 @@ func getAlbums(w http.ResponseWriter, r *http.Request) {
 	for _, val := range albums {
 		fmt.Fprintf(w, "%s: %s of '%s'\n", val.ID, val.Title, val.Artist)
 	}
+	w.WriteHeader(200)
+	fmt.Fprintf(w, "Success!\n")
+}
+
+func postAlbums(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "POST" {
+		http.Error(w, "Method Not Allowed", 405)
+		return
+	}
+
+	// Получаем данные из запроса
+	id := r.FormValue("id")
+	title := r.FormValue("title")
+	artist := r.FormValue("artist")
+
+	// Проверяем, являются ли значения непустыми
+	if id == "" || title == "" || artist == "" {
+		http.Error(w, "Missiing required fields", 400)
+		return
+	}
+
+	// Проверяем, является ли ID числом
+	_, err := strconv.Atoi(id)
+	if err != nil {
+		http.Error(w, "Invalid ID format", 400)
+		return
+	}
+
+	albums = append(albums, album{ID: id, Title: title, Artist: artist})
+
+	w.WriteHeader(201) // w.WriteHeader() ф-я поле стр-ры ResponseWriter
+	fmt.Fprintf(w, "Album added successfully\n")
+}
+
+func deleteAlbum(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "DELETE" {
+		http.Error(w, "Method Not Allowed", 405)
+		return
+	}
+
+	// Получаем ID альбома из запроса
+	id := r.FormValue("id")
+
+	// Проверяем, является ли ID непустым
+	if id == "" {
+		http.Error(w, "Missing required field", 400)
+		return
+	}
+
+	// Ищем альбом по ID
+	for i, alb := range albums {
+		// Удаляем альбом из слайса
+		if alb.ID == id {
+			albums = append(albums[:i], albums[i+1:]...)
+			break
+		}
+	}
+	w.WriteHeader(200)
+	fmt.Fprintf(w, "Album deleted successfully\n")
 }
 
 func main() {
-	// mux := http.NewServeMux()
-	// mux.Handle()
 	http.HandleFunc("/", getAlbums)
-
+	http.HandleFunc("/add", postAlbums)
+	http.HandleFunc("/del", deleteAlbum)
 	http.ListenAndServe(":9003", nil)
 }
+
+// POST method:
+// $ curl -X POST -d "id=6&title=Tejas&artist=ZZ Top" http://localhost:9003/add

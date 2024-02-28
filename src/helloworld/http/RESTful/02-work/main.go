@@ -61,10 +61,13 @@ func deleteAlbum(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "DELETE" {
 		http.Error(w, "Method Not Allowed", 405)
 		return
+	} else {
+		fmt.Println("Method determined as 'DELETE'")
 	}
 
 	// Получаем ID альбома из запроса
 	id := r.FormValue("id")
+	fmt.Printf("id = %s\n", id)
 
 	// Проверяем, является ли ID непустым
 	if id == "" {
@@ -84,12 +87,47 @@ func deleteAlbum(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Album deleted successfully\n")
 }
 
+func updateAlbum(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "PUT" {
+		http.Error(w, "Method Not Allowed", 405)
+		return
+	}
+
+	// Получаем ID альбома из запроса
+	id := r.FormValue("id")
+
+	// Проверяем, является ли ID непустым
+	if id == "" {
+		http.Error(w, "Missing required field", 400)
+		return
+	}
+
+	// Ищем альбом по ID
+	for i, alb := range albums {
+		if alb.ID == id {
+			// Обновляем Title альбома
+			albums[i].Title = r.FormValue("title")
+			break
+		}
+	}
+
+	w.WriteHeader(200)
+	fmt.Fprintf(w, "Album updated successfully\n")
+}
+
 func main() {
 	http.HandleFunc("/", getAlbums)
 	http.HandleFunc("/add", postAlbums)
 	http.HandleFunc("/del", deleteAlbum)
+	http.HandleFunc("/upd", updateAlbum)
 	http.ListenAndServe(":9003", nil)
 }
 
 // POST method:
 // $ curl -X POST -d "id=6&title=Tejas&artist=ZZ Top" http://localhost:9003/add
+
+// DELETE method:
+// $ curl -X DELETE http://localhost:9003/del?id=4
+
+// PUT method:
+// $ curl -X PUT -d "id=2&title=Abbey Road" http://localhost:9003/upd

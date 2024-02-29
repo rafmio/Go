@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"strconv"
@@ -20,11 +21,17 @@ var albums = []album{
 }
 
 func getAlbums(w http.ResponseWriter, r *http.Request) {
-	for _, val := range albums {
-		fmt.Fprintf(w, "%s: %s of '%s'\n", val.ID, val.Title, val.Artist)
-	}
+	// for _, val := range albums {
+	// 	fmt.Fprintf(w, "%s: %s of '%s'\n", val.ID, val.Title, val.Artist)
+	// }
+
+	// Выдать результат в JSON
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(albums)
+
 	w.WriteHeader(200)
 	fmt.Fprintf(w, "Success!\n")
+
 }
 
 func postAlbums(w http.ResponseWriter, r *http.Request) {

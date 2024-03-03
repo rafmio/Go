@@ -1,6 +1,10 @@
-package shapes
+package structs
 
 import "math"
+
+type Shape interface {
+	Area() float64
+}
 
 type Rectangle struct {
 	Width  float64
@@ -26,8 +30,4 @@ type Triangle struct {
 
 func (t Triangle) Area() float64 {
 	return (t.Base * t.Height) * 0.5
-}
-
-type Shape interface {
-	Area() float64
 }

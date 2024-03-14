@@ -1,4 +1,4 @@
-package main
+package di
 
 import (
 	"fmt"
@@ -16,5 +16,5 @@ func MyGreeterHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	log.Fatal(http.ListenAndServe(":5001", http.HandlerFunc(MyGreeterHandler)))
+	log.Fatal(http.ListenAndServe(":5001", http.HandlerFunc(MyGreeterHandler())))
 }

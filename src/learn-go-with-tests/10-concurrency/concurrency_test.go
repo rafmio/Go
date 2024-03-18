@@ -49,3 +49,6 @@ func BenchmarkCheckWebsites(b *testing.B) {
 		CheckWebsites(slowStubWebsiteChecker, urls)
 	}
 }
+
+// $ go test -cover
+// $ go test -bench=.

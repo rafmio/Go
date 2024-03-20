@@ -1,0 +1,145 @@
+==================
+WARNING: DATA RACE
+Write at 0x00c0000a63c0 by goroutine 8:
+  runtime.mapassign_faststr()
+      /usr/local/go/src/runtime/map_faststr.go:203 +0x0
+  concurrency.CheckWebsites.func1()
+      /home/raf/Go/src/learn-go-with-tests/10-concurrency/concurrency.go:12 +0x6a
+  concurrency.CheckWebsites.func2()
+      /home/raf/Go/src/learn-go-with-tests/10-concurrency/concurrency.go:13 +0x4f
+
+Previous write at 0x00c0000a63c0 by goroutine 9:
+  runtime.mapassign_faststr()
+      /usr/local/go/src/runtime/map_faststr.go:203 +0x0
+  concurrency.CheckWebsites.func1()
+      /home/raf/Go/src/learn-go-with-tests/10-concurrency/concurrency.go:12 +0x6a
+  concurrency.CheckWebsites.func2()
+      /home/raf/Go/src/learn-go-with-tests/10-concurrency/concurrency.go:13 +0x4f
+
+Goroutine 8 (running) created at:
+  concurrency.CheckWebsites()
+      /home/raf/Go/src/learn-go-with-tests/10-concurrency/concurrency.go:11 +0x46
+  concurrency.TestCheckWebsites()
+      /home/raf/Go/src/learn-go-with-tests/10-concurrency/concurrency_test.go:29 +0x148
+  testing.tRunner()
+      /usr/local/go/src/testing/testing.go:1595 +0x238
+  testing.(*T).Run.func1()
+      /usr/local/go/src/testing/testing.go:1648 +0x44
+
+Goroutine 9 (finished) created at:
+  concurrency.CheckWebsites()
+      /home/raf/Go/src/learn-go-with-tests/10-concurrency/concurrency.go:11 +0x46
+  concurrency.TestCheckWebsites()
+      /home/raf/Go/src/learn-go-with-tests/10-concurrency/concurrency_test.go:29 +0x148
+  testing.tRunner()
+      /usr/local/go/src/testing/testing.go:1595 +0x238
+  testing.(*T).Run.func1()
+      /usr/local/go/src/testing/testing.go:1648 +0x44
+==================
+==================
+WARNING: DATA RACE
+Read at 0x00c0000a63c0 by goroutine 7:
+  reflect.maplen()
+      /usr/local/go/src/runtime/map.go:1411 +0x0
+  reflect.Value.lenNonSlice()
+      /usr/local/go/src/reflect/value.go:1720 +0x324
+  reflect.Value.Len()
+      /usr/local/go/src/reflect/value.go:1709 +0x158f
+  reflect.deepValueEqual()
+      /usr/local/go/src/reflect/deepequal.go:139 +0x1571
+  reflect.DeepEqual()
+      /usr/local/go/src/reflect/deepequal.go:237 +0x38b
+  concurrency.TestCheckWebsites()
+      /home/raf/Go/src/learn-go-with-tests/10-concurrency/concurrency_test.go:31 +0x164
+  testing.tRunner()
+      /usr/local/go/src/testing/testing.go:1595 +0x238
+  testing.(*T).Run.func1()
+      /usr/local/go/src/testing/testing.go:1648 +0x44
+
+Previous write at 0x00c0000a63c0 by goroutine 10:
+  runtime.mapassign_faststr()
+      /usr/local/go/src/runtime/map_faststr.go:203 +0x0
+  concurrency.CheckWebsites.func1()
+      /home/raf/Go/src/learn-go-with-tests/10-concurrency/concurrency.go:12 +0x6a
+  concurrency.CheckWebsites.func2()
+      /home/raf/Go/src/learn-go-with-tests/10-concurrency/concurrency.go:13 +0x4f
+
+Goroutine 7 (running) created at:
+  testing.(*T).Run()
+      /usr/local/go/src/testing/testing.go:1648 +0x82a
+  testing.runTests.func1()
+      /usr/local/go/src/testing/testing.go:2054 +0x84
+  testing.tRunner()
+      /usr/local/go/src/testing/testing.go:1595 +0x238
+  testing.runTests()
+      /usr/local/go/src/testing/testing.go:2052 +0x896
+  testing.(*M).Run()
+      /usr/local/go/src/testing/testing.go:1925 +0xb57
+  main.main()
+      _testmain.go:49 +0x2bd
+
+Goroutine 10 (finished) created at:
+  concurrency.CheckWebsites()
+      /home/raf/Go/src/learn-go-with-tests/10-concurrency/concurrency.go:11 +0x46
+  concurrency.TestCheckWebsites()
+      /home/raf/Go/src/learn-go-with-tests/10-concurrency/concurrency_test.go:29 +0x148
+  testing.tRunner()
+      /usr/local/go/src/testing/testing.go:1595 +0x238
+  testing.(*T).Run.func1()
+      /usr/local/go/src/testing/testing.go:1648 +0x44
+==================
+==================
+WARNING: DATA RACE
+Read at 0x00c0000a226a by goroutine 7:
+  reflect.typedmemmove()
+      /usr/local/go/src/runtime/mbarrier.go:193 +0x0
+  reflect.copyVal()
+      /usr/local/go/src/reflect/value.go:1999 +0x5b
+  reflect.Value.MapIndex()
+      /usr/local/go/src/reflect/value.go:1771 +0x530
+  reflect.deepValueEqual()
+      /usr/local/go/src/reflect/deepequal.go:147 +0x2184
+  reflect.DeepEqual()
+      /usr/local/go/src/reflect/deepequal.go:237 +0x38b
+  concurrency.TestCheckWebsites()
+      /home/raf/Go/src/learn-go-with-tests/10-concurrency/concurrency_test.go:31 +0x164
+  testing.tRunner()
+      /usr/local/go/src/testing/testing.go:1595 +0x238
+  testing.(*T).Run.func1()
+      /usr/local/go/src/testing/testing.go:1648 +0x44
+
+Previous write at 0x00c0000a226a by goroutine 8:
+  concurrency.CheckWebsites.func1()
+      /home/raf/Go/src/learn-go-with-tests/10-concurrency/concurrency.go:12 +0x76
+  concurrency.CheckWebsites.func2()
+      /home/raf/Go/src/learn-go-with-tests/10-concurrency/concurrency.go:13 +0x4f
+
+Goroutine 7 (running) created at:
+  testing.(*T).Run()
+      /usr/local/go/src/testing/testing.go:1648 +0x82a
+  testing.runTests.func1()
+      /usr/local/go/src/testing/testing.go:2054 +0x84
+  testing.tRunner()
+      /usr/local/go/src/testing/testing.go:1595 +0x238
+  testing.runTests()
+      /usr/local/go/src/testing/testing.go:2052 +0x896
+  testing.(*M).Run()
+      /usr/local/go/src/testing/testing.go:1925 +0xb57
+  main.main()
+      _testmain.go:49 +0x2bd
+
+Goroutine 8 (finished) created at:
+  concurrency.CheckWebsites()
+      /home/raf/Go/src/learn-go-with-tests/10-concurrency/concurrency.go:11 +0x46
+  concurrency.TestCheckWebsites()
+      /home/raf/Go/src/learn-go-with-tests/10-concurrency/concurrency_test.go:29 +0x148
+  testing.tRunner()
+      /usr/local/go/src/testing/testing.go:1595 +0x238
+  testing.(*T).Run.func1()
+      /usr/local/go/src/testing/testing.go:1648 +0x44
+==================
+--- FAIL: TestCheckWebsites (2.00s)
+    testing.go:1465: race detected during execution of test
+FAIL
+FAIL	concurrency	2.014s
+FAIL

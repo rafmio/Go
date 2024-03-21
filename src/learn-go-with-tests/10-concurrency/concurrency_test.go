@@ -52,3 +52,4 @@ func BenchmarkCheckWebsites(b *testing.B) {
 
 // $ go test -cover
 // $ go test -bench=.
+// $ go test -race .

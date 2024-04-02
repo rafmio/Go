@@ -3,6 +3,8 @@ package blogposts_test
 import (
 	"testing"
 	"testing/fstest"
+
+	blogposts "github.com/quii/learn-go-with-tests/reading-files"
 )
 
 func TestNewBlogPosts(t *testing.T) {
@@ -11,7 +13,7 @@ func TestNewBlogPosts(t *testing.T) {
 		"hello-world2.md": {Data: []byte("hola")},
 	}
 
-	posts := blogposts.NewPostsFormFS(fs)
+	posts, _ := blogposts.NewPostsFromFS(fs)
 
 	if len(posts) != len(fs) {
 		t.Errorf("got %d posts, wanted %d ponsts", len(posts), len(fs))

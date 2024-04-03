@@ -1,0 +1,5 @@
+P01 (*) Find the last element of a list
+@Test
+public void shouldFindLastElementFromAListOfAlphabets() throws Exception {
+    assertThat(P01.last(asList("a", "b", "c", "d")), is(equalTo("d")));
+}

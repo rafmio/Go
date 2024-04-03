@@ -35,4 +35,23 @@ func TestFindKthElement(t *testing.T) {
 		}
 	})
 
+	t.Run("pass empty slice", func(t *testing.T) {
+		slice := []int{}
+		kthelement := []int{1, 2, 10, 100}
+
+		for _, element := range kthelement {
+			got, err := FindKthElement(slice, element)
+			want := 0
+			wantError := ErrListIsEmpty
+
+			if err != wantError {
+				t.Errorf("got %v, want %v", err, wantError)
+			}
+
+			if got != want {
+				t.Errorf("got %d, want %d", got, want)
+			}
+		}
+	})
+
 }

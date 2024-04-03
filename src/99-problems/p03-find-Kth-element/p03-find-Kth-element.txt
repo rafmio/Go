@@ -1,0 +1,8 @@
+P03 (*) Find the Kth element of a list
+The first element of a list has index 0. In the example shown below, last element would be at kth position 4.
+
+@Test
+public void shouldFindKthElementFromAList() throws Exception {
+    List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+    assertThat(P03.kth(numbers, 2), is(equalTo(3)));
+}

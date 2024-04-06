@@ -44,9 +44,12 @@ func main() {
 
 	http.FileServer(http.FS(res))
 
-	log.Println("server strarted...")
+	log.Println("server started...")
 	err := http.ListenAndServe(":8088", nil)
 	if err != nil {
 		log.Fatal(err)
 	}
 }
+
+// Compiler directives
+// https://pkg.go.dev/cmd/compile#hdr-Compiler_Directives

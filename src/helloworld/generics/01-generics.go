@@ -20,6 +20,12 @@ func main() {
 		SumInts(ints),
 		SumFloats(floats),
 	)
+
+	fmt.Printf("Generic Sums: %v and %v\n",
+		SumIntsOrFloats[string, int64](ints),
+		SumIntsOrFloats[string, float64](floats),
+	)
+
 }
 
 // SumInts add together the values of m

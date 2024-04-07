@@ -25,7 +25,9 @@ func (c *Cache[T]) Get(key string) (T, bool) {
 }
 
 func (c *Cache[T]) Print() {
-	// ???
+	for key, val := range c.store {
+		fmt.Printf("key: %v, Value: %v\n", key, val)
+	}
 }
 
 func main() {
@@ -37,4 +39,9 @@ func main() {
 	stringCache := NewCache[string]()
 	stringCache.Set("hello", "world")
 	fmt.Println(stringCache.Get("hello"))
+
+	// выводим на печать с помощью метода Print()
+	fmt.Println("Using Print method:")
+	intCache.Print()
+	stringCache.Print()
 }

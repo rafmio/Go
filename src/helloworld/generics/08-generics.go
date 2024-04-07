@@ -24,8 +24,8 @@ func (c *Cache[T]) Get(key string) (T, bool) {
 	return val, found
 }
 
-func (c *Cache[T]) Print(key string, value T) {
-
+func (c *Cache[T]) Print() {
+	// ???
 }
 
 func main() {

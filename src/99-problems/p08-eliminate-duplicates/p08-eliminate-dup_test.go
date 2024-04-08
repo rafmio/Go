@@ -64,7 +64,7 @@ func TestEliminateDupGenericComparable(t *testing.T) {
 	t.Run("string slices", func(t *testing.T) {
 		for _, strCase := range strCases {
 			want := strCase.eliminatedDup
-			got := EliminateDup(strCase.origin)
+			got := EliminateDupGenericComparable(strCase.origin)
 
 			if !reflect.DeepEqual(got, want) {
 				t.Errorf("got %v, want %v", got, want)
@@ -86,7 +86,7 @@ func TestEliminateDupGenericComparable(t *testing.T) {
 	t.Run("int slices", func(t *testing.T) {
 		for _, intCase := range intCases {
 			want := intCase.eliminatedDup
-			got := EliminateDup(intCase.origin)
+			got := EliminateDupGenericComparable(intCase.origin)
 
 			if !reflect.DeepEqual(got, want) {
 				t.Errorf("got %v, want %v", got, want)

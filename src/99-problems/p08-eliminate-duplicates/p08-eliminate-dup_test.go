@@ -50,7 +50,7 @@ type TstCasesGen[T comparable] struct {
 
 func TestEliminateDupGenericComparable(t *testing.T) {
 
-	strCases := []TstCasesGen{
+	strCases := []TstCasesGen[string]{
 		{
 			origin:        []string{"a", "a", "a", "b", "b", "b", "c", "c", "c"},
 			eliminatedDup: []string{"a", "b", "c"},
@@ -58,17 +58,6 @@ func TestEliminateDupGenericComparable(t *testing.T) {
 		{
 			origin:        []string{"m", "a", "a", "a", "m", "m", "a"},
 			eliminatedDup: []string{"m", "a", "m", "a"},
-		},
-	}
-
-	intCases := []TstCasesGen{
-		{
-			origin:        []int{1, 1, 1, 2, 2, 2, 3, 3, 3},
-			eliminatedDup: []int{1, 2, 3},
-		},
-		{
-			origin:        []int{300, 300, 300, 300, 300},
-			eliminatedDup: []int{300},
 		},
 	}
 
@@ -82,6 +71,17 @@ func TestEliminateDupGenericComparable(t *testing.T) {
 			}
 		}
 	})
+
+	intCases := []TstCasesGen[int]{
+		{
+			origin:        []int{1, 1, 1, 2, 2, 2, 3, 3, 3},
+			eliminatedDup: []int{1, 2, 3},
+		},
+		{
+			origin:        []int{300, 300, 300, 300, 300},
+			eliminatedDup: []int{300},
+		},
+	}
 
 	t.Run("int slices", func(t *testing.T) {
 		for _, intCase := range intCases {

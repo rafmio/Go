@@ -10,7 +10,7 @@ import (
 func TestGETPlayers(t *testing.T) {
 	t.Run("returns Pepper's score", func(t *testing.T) {
 		request, _ := http.NewRequest(http.MethodGet, "/players/Pepper", nil)
-		response := httptest.NewRecorder()
+		response := httptest.NewRecorder() // returns *ResponseRecorder
 
 		PlayerServer(response, request)
 

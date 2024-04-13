@@ -30,6 +30,11 @@ func main() {
 	month := months[timeStcSplit[0]]
 
 	fmt.Println(yearStr, month)
-	date := yearStr + "-" + month
+	date := yearStr + "-" + month + "-" + timeStcSplit[1] + " " + timeStcSplit[2]
 	fmt.Println(date)
+
+	tm, _ := time.Parse("2006-01-02 15:04:05", date)
+	fmt.Println(tm)
+	fmt.Printf("Type of tm: %T\n", tm)
+
 }

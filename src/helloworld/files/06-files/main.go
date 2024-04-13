@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"go/scanner"
 	"os"
 	"strconv"
 )
@@ -32,7 +31,8 @@ func main() {
 			}
 
 		} else {
-			fmt.Println(err)
+			fmt.Println(err.Error())
+			fmt.Printf("Type of err: %T\n", err)
 			os.Exit(1)
 		}
 	}
@@ -47,29 +47,33 @@ func main() {
 	}
 	defer file.Close()
 
-	// читаем файловую позицию 
-	var filePosition int 
+	// читаем файловую позицию
+	var filePosition int
+
+	scanner := bufio.NewScanner(filePositionFile)
+
 	for scanner.Scan() {
 		line := scanner.Text()
-        fmt.Println(line)
-        if line == "EOF" {
-            break
-        }
+		fmt.Println(line)
+		if line == "EOF" {
+			break
+		}
 		// сохраняем текстовую ФП в int
-		if filePosition, err := strconv.Atoi(line); err != nil {
+		if filePosition, err = strconv.Atoi(line); err != nil {
 			fmt.Println(err)
-            os.Exit(1)
+			os.Exit(1)
 		}
 	}
 
 	// устанавливаем файловую позицию для чтения файла
-	if _, err = file.Seek(int64(filePosition, os.SEEK_SET))
-	if err!= nil {
-        fmt.Println(err)
-        os.Exit(1)
-    }
+	_, err = file.Seek(int64(filePosition), os.SEEK_SET)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 
-	scanner := bufio.NewScanner(file)
+	// читаем файл начиная с заданной файловой позиции
+	scanner = bufio.NewScanner(file)
 	for scanner.Scan() {
 		line := scanner.Text()
 		fmt.Println(line)
@@ -79,12 +83,24 @@ func main() {
 		fmt.Fprintln(os.Stderr, "reading standard input:", err)
 	}
 
-	// находим файловую позицию
+	// находим файловую позицию после прочтения
 	filePoisition, err := file.Seek(0, os.SEEK_CUR)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
 
-	
+	// усекаем (trucnate) файл для перезаписи
+	filePositionFile, err = os.Create("filePosition")
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	_, err = filePositionFile.WriteString(fmt.Sprint(filePoisition))
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	defer filePositionFile.Close()
 }

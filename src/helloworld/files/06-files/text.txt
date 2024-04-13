@@ -3,3 +3,12 @@ two
 three
 four
 five
+six
+seven
+eight
+nine
+ten
+Kissy
+Missy
+Tosy
+Bosy

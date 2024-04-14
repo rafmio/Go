@@ -18,7 +18,8 @@ func main() {
 		fmt.Println("fs.ReadDir():", err.Error())
 	}
 
-	for _, f := range files {
-		fmt.Println(f.Name())
+	for i, f := range files {
+		fmt.Println(i, f.Name())
 	}
+
 }

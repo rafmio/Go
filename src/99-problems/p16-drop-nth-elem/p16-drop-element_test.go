@@ -1,6 +1,7 @@
 package dropelem
 
 import (
+	"reflect"
 	"testing"
 )
 
@@ -36,7 +37,25 @@ func TestDropElem(t *testing.T) {
 			input:    []string{"a", "b", "c"},
 			nThElem:  -1,
 			expected: []string{"a", "b", "c"},
-			err:      err,
+			err:      ErrNegativeIdx,
 		},
+		{
+			input:    []string{"a", "b", "c"},
+			nThElem:  1,
+			expected: []string{},
+			err:      nil,
+		},
+	}
+
+	for _, tstCase := range tstCases {
+		got, err := DropElem(tstCase.input, tstCase.nThElem)
+
+		if !reflect.DeepEqual(got, tstCase.expected) {
+			t.Errorf("DropElem() = %v, want %v", got, tstCase.expected)
+		}
+
+		if err != tstCase.err {
+			t.Errorf("DropElem() error = %v, want %v", err, tstCase.err)
+		}
 	}
 }

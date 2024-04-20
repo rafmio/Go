@@ -1,0 +1,6 @@
+Extract a slice from a list
+
+public void shouldGiveSliceOfAList() throws Exception {
+    List<String> slice = P18.slice(Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h", "i", "k"), 3, 7);
+    assertThat(slice, hasSize(5));
+    assertThat(slice, contains("c", "d", "e", "f", "g"));

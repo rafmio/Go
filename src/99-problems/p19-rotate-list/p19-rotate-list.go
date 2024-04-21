@@ -8,45 +8,29 @@ var (
 )
 
 func RotateList(list []string, N int) ([]string, error) {
-
 	result := make([]string, 0, len(list))
-
 	if len(list) == 0 {
-		return list, ErrListIsEmpty
+		return result, ErrListIsEmpty
 	}
-
 	if N < 0 || N > len(list) {
 		return result, ErrInvalidN
 	}
 
-	if N == len(list) {
-		return list, nil
-	}
+	idx := len(list)
+	counter := 0
 
-	if N == 0 {
-		return list, nil
-	}
-
-	idx := len(list) - 1
-
-	// find index
-	for N > 0 {
+	for i := N; i > 0; i-- {
 		idx--
 		if idx < 0 {
 			idx = len(list) - 1
-		} else {
-			N--
 		}
+		counter++
 	}
 
-	for i := 0; i < len(list); i++ {
-		// result[i] = list[idx]
-		result = append(result, list[idx])
-		idx++
-		if idx >= len(list) {
-			idx = 0
-		}
-	}
+	plase := len(list) - idx
+
+	result = append(result, list[plase:]...)
+	result = append(result, list[:plase]...)
 
 	return result, nil
 }

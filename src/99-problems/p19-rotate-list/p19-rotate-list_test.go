@@ -64,6 +64,13 @@ func TestRotateList(t *testing.T) {
 			expected: []string{},
 			err:      ErrInvalidN,
 		},
+		{
+			name:     "regular list, regular N == 15",
+			input:    []string{"a", "b", "c", "d", "e", "f", "g", "h"},
+			nPlaces:  15,
+			expected: []string{"h", "a", "b", "c", "d", "e", "f", "g"},
+			err:      nil,
+		},
 	}
 
 	for _, tst := range tstCases {

@@ -42,28 +42,86 @@ var logEntry2 LogEntry = LogEntry{
 	Window: "65535",
 }
 
+var logEntry3 LogEntry = LogEntry{
+	TmStmp: time.Date(2023, time.June, 11, 12, 13, 14, 0, time.UTC),
+	SrcIP:  "58.132.112.102",
+	Len:    "42",
+	Ttl:    "240",
+	Id:     "54443",
+	Spt:    "443",
+	Dpt:    "44343",
+	Window: "11111",
+}
+
 func main() {
 	db, err := sql.Open("postgres", "user=raf dbname=logtracker password=qwq121 sslmode=disable")
 	if err != nil {
 		log.Fatal(err.Error())
 	}
 
+	logEntries := []LogEntry{logEntry1, logEntry2, logEntry3}
+
+	for _, el := range logEntries {
+		isExists := CheckRecordExists(db, el)
+		if isExists {
+			fmt.Println("record exists")
+		} else {
+			fmt.Println("record doesn't exist")
+
+			// Подготовка SQL запросов для вставки
+			stmt, err := db.Prepare("INSERT INTO lg_tab_1 (tmstmp, srcip, len, ttl, innerid, spt, dpt, wndw) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)")
+			if err != nil {
+				log.Fatal(err.Error())
+			}
+			defer stmt.Close()
+
+			_, err = stmt.Exec(el.TmStmp, el.SrcIP, el.Len, el.Ttl, el.Id, el.Spt, el.Dpt, el.Window)
+			if err != nil {
+				log.Fatal(err.Error())
+			}
+
+		}
+	}
+
 	// Подготовка SQL запросов для вставки
-	stmt, err := db.Prepare("INSERT INTO lg_tab_1 (tmstmp, srcip, len, ttl, innerid, spt, dpt, wndw) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)")
+	// stmt, err := db.Prepare("INSERT INTO lg_tab_1 (tmstmp, srcip, len, ttl, innerid, spt, dpt, wndw) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)")
+	// if err != nil {
+	// 	log.Fatal(err.Error())
+	// }
+	// defer stmt.Close()
+
+	// _, err = stmt.Exec(logEntry1.TmStmp, logEntry1.SrcIP, logEntry1.Len, logEntry1.Ttl, logEntry1.Id, logEntry1.Spt, logEntry1.Dpt, logEntry1.Window)
+	// if err != nil {
+	// 	log.Fatal(err.Error())
+	// }
+
+	// _, err = stmt.Exec(logEntry2.TmStmp, logEntry2.SrcIP, logEntry2.Len, logEntry2.Ttl, logEntry2.Id, logEntry2.Spt, logEntry2.Dpt, logEntry2.Window)
+	// if err != nil {
+	// 	log.Fatal(err.Error())
+	// }
+
+	fmt.Println("Success!")
+}
+
+func CheckRecordExists(db *sql.DB, logEntry LogEntry) bool {
+	// Подготовка SQL запроса для проверки существования записи
+	stmt, err := db.Prepare("SELECT * FROM lg_tab_1 WHERE tmstmp = $1 AND srcip = $2 AND len = $3 AND ttl = $4 AND innerid = $5 AND spt = $6 AND dpt = $7 AND wndw = $8")
 	if err != nil {
 		log.Fatal(err.Error())
 	}
 	defer stmt.Close()
 
-	_, err = stmt.Exec(logEntry1.TmStmp, logEntry1.SrcIP, logEntry1.Len, logEntry1.Ttl, logEntry1.Id, logEntry1.Spt, logEntry1.Dpt, logEntry1.Window)
+	// Выполнение запроса
+	rows, err := stmt.Query(logEntry.TmStmp, logEntry.SrcIP, logEntry.Len, logEntry.Ttl, logEntry.Id, logEntry.Spt, logEntry.Dpt, logEntry.Window)
 	if err != nil {
 		log.Fatal(err.Error())
 	}
+	defer rows.Close()
 
-	_, err = stmt.Exec(logEntry2.TmStmp, logEntry2.SrcIP, logEntry2.Len, logEntry2.Ttl, logEntry2.Id, logEntry2.Spt, logEntry2.Dpt, logEntry2.Window)
-	if err != nil {
-		log.Fatal(err.Error())
+	rowsSls, err := rows.Columns()
+	for i, row := range rowsSls {
+		fmt.Println(i, row)
 	}
 
-	fmt.Println("Success!")
+	return rows.Next()
 }

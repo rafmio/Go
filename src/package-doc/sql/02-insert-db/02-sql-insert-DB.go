@@ -22,22 +22,23 @@ type LogEntry struct {
 
 var logEntry1 LogEntry = LogEntry{
 	TmStmp: time.Date(2024, time.May, 8, 10, 11, 22, 0, time.UTC),
-	SrcIP:  "213.194.150.12",
-	Len:    "44",
-	Ttl:    "240",
-	Id:     "54321",
-	Spt:    "44496",
-	Dpt:    "2099",
+	SrcIP:  "10.191.114.13",
+	Len:    "40",
+	Ttl:    "266",
+	Id:     "54123",
+	Spt:    "8080",
+	Dpt:    "90",
+	Window: "65535",
 }
 
 var logEntry2 LogEntry = LogEntry{
 	TmStmp: time.Date(2023, time.June, 11, 12, 13, 14, 0, time.UTC),
-	SrcIP:  "210.220.30.140",
-	Len:    "44",
-	Ttl:    "249",
+	SrcIP:  "110.120.32.32",
+	Len:    "60",
+	Ttl:    "250",
 	Id:     "54321",
-	Spt:    "55098",
-	Dpt:    "50067",
+	Spt:    "54340",
+	Dpt:    "40040",
 	Window: "65535",
 }
 
@@ -48,7 +49,7 @@ func main() {
 	}
 
 	// Подготовка SQL запросов для вставки
-	stmt, err := db.Prepare("INSERT INTO log_entries (tmstmp, srcip, len, ttl, innerid, spt, dpt, wndw) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)")
+	stmt, err := db.Prepare("INSERT INTO lg_tab_1 (tmstmp, srcip, len, ttl, innerid, spt, dpt, wndw) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)")
 	if err != nil {
 		log.Fatal(err.Error())
 	}

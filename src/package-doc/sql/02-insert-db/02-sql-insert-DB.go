@@ -83,23 +83,6 @@ func main() {
 		}
 	}
 
-	// Подготовка SQL запросов для вставки
-	// stmt, err := db.Prepare("INSERT INTO lg_tab_1 (tmstmp, srcip, len, ttl, innerid, spt, dpt, wndw) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)")
-	// if err != nil {
-	// 	log.Fatal(err.Error())
-	// }
-	// defer stmt.Close()
-
-	// _, err = stmt.Exec(logEntry1.TmStmp, logEntry1.SrcIP, logEntry1.Len, logEntry1.Ttl, logEntry1.Id, logEntry1.Spt, logEntry1.Dpt, logEntry1.Window)
-	// if err != nil {
-	// 	log.Fatal(err.Error())
-	// }
-
-	// _, err = stmt.Exec(logEntry2.TmStmp, logEntry2.SrcIP, logEntry2.Len, logEntry2.Ttl, logEntry2.Id, logEntry2.Spt, logEntry2.Dpt, logEntry2.Window)
-	// if err != nil {
-	// 	log.Fatal(err.Error())
-	// }
-
 	fmt.Println("Success!")
 }
 

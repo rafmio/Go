@@ -34,3 +34,4 @@ Hello, world.
 This was an example. In real our directory located at /home/raf/Go/src/import-packages/workspase04
 Set it:
 export PATH=$PATH:/home/raf/Go/src/import-packages/workspase04
+$ go list -m all // просмотр всех прямых или косвенных зависимостей проекта

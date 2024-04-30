@@ -1,0 +1,36 @@
+https://go.dev/doc/code
+
+Creating module:
+$ mkdir hello 
+$ cd hello
+$ go mod init example/user/hello
+go: creating new go.mod: module example/user/hello
+
+In the 'hello.go' file:
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello, world.")
+}
+
+
+
+$ go install example/user/hello
+or
+$ go install .
+or
+$ go install
+
+Will be installed at 
+$HOME/go/bin/hello 
+
+For added convenience, we'll add the install directory to our PATH to make running binaries easy:
+$ export PATH=$PATH:$(dirname $(go list -f '{{.Target}}' .))
+$ hello
+Hello, world.
+
+This was an example. In real our directory located at /home/raf/Go/src/import-packages/workspase04
+Set it:
+export PATH=$PATH:/home/raf/Go/src/import-packages/workspase04

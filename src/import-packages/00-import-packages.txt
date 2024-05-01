@@ -35,3 +35,21 @@ This was an example. In real our directory located at /home/raf/Go/src/import-pa
 Set it:
 export PATH=$PATH:/home/raf/Go/src/import-packages/workspase04
 $ go list -m all // просмотр всех прямых или косвенных зависимостей проекта
+
+// ----------------------------------------------------------------------
+
+REPLACE
+Ситуация:
+1.файлы go.mod в корневом каталоге и поддиректориях
+2.названия пакетов == наименования поддиректорий разные
+3.при '$go run .' возникает ошибка типа:
+main.go:5:2: package ltr/subdir01 is not in std (/usr/local/go/src/ltr/subdir01)
+main.go:6:2: package ltr/subdir02 is not in std (/usr/local/go/src/ltr/subdir02)
+
+Объяснения Алисы:
+"Ваш проект использует модули Go, но при этом пытается импортировать пакеты из поддиректорий без указания их как модулей. Go ожидает найти эти пакеты в стандартном расположении модулей, а не в поддиректориях вашего проекта"
+
+Объяснения GigaChat:
+"Ошибка возникает потому, что при запуске команды go run . модули поддиректорий subdir01 и subdir02 не могут быть найдены в стандартном месте (/usr/local/go/src/ltr/subdir01 и /usr/local/go/src/ltr/subdir02). Это происходит из-за того, что файлы go.mod в поддиректориях указывают на отдельные модули с именами subdir01 и subdir02, которые не являются частью основного модуля ltr."
+
+Решение: 'replace'??

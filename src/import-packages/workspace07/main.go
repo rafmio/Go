@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"ltr/subdir01"
-	"ltr/subdir02"
+	"subdir01"
+	"subdir02"
 )
 
 func main() {

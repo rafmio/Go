@@ -20,7 +20,7 @@ type ConnectDBConfig struct {
 }
 
 // initialize ConnectDBConfig with exact values
-var cDBc ConnectDBConfig = ConnectDBConfig{
+var CDBc ConnectDBConfig = ConnectDBConfig{
 	driverName: "postgres",
 	user:       "raf",
 	dbname:     "logtracker",
@@ -99,7 +99,7 @@ func InsertToDb(logEntry parser.LogEntry, cDBc ConnectDBConfig) error {
 func CheckIfRecordExists(db *sql.DB, logEntry parser.LogEntry) (bool, error) {
 	// preparing the query for SELECT
 	query := fmt.Sprintf("SELECT * FROM %s WHERE %s AND %s AND %s AND %s AND %s AND %s AND %s AND %s",
-		cDBc.tableName,
+		CDBc.tableName,
 		"tmstmp = $1",
 		"srcip = $2",
 		"len = $3",

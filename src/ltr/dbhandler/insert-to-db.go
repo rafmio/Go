@@ -6,7 +6,8 @@ import (
 	"log"
 
 	"logtracker/parser"
-	// _ "github.com/lib/pq" // PostgreSQL driver
+
+	_ "github.com/lib/pq" // PostgreSQL driver
 )
 
 // declare the structure of the database connection parameters
@@ -19,6 +20,7 @@ type ConnectDBConfig struct {
 	sslmode    string
 }
 
+// postgres
 // initialize ConnectDBConfig with exact values
 var CDBc ConnectDBConfig = ConnectDBConfig{
 	driverName: "postgres",
@@ -31,7 +33,7 @@ var CDBc ConnectDBConfig = ConnectDBConfig{
 
 // InsertToDb() connect to DB, check if the record exists, if not, insert the record
 func InsertToDb(logEntry parser.LogEntry, cDBc ConnectDBConfig) error {
-	dataSourceName := fmt.Sprint("user=%s dbname=%s password=%s sslmode %s",
+	dataSourceName := fmt.Sprintf("user=%s dbname=%s password=%s sslmode=%s",
 		cDBc.user,
 		cDBc.dbname,
 		cDBc.password,

@@ -26,7 +26,7 @@ func TestIsPrime(t *testing.T) {
 			want := cases[i]
 
 			if got != want {
-				t.Error("got %d, want: %d", got, want)
+				t.Errorf("the num is: %d, got %v, want: %v", i, got, want)
 			}
 		})
 	}

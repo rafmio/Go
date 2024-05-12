@@ -19,6 +19,9 @@ func TestIsPrime(t *testing.T) {
 			}
 		}
 	}
+	// for i, val := range cases {
+	// 	fmt.Println(i, val)
+	// }
 
 	for i := 0; i <= 100; i++ {
 		t.Run("run tests from 0 to 100:", func(t *testing.T) {

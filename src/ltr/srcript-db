@@ -1,0 +1,22 @@
+#!/bin/bash
+
+DATABASE_NAME="ltr"
+USER_NAME="raf"
+PASSWORD="qwq121"
+TABLE_NAME="lg_tab_1"
+
+
+# Connecting to PostgreSQL
+sudo -u postgres psql -c "CREATE DATABASE $DATABASE_NAME;"
+
+# Creating relation
+sudo -u postgres psql -c "CREATE ROLE $USER_NAME WITH LOGIN PASSWORD '$PASSWORD';"
+
+# Give the user the rights to the created database
+sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE $DATABASE_NAME TO $USER_NAME;"
+
+# Creating the table 
+sudo -u postgres psql -c 
+
+
+# We give the user the rights to the sequence

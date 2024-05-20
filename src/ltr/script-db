@@ -1,10 +1,14 @@
 #!/bin/bash
 
-DATABASE_NAME="ltr"
-USER_NAME="raf"
-PASSWORD="qwq121"
-TABLE_NAME="lg_tab_1"
+# DATABASE_NAME="ltr"
+# USER_NAME="raf"
+# PASSWORD="qwq121"
+# TABLE_NAME="lg_tab_1"
 
+DATABASE_NAME="ltr4"
+USER_NAME="seerodja"
+PASSWORD="ttt555"
+TABLE_NAME="tableetza"
 
 # Connecting to PostgreSQL
 sudo -u postgres psql -c "CREATE DATABASE $DATABASE_NAME;"
@@ -16,7 +20,7 @@ sudo -u postgres psql -c "CREATE ROLE $USER_NAME WITH LOGIN PASSWORD '$PASSWORD'
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE $DATABASE_NAME TO $USER_NAME;"
 
 
-
+# sudo -u postgres bash
 # Creating the table 
 # sudo -u postgres psql -d $DATABSE_NAME -c "CREATE TABLE $TABLE_NAME (
 psql -U postgres -d $DATABASE_NAME -c "CREATE TABLE $TABLE_NAME (

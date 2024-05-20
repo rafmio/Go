@@ -15,9 +15,11 @@ sudo -u postgres psql -c "CREATE ROLE $USER_NAME WITH LOGIN PASSWORD '$PASSWORD'
 # Give the user the rights to the created database
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE $DATABASE_NAME TO $USER_NAME;"
 
+
+
 # Creating the table 
-# sudo -u postgres psql -c "CREATE TABLE $TABLE_NAME (
-psql -U $USER_NAME -d $DATABASE_NAME -c "CREATE TABLE $TABLE_NAME (
+# sudo -u postgres psql -d $DATABSE_NAME -c "CREATE TABLE $TABLE_NAME (
+psql -U postgres -d $DATABASE_NAME -c "CREATE TABLE $TABLE_NAME (
  id SERIAL PRIMARY KEY,
  tmstmp TIMESTAMP NOT NULL,
  srcip inet NOT NULL,
@@ -30,4 +32,5 @@ psql -U $USER_NAME -d $DATABASE_NAME -c "CREATE TABLE $TABLE_NAME (
 );" 
 
 
-# We give the user the rights to the sequence
+# Giving the user the rights to the sequence
+# sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON TABLE $TABLE_NAME TO $USER_NAME;"

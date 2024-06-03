@@ -2,6 +2,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 )
 
@@ -13,6 +14,7 @@ func (c HttpHandler) ServeHTTP(res http.ResponseWriter, req *http.Request) {
 	res.Write(data)
 	res.Write([]byte(req.Method))
 	res.Write([]byte(req.Proto))
+	fmt.Fprintf(res, "\n%s\n", "------")
 }
 
 func main() {

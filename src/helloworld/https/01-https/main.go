@@ -1,10 +1,17 @@
+// https://www.golinuxcloud.com/golang-http/
 package main
 
 import (
-	"fmt"
+	"log"
+	"net/http"
+	"os"
 )
 
-privateKey, err := ecdsa.GenerateKey(elliptic.p256(), rand.Reader)
-if err != nil {
-	log.Fatal("Failed to generate private key: %v", err)
+func main() {
+	listenAddr := os.Getenv("LISTEN_ADDR")
+	if len(listenAddr) == 0 {
+		listenAddr = ":8080"
+	}
+
+	log.Fatal(http.ListenAndServe(listenAddr, nil))
 }

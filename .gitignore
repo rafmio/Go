@@ -8,3 +8,4 @@
 *.sum
 ufw.log
 ~/Volume-100-1/Go/src/data-struct-algorithms/github-source
+*.pem

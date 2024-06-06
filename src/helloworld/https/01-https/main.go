@@ -15,3 +15,7 @@ func main() {
 
 	log.Fatal(http.ListenAndServe(listenAddr, nil))
 }
+
+// $ ss -ntlp | grep 8080
+// $ curl -X GET localhost:8080
+// $ curl -X GET localhost:8080/api

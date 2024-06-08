@@ -1,0 +1,6 @@
+https://www.golinuxcloud.com/golang-http/
+
+$ openssl genrsa -out ca.key 4096
+$ openssl req -new -x509 -days 365 -key ca.key -out cacert.pem -subj "/C=IN/ST=NSW/L=Bengaluru/O=GoLinuxCloud/OU=Org/CN=RootCA"
+
+-subj "/C=IN/ST=NSW/L=Bengaluru/O=GoLinuxCloud/OU=Org/CN=RootCA": это опция, которая указывает на информацию, которую следует включить в запрос на сертификат. /C=IN/ означает страну (Country), /ST=NSW/ - штат или регион, /L=Bengaluru/ - город, /O=GoLinuxCloud/ - организацию, /OU=Org/ - подразделение организации и /CN=RootCA/ - имя хоста или доменное имя.

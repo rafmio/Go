@@ -1,0 +1,97 @@
+Мне нужно написать HTTP-прокси-сервер на языке Go, который будет принимать HTTPS запросы. Я не понимаю нужно ли создавать для этого самописный сертификат, что вообще сделать, чтобы обработать входящий https-запрос, получить ответ от ресурса все по тому же протоколу, отправить ответ клиенту, тоже по https. Напиши, пожалуйста, код на Go, а также все команды Linux, с помощью которых нужно создать сертификаты
+
+8 июня в 12:44
+Для создания самописного сертификата вам потребуется использовать OpenSSL, так как Go не предоставляет встроенных средств для генерации сертификатов. Вам необходимо выполнить следующие шаги:
+
+Создать приватный ключ для вашего сервера:
+
+openssl genpkey -algorithm RSA -out server.key 2048
+Создать запрос на сертификат (CSR):
+
+openssl req -new -key server.key -out server.csr
+Создать самоподписанный сертификат:
+
+openssl x509 -req -in server.csr -signkey server.key -out server.crt -days 365
+Скопировать содержимое server.crt и server.key в соответствующие файлы на вашем Go-сервере.
+Теперь давайте посмотрим, как написать HTTPS-прокси на Go:
+
+
+package main
+
+import (
+    "crypto/tls"
+    "crypto/x509"
+    "fmt"
+    "io/ioutil"
+    "log"
+    "net/http"
+    "os"
+)
+
+func main() {
+    // Путь к вашему сертификату
+    certFile := "path/to/your/server.crt"
+    // Путь к вашему приватному ключу
+    keyFile := "path/to/your/server.key"
+
+    // Загрузка сертификата и приватного ключа
+    cert, err := tls.LoadX509KeyPair(certFile, keyFile)
+    if err != nil {
+        log.Fatalf("Failed to load key pair: %s", err)
+    }
+
+    // Создание цепочки доверия
+    caCert, err := ioutil.ReadFile("path/to/your/ca.crt")
+    if err != nil {
+        log.Fatalf("Failed to read CA cert: %s", err)
+    }
+    caCertPool := x509.NewCertPool()
+    caCertPool.AppendCertsFromPEM(caCert)
+
+    // Настройка TLS конфигурации
+    config := &tls.Config{
+        ClientCAs:      caCertPool,
+        ClientAuth:     tls.RequireAndVerifyClientCert,
+        Certificates:   []tls.Certificate{cert},
+        PreferServerCipherSuites: true,
+    }
+
+    // Создание прокси сервера
+    proxy := &http.Server{
+        Addr: ":443",
+        Handler: http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+            // Проверка наличия клиентского сертификата
+            if _, ok := r.TLS.PeerCertificates[0].Certificate; !ok {
+                w.WriteHeader(http.StatusForbidden)
+                fmt.Fprintf(w, "No client certificate provided.")
+                return
+            }
+
+            // Обработка запроса
+            target := fmt.Sprintf("https://example.com%s", r.URL.Path)
+            resp, err := http.Get(target)
+            if err != nil {
+                log.Println(err)
+                w.WriteHeader(http.StatusInternalServerError)
+                return
+            }
+            defer resp.Body.Close()
+
+            // Копирование ответа
+            copyResponse(w, resp)
+        }),
+    }
+
+    // Запуск прокси сервера
+    log.Fatal(proxy.ListenAndServeTLS("", ""))
+}
+
+// copyResponse копирует ответ из одного ResponseWriter в другой
+func copyResponse(dst http.ResponseWriter, src *http.Response) {
+    defer src.Body.Close()
+    dst.Header().Set("Content-Type", src.Header.Get("Content-Type"))
+    for k, vv := range src.Header {
+        for _, v := range vv {
+            dst.Header().Add(k, v)
+        }
+    }

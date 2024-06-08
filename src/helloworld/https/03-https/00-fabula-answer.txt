@@ -1,0 +1,65 @@
+Мне нужно написать HTTP-прокси-сервер на языке Go, который будет принимать HTTPS запросы. Я не понимаю нужно ли создавать для этого самописный сертификат, что вообще сделать, чтобы обработать входящий https-запрос, получить ответ от ресурса все по тому же протоколу, отправить ответ клиенту, тоже по https. Напиши, пожалуйста, код на Go, а также все команды Linux, с помощью которых нужно создать сертификаты
+
+========ANSWER:===========================
+Для написания HTTP-прокси-сервера на языке Go, который будет принимать HTTPS запросы, вам действительно понадобится самоподписанный сертификат. Вот шаги, которые нужно выполнить:
+
+### Создание самоподписанного сертификата:
+
+1. Установите openssl, если он еще не установлен:
+      sudo apt update
+   sudo apt install openssl
+   
+
+2. Создайте корневой ключ и самоподписанный сертификат:
+      openssl req -x509 -nodes -newkey rsa:2048 -keyout server.key -out server.crt -days 365
+   
+
+3. Следуйте инструкциям по заполнению данных, например, Common Name может быть localhost.
+
+### Код HTTP-прокси-сервера на Go:
+
+package main
+
+import (
+    "net/http"
+    "net/http/httputil"
+    "net/url"
+    "crypto/tls"
+    "log"
+)
+
+func main() {
+    target, err := url.Parse("https://example.com") // Замените "https://example.com" на целевой URL
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    proxy := httputil.NewSingleHostReverseProxy(target)
+
+    server := &http.Server{
+        Addr: ":443",
+        Handler: proxy,
+        TLSConfig: &tls.Config{
+            Certificates: []tls.Certificate{},
+            GetCertificate: func(helloInfo *tls.ClientHelloInfo) (*tls.Certificate, error) {
+                cert, err := tls.LoadX509KeyPair("server.crt", "server.key")
+                if err != nil {
+                    return nil, err
+                }
+                return &cert, nil
+            },
+        },
+    }
+
+    log.Fatal(server.ListenAndServeTLS("", ""))
+}
+
+
+### Запуск Go HTTP-прокси-сервера:
+
+1. Сохраните код HTTP-прокси-сервера в файл, например, proxy.go.
+2. Соберите и запустите сервер:
+      go run proxy.go
+   
+
+Теперь у вас должен быть работающий HTTP-прокси-сервер на Go, принимающий HTTPS запросы и перенаправляющий их на указанный URL.

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log Table</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <script>
+        let currentPage = 1;
+        const rowsPerPage = 20;
+
+        function loadMoreRows() {
+            // Implement AJAX or fetch logic here to load more rows
+            // For example purposes, we'll just increment the page number
+            currentPage++;
+            console.log("Load more rows for page:", currentPage);
+        }
+
+        function setRowsPerPage() {
+            const rowsInput = document.getElementById("rows-per-page").value;
+            console.log("Set rows per page to:", rowsInput);
+            // Implement logic to update the rows per page
+        }
+
+        function filterByTime() {
+            const timeFilter = document.getElementById("time-filter").value;
+            console.log("Filter by time:", timeFilter);
+            // Implement logic to filter rows by time interval
+        }
+
+        function customTimeInterval() {
+            const startTime = document.getElementById("start-time").value;
+            const endTime = document.getElementById("end-time").value;
+            console.log("Custom time interval from", startTime, "to", endTime);
+            // Implement logic to filter rows by custom time interval
+        }
+    </script>
+</head>
+<body>
+
+<h2>Log Table</h2>
+
+<form>
+    <label for="time-filter">Filter by Time:</label>
+    <select id="time-filter" onchange="filterByTime()">
+        <option value="10-minutes">Last 10 minutes</option>
+        <option value="1-hour">Last hour</option>
+        <option value="today">Today</option>
+        <option value="week">This week</option>
+    </select>
+    
+    <br><br>
+    
+    <label for="start-time">Start Time:</label>
+    <input type="datetime-local" id="start-time">
+    
+    <label for="end-time">End Time:</label>
+    <input type="datetime-local" id="end-time">
+    
+    <button type="button" onclick="customTimeInterval()">Apply Custom Interval</button>
+    
+    <br><br>
+    
+    <label for="rows-per-page">Rows per Page:</label>
+    <input type="number" id="rows-per-page" value="20" min="1" onchange="setRowsPerPage()">
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Time</th>
+            <th>IP</th>
+            <th>Length</th>
+            <th>TTL</th>
+            <th>ID</th>
+            <th>SPT</th>
+            <th>DPT</th>
+            <th>Window</th>
+        </tr>
+    </thead>
+    <tbody id="log-table-body">
+        <!-- Rows will be dynamically inserted here -->
+    </tbody>
+</table>
+
+<button onclick="loadMoreRows()">Load More</button>
+
+</body>
+</html>

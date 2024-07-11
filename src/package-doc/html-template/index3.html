@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic Table</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .form-container {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <label for="timeInterval">Select Time Interval:</label>
+        <select id="timeInterval">
+            <option value="10min">Last 10 minutes</option>
+            <option value="1hour">Last hour</option>
+            <option value="today">Today</option>
+            <option value="week">This week</option>
+        </select>
+        <br><br>
+        <label for="startTime">Start Time:</label>
+        <input type="datetime-local" id="startTime">
+        <label for="endTime">End Time:</label>
+        <input type="datetime-local" id="endTime">
+        <br><br>
+        <button onclick="filterTable()">Filter</button>
+    </div>
+
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>IP</th>
+                <th>Length</th>
+                <th>TTL</th>
+                <th>ID</th>
+                <th>SPT</th>
+                <th>DPT</th>
+                <th>Window</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows will be dynamically inserted here -->
+        </tbody>
+    </table>
+    <br>
+    <button onclick="loadMore()">Load More</button>
+
+    <script>
+        const data = [
+            // Example data, replace with actual data or fetch from server
+            { time: '2023-01-01T12:00', ip: '192.168.0.1', length: 60, ttl: 64, id: 1, spt: 1234, dpt: 80, window: 1024 },
+            // Add more rows as needed
+        ];
+
+        let currentIndex = 0;
+        const rowsPerPage = 20;
+
+        function loadMore() {
+            const tbody = document.querySelector('#dataTable tbody');
+            for (let i = 0; i < rowsPerPage && currentIndex < data.length; i++, currentIndex++) {
+                const row = document.createElement('tr');
+                Object.values(data[currentIndex]).forEach(value => {
+                    const cell = document.createElement('td');
+                    cell.textContent = value;
+                    row.appendChild(cell);
+                });
+                tbody.appendChild(row);
+            }
+        }
+
+        function filterTable() {
+            const timeInterval = document.getElementById('timeInterval').value;
+            const startTime = document.getElementById('startTime').value;
+            const endTime = document.getElementById('endTime').value;
+
+            // Implement filtering logic based on selected interval and time range
+            console.log(`Filtering table with interval: ${timeInterval}, start time: ${startTime}, end time: ${endTime}`);
+        }
+
+        // Initial load
+        loadMore();
+    </script>
+</body>
+
+</html>

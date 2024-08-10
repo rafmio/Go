@@ -1,5 +1,10 @@
 package main
 
+import (
+	"fmt"
+	"imports/parser"
+)
+
 /*
 structure of the project:
 -08-import
@@ -12,15 +17,9 @@ We should import 'dirponepackage' from the ../dirone/dironePakcage.go to the
 current file (./dirtwoPackage.go)
 */
 
-import (
-	"fmt"
-
-	"../dironepackage"
-)
-
 func main() {
 	// Printing the data from 'dironePackage'
-	dironepackage.PrintData()
+	parser.PrintData()
 
 	// Printing a custom message
 	fmt.Println("This is from dirtwoPackage")

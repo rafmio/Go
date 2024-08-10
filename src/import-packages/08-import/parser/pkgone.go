@@ -1,4 +1,4 @@
-package dironepackage
+package parser
 
 import "fmt"
 

@@ -1,8 +1,8 @@
+// the code doesn't work!
 package main
 
 import (
 	"database/sql"
-	"fmt"
 	"log"
 	"time"
 
@@ -24,17 +24,18 @@ func main() {
 	db, err := sql.Open("postgres", "host=194.58.102.129 port=5432 dbname=logtracker user=raf password=qwq121 sslmode=disable")
 	if err != nil {
 		log.Println("Open DB:", err)
+		log.Fatalf("Open DB: %v", err)
 		return
 	}
 	defer db.Close()
 
-	err = db.Ping()
-	if err != nil {
-		log.Println("Ping DB:", err)
-		return
-	}
-
-	fmt.Println("Successfully connected!")
+	// err = db.Ping()
+	// if err != nil {
+	// 	log.Println("Ping DB:", err)
+	// 	return
+	// } else {
+	// 	fmt.Println("Successfully connected!")
+	// }
 
 	rows, err := db.Query("SELECT * FROM logs WHERE tmstmp BETWEEN '2022-06-01' AND '2022-06-30'")
 	if err != nil {

@@ -10,8 +10,15 @@ import (
 )
 
 type LogEntry struct {
+	SeqNum string
 	TmStmp time.Time
-	// Добавьте другие поля, если они есть в таблице lg_tab
+	SrcIP  string
+	Len    string
+	Ttl    string
+	Id     string // will named 'inner id' in database
+	Spt    string
+	Dpt    string
+	Window string // will named 'wndw' in database
 }
 
 func main() {
@@ -40,11 +47,12 @@ func main() {
 	// Обработка результатов
 	for rows.Next() {
 		var entry LogEntry
-		err = rows.Scan(&entry.TmStmp) // Добавьте другие поля, если они есть в таблице lg_tab
+		err = rows.Scan(&entry.SeqNum, &entry.TmStmp, &entry.SrcIP, &entry.Len, &entry.Ttl, &entry.Id, &entry.Spt, &entry.Dpt, &entry.Window) // Добавьте другие поля, если они есть в таблице lg_tab
 		if err != nil {
 			log.Fatalf("Ошибка сканирования строки: %v\n", err)
 		}
-		fmt.Printf("Запись: %v\n", entry.TmStmp) // Вывод данных на экран
+		// fmt.Printf("Запись: %v\n", entry.TmStmp) // Вывод данных на экран
+		fmt.Printf("%v %v %v %v %v %v %v %v %v\n", entry.SeqNum, entry.TmStmp, entry.SrcIP, entry.Len, entry.Ttl, entry.Id, entry.Spt, entry.Dpt, entry.Window)
 	}
 
 	// Проверка на ошибки после завершения итерации

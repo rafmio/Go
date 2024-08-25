@@ -60,3 +60,5 @@ listen_addreses = 'IP нужного интерфейса'
 локальному серверу PostgreSQL без пароля.
 Чтобы получить доступ к терминалу psql от имени пользователя postgres, запустите:
 $ sudo -u postgres psql
+
+Повторить указанные действия и для CuteGanymede

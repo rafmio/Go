@@ -9,12 +9,6 @@ context package
 Что такое MIME?
 mime/multipart
 
-Применение метода Close() после
-data, err := io.ReadAll(response.Body)
-os.Stdout.Write(data)
-defer response.Body.Close()
-Когда произошло Open()?
-
 init functions
 
 net/http: Context() method for Request struct

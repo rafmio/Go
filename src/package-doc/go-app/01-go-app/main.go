@@ -59,3 +59,37 @@ func main() {
 		log.Fatal(err)
 	}
 }
+
+// .
+// ├── go.mod
+// ├── go.sum
+// └── main.go
+
+// GOARCH=wasm GOOS=js go build -o web/app.wasm
+
+// go build
+
+// .
+// ├── go.mod
+// ├── go.sum
+// ├── hello
+// ├── main.go
+// └── web
+//     └── app.wasm
+
+// 1 directory, 6 file
+
+// -----------
+
+// USE A MAKEFILE
+// The build process can be simplified by writing a makefile:
+
+// build:
+// 	GOARCH=wasm GOOS=js go build -o web/app.wasm
+// 	go build
+
+// run: build
+// 	./hello
+// It can now be built and run with this single command:
+
+// make run

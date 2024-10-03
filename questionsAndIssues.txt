@@ -4,7 +4,6 @@ linked lists
 
 Bitwise operations
 
-cotext package
 context.Backgound
 context package
 
@@ -14,8 +13,6 @@ mime/multipart
 init functions
 
 net/http: Context() method for Request struct
-net/http: FormFile()
-net/url: URL struct
 
 functions: variadic argumets/parameters
 

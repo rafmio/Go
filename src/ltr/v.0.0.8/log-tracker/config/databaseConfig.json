@@ -1,0 +1,10 @@
+{
+    "driverName": "postgres",
+    "user": "raf",
+    "dbname": "logtracker",
+    "host": "127.0.0.1",
+    "port": "5432",
+    "tableName": "lg_tab",
+    "password": "qwq121",
+    "sslmode": "disable"
+}

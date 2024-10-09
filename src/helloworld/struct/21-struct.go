@@ -2,7 +2,13 @@ package main
 
 import "fmt"
 
+type creature struct {
+	creatureType string
+	amphibian    bool
+}
+
 type man struct {
+	creature
 	gender  string
 	age     int
 	habbits []string
@@ -23,6 +29,9 @@ func main() {
 	pers.habbits[1] = "gaming"
 	pers.habbits[2] = "programming"
 
+	pers.amphibian = false
+	pers.creatureType = "human"
+
 	fmt.Println(pers)
 
 	fmt.Printf("Type of pers: %T\n", pers)
@@ -35,4 +44,6 @@ func main() {
 	for i := 0; i < len(pers.habbits); i++ {
 		fmt.Printf("habbits[%d]: %v, address: %p\n", i, pers.habbits[i], &pers.habbits[i])
 	}
+
+	fmt.Printf("creatureType variable: %v, address: %p\n", pers.creatureType, &pers.creatureType)
 }

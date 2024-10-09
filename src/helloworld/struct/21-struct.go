@@ -19,6 +19,11 @@ type person struct {
 	name string
 }
 
+func changeFields(pers *person) {
+	pers.name = "Barbarossa"
+	pers.gender = "female"
+}
+
 func main() {
 	pers := new(person)
 	pers.name = "Henry"
@@ -46,4 +51,8 @@ func main() {
 	}
 
 	fmt.Printf("creatureType variable: %v, address: %p\n", pers.creatureType, &pers.creatureType)
+
+	changeFields(pers)
+
+	fmt.Println(pers.name, pers.gender)
 }

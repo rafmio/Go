@@ -1,0 +1,10 @@
+Outer loop, idx: 0
+Outer loop, idx: 1
+Outer loop, idx: 2
+Server name: server3, inner loop, innerIdx: 0
+Server name: server1, inner loop, innerIdx: 0
+Server name: server1, inner loop, innerIdx: 1
+Server name: server1, inner loop, innerIdx: 2
+Server name: server3, inner loop, innerIdx: 1
+Server name: server3, inner loop, innerIdx: 2
+Server name: server2, inner loop, innerIdx: 0

@@ -1,0 +1,15 @@
+2024-10-15 15:05:43 configure libwebkitgtk-6.0-4:amd64 2.46.0-2~deb12u1 <none>
+2024-10-15 15:05:43 status unpacked libwebkitgtk-6.0-4:amd64 2.46.0-2~deb12u1
+2024-10-15 15:05:43 status half-configured libwebkitgtk-6.0-4:amd64 2.46.0-2~deb12u1
+2024-10-15 15:05:43 status installed libwebkitgtk-6.0-4:amd64 2.46.0-2~deb12u1
+2024-10-15 15:05:43 configure gir1.2-javascriptcoregtk-4.1:amd64 2.46.0-2~deb12u1 <none>
+2024-10-15 15:05:43 status unpacked gir1.2-javascriptcoregtk-4.1:amd64 2.46.0-2~deb12u1
+2024-10-15 15:05:43 status half-configured gir1.2-javascriptcoregtk-4.1:amd64 2.46.0-2~deb12u1
+2024-10-15 15:05:43 status installed gir1.2-javascriptcoregtk-4.1:amd64 2.46.0-2~deb12u1
+2024-10-15 15:05:43 configure gir1.2-webkit2-4.1:amd64 2.46.0-2~deb12u1 <none>
+2024-10-15 15:05:43 status unpacked gir1.2-webkit2-4.1:amd64 2.46.0-2~deb12u1
+2024-10-15 15:05:43 status half-configured gir1.2-webkit2-4.1:amd64 2.46.0-2~deb12u1
+2024-10-15 15:05:43 status installed gir1.2-webkit2-4.1:amd64 2.46.0-2~deb12u1
+2024-10-15 15:05:43 trigproc libc-bin:amd64 2.36-9+deb12u8 <none>
+2024-10-15 15:05:43 status half-configured libc-bin:amd64 2.36-9+deb12u8
+2024-10-15 15:05:43 status installed libc-bin:amd64 2.36-9+deb12u8

@@ -1,0 +1,15 @@
+Hit:1 http://security.debian.org/debian-security bookworm-security InRelease
+Hit:2 https://repo.yandex.ru/yandex-browser/deb stable InRelease
+Hit:4 http://deb.debian.org/debian bookworm InRelease
+Hit:5 https://download.virtualbox.org/virtualbox/debian bookworm InRelease
+Hit:6 http://deb.debian.org/debian bookworm-updates InRelease
+Hit:7 https://download.docker.com/linux/debian bookworm InRelease
+Hit:8 https://packages.microsoft.com/repos/code stable InRelease
+Hit:3 https://update-yar1.sbis.ru/Sbis3Plugin/24.4118.77/linux/deb_repo ./ InRelease
+Hit:9 https://download.sublimetext.com apt/stable/ InRelease
+Hit:10 https://apt.postgresql.org/pub/repos/apt bookworm-pgdg InRelease
+Hit:11 http://repo.yandex.ru/yandex-disk/deb stable InRelease
+Reading package lists...
+Building dependency tree...
+Reading state information...
+All packages are up to date.

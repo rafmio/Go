@@ -1,0 +1,15 @@
+     1	update-alternatives 2024-10-04 15:45:15: run with --remove editor /usr/bin/code
+     2	update-alternatives 2024-10-04 15:45:39: run with --install /usr/bin/editor editor /usr/bin/code 0
+     3	update-alternatives 2024-10-04 15:45:42: run with --install /usr/bin/editor editor /usr/bin/code 0
+     4	update-alternatives 2024-10-05 11:52:57: run with --install /usr/bin/x-www-browser x-www-browser /usr/bin/firefox-esr 70 --slave /usr/share/man/man1/x-www-browser.1.gz x-www-browser.1.gz /usr/share/man/man1/firefox-esr.1.gz
+     5	update-alternatives 2024-10-05 11:52:57: run with --install /usr/bin/gnome-www-browser gnome-www-browser /usr/bin/firefox-esr 70 --slave /usr/share/man/man1/gnome-www-browser.1.gz gnome-www-browser.1.gz /usr/share/man/man1/firefox-esr.1.gz
+     6	update-alternatives 2024-10-07 17:22:06: run with --install /usr/bin/pybabel pybabel /usr/bin/pybabel-python3 200
+     7	update-alternatives 2024-10-07 17:22:06: link group pybabel updated to point to /usr/bin/pybabel-python3
+     8	update-alternatives 2024-10-08 23:09:47: run with --remove editor /usr/bin/code
+     9	update-alternatives 2024-10-08 23:09:59: run with --install /usr/bin/editor editor /usr/bin/code 0
+    10	update-alternatives 2024-10-08 23:10:02: run with --install /usr/bin/editor editor /usr/bin/code 0
+    11	update-alternatives 2024-10-10 18:38:57: run with --remove editor /usr/bin/code
+    12	update-alternatives 2024-10-10 18:39:11: run with --install /usr/bin/editor editor /usr/bin/code 0
+    13	update-alternatives 2024-10-10 18:39:14: run with --install /usr/bin/editor editor /usr/bin/code 0
+    14	update-alternatives 2024-10-11 09:31:42: run with --install /usr/bin/x-www-browser x-www-browser /usr/bin/firefox-esr 70 --slave /usr/share/man/man1/x-www-browser.1.gz x-www-browser.1.gz /usr/share/man/man1/firefox-esr.1.gz
+    15	update-alternatives 2024-10-11 09:31:42: run with --install /usr/bin/gnome-www-browser gnome-www-browser /usr/bin/firefox-esr 70 --slave /usr/share/man/man1/gnome-www-browser.1.gz gnome-www-browser.1.gz /usr/share/man/man1/firefox-esr.1.gz

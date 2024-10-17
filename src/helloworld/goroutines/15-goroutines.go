@@ -57,16 +57,6 @@ func main() {
 
 	bytesForWrite := make(chan []byte, len(filesToRead))
 	defer close(bytesForWrite)
-	go func() {
-		for bytes := range bytesForWrite {
-			err := os.WriteFile(fileToWrite, bytes, 0644)
-			if err != nil {
-				log.Println(err)
-			} else {
-				log.Println("file has been written")
-			}
-		}
-	}()
 
 	for _, fileToRead := range filesToRead {
 		wg.Add(1)
@@ -86,6 +76,16 @@ func main() {
 
 	fmt.Println("Before reading from channel...")
 
+	go func() {
+		for bytes := range bytesForWrite {
+			err := os.WriteFile(fileToWrite, bytes, 0644)
+			if err != nil {
+				log.Println(err)
+			} else {
+				log.Println("file has been written")
+			}
+		}
+	}()
 	fmt.Println("After reading from channel...")
 
 	wg.Wait()

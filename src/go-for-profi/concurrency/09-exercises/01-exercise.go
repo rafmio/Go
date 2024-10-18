@@ -31,10 +31,10 @@ func readDir(fileNamesChan chan<- string, readAndFillWg *sync.WaitGroup) {
 		fmt.Println("file:", file.Name())
 		readDirWg.Add(1)
 		go func(fileName string) {
-			readDirWg.Done()
 			if strings.Contains(fileName, patternFileName) && !file.IsDir() {
 				fileNamesChan <- fileName
 			}
+			readDirWg.Done()
 		}(file.Name())
 	}
 

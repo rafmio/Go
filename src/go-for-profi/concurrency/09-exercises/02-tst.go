@@ -1,18 +1,38 @@
 package main
 
-import "sync"
+import (
+	"fmt"
+	"sync"
+)
 
 func fillSls(wg *sync.WaitGroup, ch chan<- int) {
-	wg.Add(1)
-	defer wg.Done()
 
 	for i := 0; i < 10; i++ {
-		ch <- i
+		wg.Add(1)
+		go func() {
+			ch <- i
+			wg.Done()
+		}()
 	}
+	fmt.Println("End of fillSls()")
 }
 
 func main() {
 	ch := make(chan int)
 	var wg sync.WaitGroup
 
+	sls := make([]int, 0)
+
+	fillSls(&wg, ch)
+
+	go func() {
+		fmt.Println("anon func()")
+		for num := range ch {
+			sls = append(sls, num)
+		}
+	}()
+
+	wg.Wait()
+
+	fmt.Println(sls)
 }

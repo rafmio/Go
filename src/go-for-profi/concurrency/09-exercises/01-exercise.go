@@ -9,6 +9,7 @@ import (
 	"os"
 	"strings"
 	"sync"
+	"time"
 )
 
 const (
@@ -28,7 +29,7 @@ func readDir(fileNamesChan chan<- string, readAndFillWg *sync.WaitGroup) {
 	var readDirWg sync.WaitGroup
 
 	for _, file := range dir {
-		fmt.Println("file:", file.Name())
+		// fmt.Println("file:", file.Name())
 		readDirWg.Add(1)
 		go func(fileName string) {
 			if strings.Contains(fileName, patternFileName) && !file.IsDir() {
@@ -38,11 +39,13 @@ func readDir(fileNamesChan chan<- string, readAndFillWg *sync.WaitGroup) {
 		}(file.Name())
 	}
 
+	// close(fileNamesChan)
 	fmt.Println("DEBUG: from readDir()")
 	readDirWg.Wait()
 }
 
 func fillFileNamesSls(fileNames *[]string, fileNamesChan <-chan string, readAndFillWg *sync.WaitGroup) {
+	fmt.Println("DEBUG: from fillFileNamesSls()...")
 	readAndFillWg.Add(1)
 	defer readAndFillWg.Done()
 
@@ -63,5 +66,6 @@ func main() {
 	readAndFillWg.Wait()
 
 	fmt.Printf("Type of fileNames: %T\n", fileNames)
+	time.Sleep(time.Second * 1)
 	fmt.Println("fileNames map:", fileNames)
 }

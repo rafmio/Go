@@ -23,4 +23,13 @@ func main() {
 	for i := 0; i < 5; i++ {
 		fmt.Println(<-bc) // Receive from channel and print the received string
 	}
+
+	joe := boring("Joe")
+	ann := boring("Ann")
+	for i := 0; i < 5; i++ {
+		fmt.Println("joe:", <-joe)
+		fmt.Println("ann:", <-ann)
+	}
+
+	fmt.Println("You're both boring; I'm leaving")
 }

@@ -39,3 +39,5 @@ func main() {
 	wg.Wait()
 	fmt.Printf("k = %#v\n", k)
 }
+
+// go run -race 26-raceC.go 10

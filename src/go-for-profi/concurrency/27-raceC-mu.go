@@ -8,10 +8,10 @@ import (
 )
 
 func writeMap(k map[int]int, key, value int) {
-	var mu sync.Mutex
+	// var mu sync.Mutex
 
-	mu.Lock()
-	defer mu.Unlock()
+	// mu.Lock()
+	// defer mu.Unlock()
 	k[key] = value
 }
 

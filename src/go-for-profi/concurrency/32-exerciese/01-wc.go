@@ -17,6 +17,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 	"sync"
 	"time"
 )
@@ -25,6 +26,15 @@ func addLineToSls(linesSls *[]string, linesChan chan string) {
 	for line := range linesChan {
 		*linesSls = append(*linesSls, line)
 	}
+}
+
+func processWord(line string, wg *sync.WaitGroup, wordCountChan chan int, symbsCountChan chan int) {
+	defer wg.Done()
+
+	words := strings.Fields(line)
+	wordCountChan <- len(words)
+
+	symbsCountChan <- len(line) - len(strings.Replace(line, " ", "", -1))
 }
 
 func main() {
@@ -64,5 +74,19 @@ func main() {
 
 	time.Sleep(100 * time.Millisecond)
 	fmt.Println("len(linesSls)", len(linesSls))
+
+	var linesCount int
+	var wordsCount int
+	var symbsCount int
+	linesCountChan := make(chan int)
+	wordsCountChan := make(chan int)
+	symbsCountChan := make(chan int)
+
+	for _, line := range linesSls {
+		wg.Add(1)
+		linesCountChan <- 1
+		go processWord(line, &wg, wordsCountChan, symbsCountChan)
+	}
+	wg.Wait()
 
 }

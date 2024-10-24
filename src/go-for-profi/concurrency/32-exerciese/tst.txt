@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 pupa
 lupa
+=======
+a b
+>>>>>>> 6b6a28b (Home PC 24.10.2024 23:26 concurrency patterns)

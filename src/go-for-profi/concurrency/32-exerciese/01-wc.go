@@ -1,14 +1,5 @@
 // Try to implement a competitive version of wc(1) that would use a buffered channel
 // man (1) wc: wc - print newline, word, and byte counts for each file
-// Steps for realize the task:
-// open file
-// create a buffered channel with a capacity of 10000
-// read file line by line
-// split line into words
-// for each word, send it to the channel
-// close the channel when the file is finished
-// create a goroutine to read from the channel and count words and bytes
-// create another goroutine to print the results
 package main
 
 import (
@@ -19,12 +10,90 @@ import (
 	"os"
 	"strings"
 	"sync"
+<<<<<<< HEAD
 	"time"
+=======
+>>>>>>> 6b6a28b (Home PC 24.10.2024 23:26 concurrency patterns)
 )
 
-func addLineToSls(linesSls *[]string, linesChan chan string) {
+type counts struct {
+	object string // word or symbol
+	count  int    // count of words or symbols
+}
+
+func openAndScanFile(fileName string, linesCounter *int) chan string {
+
+	file, err := os.Open(fileName)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	linesChan := make(chan string)
+
+	scanner := bufio.NewScanner(file)
+
+	var wg sync.WaitGroup
+	var mu sync.Mutex
+
+	for scanner.Scan() {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			mu.Lock()
+			*linesCounter++
+			mu.Unlock()
+
+			line := scanner.Text()
+
+			linesChan <- line
+		}()
+	}
+
+	wg.Wait()
+
+	if err := scanner.Err(); err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println("Before return")
+
+	return linesChan
+}
+
+func countWordsAnsSymbols(linesChan <-chan string) chan counts {
+	countsChan := make(chan counts)
+	var wg sync.WaitGroup
+
 	for line := range linesChan {
-		*linesSls = append(*linesSls, line)
+		wg.Add(2)
+
+		go func(line string) {
+			defer wg.Done()
+			symbolsCount := len(line) + 1 // 'wc' counts last '\n' symbol
+			countsChan <- counts{object: "symbol", count: symbolsCount}
+		}(line)
+
+		go func(line string) {
+			defer wg.Done()
+			wordsCount := len(strings.Fields(line))
+			countsChan <- counts{object: "word", count: wordsCount}
+		}(line)
+	}
+
+	wg.Wait()
+
+	return countsChan
+}
+
+func addWordsAndSymbolsVariables(wordsAnsSymbolCountsChan <-chan counts, wordsCounter, symbolsCounter *int) {
+	for count := range wordsAnsSymbolCountsChan {
+		switch count.object {
+		case "word":
+			*wordsCounter += count.count
+		case "symbol":
+			*symbolsCounter += count.count
+		}
 	}
 }
 
@@ -44,12 +113,11 @@ func main() {
 	fileName := *f
 	fmt.Printf("Going to open and process file: %s\n", fileName)
 
-	file, err := os.Open(fileName)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer file.Close()
+	var linesCounter int = 0
+	var wordsCounter int = 0
+	var symbolsCounter int = 0
 
+<<<<<<< HEAD
 	var wg sync.WaitGroup
 
 	linesSls := make([]string, 0)
@@ -89,4 +157,14 @@ func main() {
 	}
 	wg.Wait()
 
+=======
+	linesChan := openAndScanFile(fileName, &linesCounter)
+	defer close(linesChan)
+
+	wordsAnsSymbolCountsChan := countWordsAnsSymbols(linesChan)
+
+	addWordsAndSymbolsVariables(wordsAnsSymbolCountsChan, &wordsCounter, &symbolsCounter)
+
+	fmt.Printf("%d %d %d\n", linesCounter, wordsCounter, symbolsCounter)
+>>>>>>> 6b6a28b (Home PC 24.10.2024 23:26 concurrency patterns)
 }

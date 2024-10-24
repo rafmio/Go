@@ -17,6 +17,8 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"sync"
+	"time"
 )
 
 func addLineToSls(linesSls *[]string, linesChan chan string) {
@@ -38,20 +40,29 @@ func main() {
 	}
 	defer file.Close()
 
-	// var wg sync.WaitGroup
+	var wg sync.WaitGroup
 
 	linesSls := make([]string, 0)
 	linesChan := make(chan string)
-
+	// defer close(linesChan)
 	go addLineToSls(&linesSls, linesChan)
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
-		line := scanner.Text()
-		linesChan <- line
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			linesChan <- scanner.Text()
+		}()
 	}
 
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
+
+	wg.Wait()
+
+	time.Sleep(100 * time.Millisecond)
+	fmt.Println("len(linesSls)", len(linesSls))
+
 }

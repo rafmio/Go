@@ -10,6 +10,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"time"
 )
 
@@ -27,8 +28,9 @@ func Promise(task func() int) chan int {
 
 func main() {
 	longRunningTask := func() int {
-		time.Sleep(2 * time.Second)
-		return 42 // return the result
+		time.Sleep(200 * time.Millisecond)
+		retNum := rand.Intn(1000)
+		return retNum // return the result
 	}
 
 	// run task via Promise

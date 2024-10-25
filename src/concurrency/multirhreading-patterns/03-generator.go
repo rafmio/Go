@@ -16,21 +16,21 @@ func main() {
 	items := []int{10, 20, 30, 40, 50}
 
 	// receive channel with data from Generator
-	dataChannel := generator(items)
+	dataChannel := generator(&items)
 
 	// consumer handles data from the channel
 	process(dataChannel)
 }
 
 // Generator creates channel and run a goroutine for send data
-func generator(items []int) chan int {
+func generator(items *[]int) chan int {
 	ch := make(chan int)
 
 	go func() {
 		defer close(ch) // close channel after sending data
 
 		// range data and send to channel
-		for _, item := range items {
+		for _, item := range *items {
 			ch <- item
 		}
 	}()

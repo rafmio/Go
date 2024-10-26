@@ -52,13 +52,13 @@ func multiply(doneCh chan struct{}, inputCh chan int) chan int {
 }
 
 // generator sends data to channel
-func generator(doneCh chan struct{}, numbers []int) chan int {
+func generator(doneCh chan struct{}, numbers *[]int) chan int {
 	outputCh := make(chan int)
 
 	go func() {
 		defer close(outputCh)
 
-		for _, num := range numbers {
+		for _, num := range *numbers {
 			time.Sleep(time.Microsecond * 150)
 			select {
 			case <-doneCh:
@@ -78,7 +78,7 @@ func main() {
 	doneCh := make(chan struct{})
 	defer close(doneCh)
 
-	inputCh := generator(doneCh, numbers) // run generator that sends numbers
+	inputCh := generator(doneCh, &numbers) // run generator that sends numbers
 
 	// pipeline stages
 	addCh := add(doneCh, inputCh)

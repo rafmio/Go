@@ -1,2 +1,17 @@
 one two
 three four
+Client ID: 2 int: 2 square: 4
+Client ID: 0 int: 0 square: 0
+Client ID: 1 int: 1 square: 1
+Client ID: 0 int: 0 square: 0
+Client ID: 1 int: 1 square: 1
+Client ID: 2 int: 2 square: 4
+Client ID: 0 int: 0 square: 0
+Client ID: 3 int: 3 square: 9
+Client ID: 1 int: 1 square: 1
+Client ID: 2 int: 2 square: 4
+Client ID: 0 int: 0 square: 0
+Client ID: 2 int: 2 square: 4
+Client ID: 1 int: 1 square: 1
+Client ID: 3 int: 3 square: 9
+Client ID: 4 int: 4 square: 16

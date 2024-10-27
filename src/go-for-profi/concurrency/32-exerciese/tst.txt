@@ -1,6 +1,16 @@
-<<<<<<< HEAD
-pupa
-lupa
-=======
-a b
->>>>>>> 6b6a28b (Home PC 24.10.2024 23:26 concurrency patterns)
+Hit:1 http://repo.yandex.ru/yandex-disk/deb stable InRelease
+Hit:3 http://security.debian.org/debian-security bookworm-security InRelease
+Hit:2 https://update-yar1.sbis.ru/Sbis3Plugin/24.5206.9/linux/deb_repo ./ InRelease
+Hit:4 https://download.virtualbox.org/virtualbox/debian bookworm InRelease
+Get:5 https://download.docker.com/linux/debian bookworm InRelease [43.3 kB]
+Hit:6 https://packages.microsoft.com/repos/code stable InRelease
+Hit:7 https://download.sublimetext.com apt/stable/ InRelease
+Hit:8 https://apt.postgresql.org/pub/repos/apt bookworm-pgdg InRelease
+Get:9 https://repo.yandex.ru/yandex-browser/deb stable InRelease [4,336 B]
+Hit:10 http://deb.debian.org/debian bookworm InRelease
+Hit:11 http://deb.debian.org/debian bookworm-updates InRelease
+Fetched 47.7 kB in 6s (8,243 B/s)
+Reading package lists...
+Building dependency tree...
+Reading state information...
+All packages are up to date.

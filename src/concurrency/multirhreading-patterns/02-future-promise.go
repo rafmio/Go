@@ -39,7 +39,7 @@ func main() {
 	}
 
 	// run task via Promise
-	future := Promise(taskWithError)
+	future := Promise(taskWithError) // returns chan Result
 
 	fmt.Println("Task is running, we can do something else...")
 

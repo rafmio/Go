@@ -34,7 +34,7 @@ func main() {
 	}
 
 	// run task via Promise
-	future := Promise(longRunningTask)
+	future := Promise(longRunningTask) // returns chan int
 
 	fmt.Println("Task is running, we can do something else...")
 

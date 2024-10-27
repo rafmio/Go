@@ -3,6 +3,7 @@ package main
 
 import (
 	"bufio"
+	"flag"
 	"fmt"
 	"os"
 	"strings"
@@ -82,8 +83,10 @@ func (s *sharedMemory) getInfo() {
 func main() {
 	sharedMemory := &sharedMemory{}
 
-	fileName := "/etc/passwd"
-	file, err := os.Open(fileName)
+	fileName := flag.String("f", "/etc/passwd", "File name")
+	flag.Parse()
+
+	file, err := os.Open(*fileName)
 	if err != nil {
 		fmt.Printf("ERROR opening file: %v\n", err)
 		return

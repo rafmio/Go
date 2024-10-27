@@ -57,5 +57,5 @@ func main() {
 		}()
 	}
 	wg.Wait()
-	fmt.Printf("\nLast alue: %d\n", read())
+	fmt.Printf("\nLast value: %d\n", read())
 }

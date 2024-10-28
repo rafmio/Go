@@ -1,0 +1,9 @@
+Уровни журналирования:
+- debug 
+- info
+- notice
+- warning
+- err
+- crit
+- alert
+- emerg

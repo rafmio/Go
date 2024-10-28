@@ -1,0 +1,8 @@
+$ go tool compile 01-hw.go 
+
+$ go tool compile -pack 01-hw.go # archive 
+$ file 01-hw.a
+
+$ ar t 01-hw.a # To view the contents of the archive file .a
+
+$ go tool compile -S 01-hw.go

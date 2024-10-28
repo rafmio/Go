@@ -1,4 +1,4 @@
 page 508
-page 53
+page 56
 Finish exercires!
 https://github.com/PacktPublishing/Mastering-Go.git

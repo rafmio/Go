@@ -11,7 +11,6 @@ func lookIP(address string) ([]string, error) {
 	if err != nil {
 		return nil, err
 	}
-
 	return hosts, nil
 }
 
@@ -26,26 +25,28 @@ func lookHostname(hostname string) ([]string, error) {
 func main() {
 	arguments := os.Args
 	if len(arguments) == 1 {
-		fmt.Println("Please provide an argument")
+		fmt.Println("Please provide an IP or hostname.")
 		return
 	}
 
 	input := arguments[1]
-	IPaddresses := net.ParseIP(input)
+	IPaddress := net.ParseIP(input)
 
-	if IPaddresses == nil {
+	if IPaddress == nil {
 		IPs, err := lookHostname(input)
 		if err == nil {
 			for _, singleIP := range IPs {
 				fmt.Println(singleIP)
 			}
 		}
+
 	} else {
 		hosts, err := lookIP(input)
 		if err == nil {
-			for _, hostname := range hosts {
-				fmt.Println(hostname)
+			for _, singleHost := range hosts {
+				fmt.Println(singleHost)
 			}
 		}
 	}
+
 }

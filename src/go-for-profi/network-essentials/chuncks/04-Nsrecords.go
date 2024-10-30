@@ -14,7 +14,7 @@ func main() {
 	}
 
 	domain := arguments[1]
-	NSs, err := net.LookupNS(domain)
+	NSs, err := net.LookupNS(domain) // retrieve the NS records for the given domain. It returns a slice of *net.NS and an error if any
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -24,6 +24,3 @@ func main() {
 		fmt.Println(NS.Host)
 	}
 }
-
-// $ host -t ns www.ya.ru
-// $ host -t ns google.com

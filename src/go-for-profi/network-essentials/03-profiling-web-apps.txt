@@ -1,0 +1,11 @@
+Для профилирования веб-приложений с помощью HTTP-сервера необходимо использовать пакет net/http/pprof
+Для профилирования остальных видов приложений применяется стандартный Go-пакет runtime/pprof
+
+Если ваш профилировщик работает с адресом http://localhost:8080 (либо любой другой порт), то вы автоматически получите поддержку следующих веб-ссылок
+http://localhost:8080/debug/pprof/goroutine;
+http://localhost:8080/debug/pprof/heap;
+http://localhost:8080/debug/pprof/threadcreate;
+http://localhost:8080/debug/pprof/block;
+http://localhost:8080/debug/pprof/mutex;
+http://localhost:8080/debug/pprof/profile;
+http://localhost:8080/debug/pprof/trace?seconds=5.

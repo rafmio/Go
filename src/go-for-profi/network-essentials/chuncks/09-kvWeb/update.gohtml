@@ -10,5 +10,24 @@
         <a href="/list" style="margin-right: 20px;">List all elements!</a>
         <a href="/change" style="margin-right: 20px;">Change an element!</a>
         <a href="/insert" style="margin-right: 20px;">Insert new element!</a>
+    
+        {{ if .Success }}
+            <h1>Element updated!</h1>
+        {{ else }}
+            <h1>Please fill in the fields:</h1>
+
+            <form method="POST">
+                <label>Key:</label><br>
+                <input type="text" name="key"><br>
+                <label>Name</label><br>
+                <input type="text" name="name"><br>
+                <label>Surname:</label><br>
+                <input type="text" name="surname"><br>
+                <label>Id:</label><br>
+                <input type="text" name="id"><br>
+                <input type="submit">
+            </form>
+
+        {{ end }}
     </body>
 </html>

@@ -14,6 +14,11 @@ init functions
 
 net/http: Context() method for Request struct
 
+httptrace package
+
+http.RoundTripper
+http.Transport
+
 functions: variadic argumets/parameters
 
 Collection's memory model (как хранится в памяти?): 
@@ -30,9 +35,6 @@ image/gif
 паттерны конкурентного программирования
 fan-in, fan-out
 
-парсинг CSV файлов https://golangify.com/parsing-csv
-
 runtime package
-runtime.GOMAXPROCS(1) // context: use only 1 processor core for several http-servers
 
 Regular expressions - basics

@@ -1,2 +1,2 @@
-page 604
+page 613
 https://github.com/PacktPublishing/Mastering-Go.git

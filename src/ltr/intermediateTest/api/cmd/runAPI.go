@@ -9,7 +9,7 @@ const (
 	port = ":8082"
 )
 
-func runAPI() error {
+func RunAPI() error {
 	mux := http.NewServeMux() // allocates and returns *http.ServeMux
 
 	fmt.Printf("Listening on port %s\n", port)

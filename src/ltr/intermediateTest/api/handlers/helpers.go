@@ -1,4 +1,4 @@
-package main
+package handlers
 
 import (
 	"errors"
@@ -61,11 +61,11 @@ func newFetchEntriesParams(w http.ResponseWriter, r *http.Request) *fetchEntries
 
 func (f *fetchEntriesParams) parseAndValidateDateRange() error {
 
-	startDate, err := time.Parse(f.layoutDateTime, r.FormValue(f.startDateParam))
+	startDate, err := time.Parse(f.layoutDateTime, f.r.FormValue(f.startDateParam))
 	if err != nil {
 		return ErrIncorrectSetDate
 	}
-	endDate, err := time.Parse(f.layoutDateTime, r.FormValue(f.endDateParam))
+	endDate, err := time.Parse(f.layoutDateTime, f.r.FormValue(f.endDateParam))
 	if err != nil {
 		return ErrIncorrectSetDate
 	}

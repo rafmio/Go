@@ -1,8 +1,10 @@
-package main
+package cmd
 
 import (
 	"fmt"
 	"net/http"
+
+	"api/handlers"
 )
 
 const (
@@ -15,8 +17,8 @@ func RunAPI() error {
 	fmt.Printf("Listening on port %s\n", port)
 
 	// creating routes
-	mux.HandleFunc("/logtracker/fetch_entries", fetchEntriesHandler)
-	mux.HandleFunc("/logtracker/statistics/total_stats", totalStatsHandler)
+	mux.HandleFunc("/logtracker/fetch_entries", handlers.fetchEntriesHandler)
+	mux.HandleFunc("/logtracker/statistics/total_stats", handlers.totalStatsHandler)
 
 	// running server
 	if err := http.ListenAndServe(port, mux); err != nil {

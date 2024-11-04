@@ -17,8 +17,8 @@ func RunAPI() error {
 	fmt.Printf("Listening on port %s\n", port)
 
 	// creating routes
-	mux.HandleFunc("/logtracker/fetch_entries", handlers.fetchEntriesHandler)
-	mux.HandleFunc("/logtracker/statistics/total_stats", handlers.totalStatsHandler)
+	mux.HandleFunc("/logtracker/fetch_entries", handlers.FetchEntriesHandler)
+	mux.HandleFunc("/logtracker/statistics/total_stats", handlers.TotalStatsHandler)
 
 	// running server
 	if err := http.ListenAndServe(port, mux); err != nil {

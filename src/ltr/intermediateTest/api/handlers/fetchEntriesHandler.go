@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"net/http"
 	"time"
 )
@@ -28,7 +29,7 @@ parameter names:
 - start_date: Start date and time (ISO 8601) of the data to fetch
 - end_date: End date and time (ISO 8601) of the data to fetch
 */
-func fetchEntriesHandler(w http.ResponseWriter, r *http.Request) {
+func FetchEntriesHandler(w http.ResponseWriter, r *http.Request) {
 	// preProcessResponse make:
 	// 	1. checking whether the HTTP request method is a GET method
 	// 	2. setting headers
@@ -50,4 +51,11 @@ func fetchEntriesHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
+
+	// print headers to response writer:
+	for key, value := range r.Header {
+		// fmt.Println(key, ":", w.Header().Get(key))
+		fmt.Println(key, ":", value)
+	}
+
 }

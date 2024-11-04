@@ -1,15 +1,13 @@
 package main
 
 import (
-	"log"
-	"api/cmd"
+	"fmt"
+	"readpath/cmd"
 )
 
 func main() {
-	err := cmd.RunAPI()
+	err := cmd.Runner()
 	if err != nil {
-		log.Printf("Error running API: %v\n", err)
-		return
+			fmt.Println("ERROR:", err)
 	}
-	log.Println("API running successfully")
 }

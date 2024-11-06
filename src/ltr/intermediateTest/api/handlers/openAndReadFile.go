@@ -1,18 +1,24 @@
 package handlers
 
 import (
+	"bufio"
 	"os"
 )
 
 func OpenAndReadFile(path string) ([]string, error) {
-	data, err := os.ReadFile(path)
+	file, err := os.Open(path)
 	if err != nil {
-		return "", err
+		return nil, err
 	}
+	defer file.Close()
 
 	result := make([]string, 0)
 
-	// fill result slice
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		line := scanner.Text()
+		result = append(result, line)
+	}
 
 	return result, nil
 }

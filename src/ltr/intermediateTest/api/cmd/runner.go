@@ -1,15 +1,20 @@
 package cmd
 
 import (
-	"readpath/handlers"
 	"fmt"
+	"readpath/handlers"
 )
 
-func Runner() {
-	result, err := handlers.OpenAndReadFile("../config/conf.txt")
+func Runner() error {
+	// result, err := handlers.OpenAndReadFile("../config/conf.txt") // doesn't work
+	result, err := handlers.OpenAndReadFile("./config/conf.txt")
 	if err != nil {
 		return err
 	}
 
-	fmt.Println(result)
+	for _, val := range result {
+		fmt.Println(val)
+	}
+
+	return nil
 }

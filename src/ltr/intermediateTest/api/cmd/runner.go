@@ -3,6 +3,9 @@ package cmd
 import (
 	"fmt"
 	"readpath/handlers"
+
+	pho "readpath/pkg/printhelloone"
+	pht "readpath/pkg/printhellotwo"
 )
 
 func Runner() error {
@@ -15,6 +18,12 @@ func Runner() error {
 	for _, val := range result {
 		fmt.Println(val)
 	}
+
+	pho.PrintHelloOne()
+	pht.PrintHelloTwo()
+
+	setEnv()
+	getEnv()
 
 	return nil
 }

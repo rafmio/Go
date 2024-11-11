@@ -26,8 +26,6 @@ arrays, slices, maps, memory, allocations in memory, new variables, copying
 
 understanding closures
 
-static and dynamic types (interface)
-
 image
 image/color
 image/gif
@@ -37,4 +35,3 @@ fan-in, fan-out
 
 runtime package
 
-Regular expressions - basics

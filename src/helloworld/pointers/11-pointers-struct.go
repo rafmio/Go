@@ -52,6 +52,19 @@ func NewDBConfig(dbConfigFilePath, srcName string) (*DBConfig, error) {
 	*dbCfg = tmpCfg              // assigning data from map to struct for given source name
 	dbCfg.Name = srcName
 
+	// DEGUG print
+	fmt.Println("Iside NewDBConfig() function:")
+	fmt.Printf("dbCfg.Name: %s\n", dbCfg.Name)
+	fmt.Printf("dbCfg.DisplayName: %s\n", dbCfg.DisplayName)
+	fmt.Printf("dbCfg.DriverName: %s\n", dbCfg.DriverName)
+	fmt.Printf("dbCfg.Host: %s\n", dbCfg.Host)
+	fmt.Printf("dbCfg.Port: %s\n", dbCfg.Port)
+	fmt.Printf("dbCfg.DBName: %s\n", dbCfg.DBName)
+	fmt.Printf("dbCfg.User: %s\n", dbCfg.User)
+	fmt.Printf("dbCfg.Password: %s\n", dbCfg.Password)
+	fmt.Printf("dbCfg.SslMode: %s\n", dbCfg.SslMode)
+	fmt.Println("------------------")
+
 	return dbCfg, nil
 }
 

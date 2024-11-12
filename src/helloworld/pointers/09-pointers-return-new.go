@@ -15,13 +15,19 @@ func main() {
 	Ni := newInstance()	
 	fmt.Printf("Type of ni: %T\n", Ni)
 
-	fmt.Println(Ni)
+	fmt.Println("Ni:", Ni)
 
 	Ni.Salary = 1_540_000
-	fmt.Println(Ni)
+	fmt.Println("Ni:", Ni)
 
 	Ni.Height = 180
-	fmt.Println(Ni)
+	fmt.Println("Ni:", Ni)
+
+	Nii := new(MyStruct)
+	Nii = Ni
+	fmt.Println("Nii:", Nii)
+
+	fmt.Println("Ni == Nii:", Ni == Nii)
 }
 
 func newInstance() *MyStruct {

@@ -12,4 +12,5 @@ func main() {
 
 	tfmt := t.Format("2006-01-02T15:04")
 	fmt.Println(tfmt)
+	fmt.Printf("Type of 'tfmt': %T\n", tfmt)
 }

@@ -3,13 +3,15 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io"
 	"net/http"
 )
 
-type countryName struct {
-	ip      string `json:"ip"`
-	country string `json:"country"`
+type Response struct {
+	IP      string `json:"ip"`
+	Success bool   `json:"success"`
+	// Type        string `json:"type"`
+	Country string `json:"country"`
+	// CountryCode string `json:"country_code"`
 }
 
 func main() {
@@ -29,40 +31,29 @@ func main() {
 	url := "http://ipwho.is/%s"
 
 	for _, ip := range IPs {
-		resp, err := http.Get(fmt.Sprintf(url, ip))
+		req, err := http.Get(fmt.Sprintf(url, ip))
 		if err != nil {
 			fmt.Printf("Error fetching IP information for %s: %v\n", ip, err)
 			continue
 		}
-		defer resp.Body.Close()
+		defer req.Body.Close()
 
-		body, err := io.ReadAll(resp.Body)
-		if err != nil {
-			fmt.Printf("Error reading response body for %s: %v\n", ip, err)
-			continue
+		var response Response
+		if err := json.NewDecoder(req.Body).Decode(&response); err != nil {
+			fmt.Println("Error decoding IP information: ", err)
+			return
 		}
 
-		// fmt.Printf(string(body))
+		if !response.Success {
+			fmt.Println("Error retrieving IP information for", ip)
+		}
 
-		cn := extractCountry(body)
-		countries[cn.ip] = cn.country
+		countries[ip] = response.Country
+
 	}
-
-	fmt.Println("len(countries):", len(countries))
+	fmt.Println("Countries for given IP addresses:")
 	for ip, country := range countries {
-		fmt.Printf("IP: %s, Country: %s\n", ip, country)
-
+		fmt.Printf("%s: %s\n", ip, country)
 	}
-}
-
-func extractCountry(body []byte) countryName {
-	fmt.Println(string(body))
-	cn := new(countryName)
-	err := json.Unmarshal(body, cn)
-	if err != nil {
-		fmt.Printf("Error unmarshalling JSON: %v\n", err)
-		return *cn
-	}
-	return *cn
 
 }

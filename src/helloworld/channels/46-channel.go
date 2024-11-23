@@ -1,3 +1,4 @@
+// previous 45, but currected by Claude
 package main
 
 import (
@@ -45,19 +46,19 @@ func main() {
 	names := generateNames()
 	humanList := make([]*Human, 0)
 
-	humanChan := make(chan Human, 2)
+	humanChan := make(chan *Human, len(names))
 
 	var wg sync.WaitGroup
 
 	for _, name := range names {
 		wg.Add(1)
-		go func(name string) {
+		go func(n string) {
 			defer wg.Done()
 			person := new(Human)
-			person.name = name
+			person.name = n
 			person.generateAge()
 			person.generateGender()
-			humanChan <- *person
+			humanChan <- person
 		}(name)
 	}
 
@@ -66,10 +67,9 @@ func main() {
 		close(humanChan)
 	}()
 
-	go func() {
-		person := <-humanChan
-		humanList = append(humanList, &person)
-	}()
+	for person := range humanChan {
+		humanList = append(humanList, person)
+	}
 
 	for i, val := range humanList {
 		fmt.Println(i, ";", val.name, ";", val.age, ";", val.gender)

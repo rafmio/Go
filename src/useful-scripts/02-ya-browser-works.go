@@ -86,10 +86,6 @@ func main() {
 					}
 				}
 			}
-			// else {
-			// 	continue
-			// }
-			// processInfoList = append(processInfoList, pi)
 			procInfoChan <- *pi
 		}()
 	}

@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  go-app:
+    build: . # Dockerfile will be created automatically - хуй там плавал, не запускается автоматически
+    ports: 
+    - 9080:9080 # Open port 9080 on host and container
+    volumes:
+    - .:/go/src/app # Mount current directory to the container
+    environment:
+    - PORT=9080 # Sets environment variable 'PORT' for app
+    command: go run server.go # runs Go
+
+volumes:
+  go-app-data:
+    driver: local
+
+networks:
+  default:
+    name: joke-network

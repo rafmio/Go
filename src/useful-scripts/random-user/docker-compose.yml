@@ -1,0 +1,55 @@
+# version: '3'
+
+# services:
+
+#   db:
+#     image: postgres:13
+#     restart: always
+#     environment:
+#       - POSTGRES_USER=randomuser
+#       - POSTGRES_PASSWORD=mypassword
+#       - POSTGRES_DB=mydb
+#     volumes:
+#       - postgres-data:/var/lib/postgresql/data
+
+# volumes:
+#   postgres-data:
+#     driver: local
+#     driver_opts:
+#       type: none
+#       device: /home/raf/postgresDBs/randomuserdb
+#       o: bind
+
+version: '3'
+
+services:
+
+  app:
+    build: .
+    restart: always
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=randomuser
+      - POSTGRES_PASSWORD=mypassword
+      - POSTGRES_DB=mydb
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13
+    restart: always
+    environment:
+      - POSTGRES_USER=randomuser
+      - POSTGRES_PASSWORD=mypassword
+      - POSTGRES_DB=mydb
+    volumes:
+      - postgres-data: /home/raf/postgresDBs/randomuserdb
+
+volumes:
+  postgres-data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /path/to/postgres/data
+      o: bind

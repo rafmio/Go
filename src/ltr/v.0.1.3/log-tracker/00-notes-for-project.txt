@@ -1,0 +1,61 @@
+Самописные приложения, как правило, инсталлируют в директорию /usr/local/bin
+Варианты мест хранения конфигурационных файлов:
+
+Алиса:
+$HOME/.config/your_app_name
+
+GigaChat:
+/etc/application_name
+/etc/default/application_name - альтернативное место
+/etc/myapp/config.yaml
+
+Fabula:
+/etc/myapp
+
+Поизучав структурирование проектов на Go узнал, что есть вариант хранения конфигов в директории config
+
+-----
+reg.ru: подключение по SSH:
+https://help.reg.ru/support/servery-vps/oblachnyye-servery/rabota-s-serverom/ssh-tunneli-nastroyka-i-primery-prakticheskogo-ispolzovaniya#1
+
+1.ssh-keygen -t rsa
+2.Пропускаем все шаги
+3.ssh-copy-id user@yourserver (в моем случае ssh-copy-id root@194.58.102.129)
+4.ssh root@194.58.102.129
+
+И никаких ключей не нужно добавлять в личном кабинете reg.ru
+
+Соединение контейнеров:
+https://stepik.org/lesson/372172/step/1?unit=359726
+
+-----
+PostgreSQL settings:
+The default file /etc/postgresql/13/main/postgresql.conf was copied with name 'postgresql.conf.old' and changed:
+Uncommented string 'listen_addresses = 'localhost' and changedd to 'listen_addressses = '*'
+
+The default file /etc/postgresql/13/main/pg_hba.conf was copie with name 'pg_hba.conf.old' and changed:
+added string:
+host     all     all       81.23.150.136/32         md5
+
+DONE:Gute Ganymede
+
+внес изменения в файл /etc/postgresql/14/main/postgresql.conf (скопировав в postgresql.conf.old старые данные)
+#listen_addresses = 'localhost'         # what IP address(es) to listen on; - 'localhost' has commented by default
+
+updated (added 'localhost'):
+listen_addresses = 'localhost, 194.58.102.129, 81.23.150.135, 147.45.226.19'
+внес изменения в файл /etc/postgresql/14/main/pg_hba.conf (также скопировав в pg_hba.conf.old)
+
+Gute Ganymede configuration (v.12): added to postgresql.conf: 'listen_addresses = '194.58.102.129, 81.23.150.136, 147.45.226.19''
+
+File pg_hba.conf has been copied to pg_hba.conf.old, and 'IPv4 local connections' changed to:
+
+# IPv4 local connections:
+host    all             all             81.23.150.136/32        md5 # added by Raf
+host    all             all             194.58.102.129/32       md5 # added by Raf
+host    all             all             147.45.226.19/32        md5 # added by Raf
+host    all             all             92.255.199.163/32       md5 # added by Raf
+
+---------
+
+Терминал на сайте: https://xtermjs.org/

@@ -1,2 +1,12 @@
 endpoints
 Gin, restful API, Go
+https://editor.swagger.io/
+https://tools.openapis.org/
+https://app.swaggerhub.com
+OpenAPI - спецификация, Swagger - набор инструментов для развертывания спецификаций API
+https://t.me/effectivemobile
+https://github.com/OpenAPITools/openapi-generator
+https://github.com/swagger-api/swagger-codegen
+https://swagger.io/tools/swagger-ui/
+https://swagger.io/tools/swagger-inspector/
+https://reqbin.com/

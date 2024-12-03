@@ -1,0 +1,4 @@
+go get -u github.com/go-swagger/go-swagger/cmd/swagger # - download go-swagger
+swagger generate spec -o ./swagger.json
+curl http://localhost:8088/books
+curl -X POST http://localhost:8080/books -H Content-Type: application/json -d '{id:1, title:Go Programming, author:John Doe}'

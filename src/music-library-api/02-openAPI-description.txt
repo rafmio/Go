@@ -1,0 +1,17 @@
+The key components of an OpenAPI specification include:
+- Info
+- Paths
+- Parameters
+- Responses
+
+Info
+Provides basic information about the API - title, version, description
+
+Paths
+Define the different endpoints of the API, along with their I/O parameters
+
+Parameters
+Defines the I/O parameters for each endpoint, including their data type and any restrictions
+
+Responses
+Defines the different responses that can be returned by the API, including their status codes and any error messages

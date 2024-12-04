@@ -1,0 +1,48 @@
+Чтобы запустить этот пример, вам потребуется выполнить следующие шаги:
+
+1. Установите необходимые зависимости:
+
+```
+go get -u github.com/gin-gonic/gin
+go get -u github.com/swaggo/files
+go get -u github.com/swaggo/gin-swagger
+```
+
+2. Создайте файл `main.go` с кодом, который я предоставил выше.
+
+3. Сгенерируйте Swagger документацию:
+
+```
+swag init
+```
+
+Это создаст папку `docs` с сгенерированными файлами Swagger.
+
+4. Запустите сервер:
+
+```
+go run main.go
+```
+
+Теперь вы можете открыть Swagger UI, перейдя по адресу `http://localhost:8080/swagger/index.html`. Здесь вы сможете просмотреть и протестировать ваши API-endpoints.
+
+Для клиентской части:
+
+1. Создайте новый Go-проект и установите зависимости:
+
+```
+go mod init github.com/your-username/your-project
+go get -u github.com/your-username/your-project/petstore
+```
+
+2. Создайте файл `main.go` с кодом, который я предоставил выше.
+
+3. Запустите клиентское приложение:
+
+```
+go run main.go
+```
+
+Это выведет список существующих питомцев и создаст нового питомца.
+
+Обратите внимание, что вам необходимо заменить `github.com/your-username/your-project` на ваш фактический путь к проекту.

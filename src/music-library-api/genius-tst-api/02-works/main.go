@@ -12,14 +12,27 @@ func main() {
 	client := genius.NewClient(nil, accessToken)
 
 	// artist := "The Beatles"
-	songTitle := "yesterday"
+	songTitle := "angie"
 
 	// (c *Client) Search(q string) returns (*GeniusResponse, error)
 	results, err := client.Search(songTitle)
 	if err != nil {
 		log.Printf("Searching error: %v", err)
+	}
+
+	if results.Meta.Status == 200 {
+		// Проверяем наличие результатов
+		if len(results.Response.Songs) > 0 {
+			for _, song := range results.Response.Songs {
+				fmt.Printf("Название песни: %s\n", song.FullTitle)
+				fmt.Printf("Ссылка на песню: %s\n", song.URL)
+				fmt.Println()
+			}
+		} else {
+			fmt.Println("Результаты поиска пустые.")
+		}
 	} else {
-		fmt.Println(results.Meta.Status, results.Meta.Message)
+		fmt.Printf("Ошибка: статус %d, сообщение: %s\n", results.Meta.Status, results.Meta.Message)
 	}
 
 	fmt.Println(results.Response)

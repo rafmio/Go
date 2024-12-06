@@ -3,14 +3,15 @@ package metadata
 import (
 	"errors"
 	"log"
+	"strings"
 
 	"github.com/natecham/genius"
 
-	// "github.com/natecham/genius/models"
+	// "geniusapi/pkg/models"
 	"geniusapi/models"
 )
 
-func GetSongMetadata(queryParams models.QueryParams) (*models.SongDetail, error) {
+func GetSongMetadata(queryParams *models.QueryParams) (*models.SongDetail, error) {
 	accessToken := "ycPo8Ic25mjQO6-Kcka0gUeeZDNNDmhCFh1o19YNPLGXY4W95_xXGuPwCDVjBeJA"
 
 	// Create a new client for the Genius API
@@ -26,31 +27,84 @@ func GetSongMetadata(queryParams models.QueryParams) (*models.SongDetail, error)
 	// Extract the song details from the first hit in the search results
 	if results.Meta.Status == 200 {
 		if len(results.Response.Hits) > 0 {
-			song := results.Response.Hits[0].Result
-			songDetail := &models.SongDetail{
-				// SeqNum:      song.ID,
-				ID:    song.ID,
-				Title: song.FullTitle,
-				// ReleaseDate: song.ReleaseDate,
-				ReleaseDate: song.ReleaseDateForDisplay,
-				Artist:      song.PrimaryArtist.Name,
-				Link:        song.URL,
-			}
-			log.Println("the requested song has been extracted")
+			// if the found result is single one
+			if len(results.Response.Hits) == 1 {
+				song := results.Response.Hits[0].Result
+				songDetail := FillSongDetail(song)
+				log.Println("the requested song has been extracted")
+				// filling lyrics (text)
+				log.Println("getting lyrics...")
+				songDetail.Text, err = GetText(client, songDetail.Link)
+				if err != nil {
+					log.Println("cannot getting lyrics (text)")
+					return nil, err
+				}
 
-			return songDetail, nil
+				log.Println("lyrics (text) has been got successfully")
+
+				return songDetail, nil
+			} else {
+				// if result of searching contains more than one result
+				log.Println("multiple songs found. Trying to choose one of them...")
+				song := ChooseSong(queryParams, results.Response.Hits)
+				songDetail := FillSongDetail(song)
+
+				log.Println("the requested song has been extracted")
+
+				// filling lyrics (text)
+				log.Println("getting lyrics...")
+				songDetail.Text, err = GetText(client, songDetail.Link)
+				if err != nil {
+					log.Println("cannot getting lyrics (text)")
+					return nil, err
+				}
+
+				log.Println("lyrics (text) has been got successfully")
+
+				return songDetail, nil
+			}
 		} else {
 			log.Printf("error extracting the song. Status: %v", results.Meta.Status)
 			return nil, nil
 		}
 	} else {
+		log.Printf("error extracting the song. Status: %v", results.Meta.Status)
 		return nil, err
 	}
 }
 
-func GetText(client *genius.NewClient) (string, error) {
+// there may be several songs. matches band name (group) and song name
+func ChooseSong(queryParams *models.QueryParams, songs []*genius.Hit) *genius.Song {
+	log.Printf("ChooseSong called with group: %s, song: %s", queryParams.Group, queryParams.Song)
+	for _, hit := range songs {
+		log.Printf("Checking song: %s by %s", hit.Result.Title, hit.Result.PrimaryArtist.Name)
+		// check if band name matches with "group" name
+		if strings.Contains(strings.ToLower(hit.Result.PrimaryArtist.Name), strings.ToLower(queryParams.Group)) {
+			log.Printf("Match found: %s by %s", hit.Result.Title, hit.Result.PrimaryArtist.Name)
+			return hit.Result
+		}
+	}
+
+	log.Println("ChooseSong(): no matching song found")
+	return nil // no matching songs found, return nil
+}
+
+func FillSongDetail(song *genius.Song) *models.SongDetail {
+	songDetail := &models.SongDetail{
+		ID:          song.ID,
+		Title:       song.FullTitle,
+		ReleaseDate: song.ReleaseDateForDisplay,
+		Artist:      song.PrimaryArtist.Name,
+		Link:        song.URL,
+	}
+
+	log.Println("FillSongDetail(): the models.SongDetail structure has been filled")
+	return songDetail
+}
+
+func GetText(client *genius.Client, link string) (string, error) {
 	// get lyrics
-	text, err := client.GetLyrics(client.Link)
+	text, err := client.GetLyrics(link)
 	if err != nil {
 		log.Println("error getting lyrics (text):", err)
 		return "", err

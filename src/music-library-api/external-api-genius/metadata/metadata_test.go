@@ -6,6 +6,8 @@ import (
 	"geniusapi/models"
 	"strings"
 	"testing"
+
+	"github.com/natecham/genius"
 )
 
 func TestGetSongMetadata(t *testing.T) {
@@ -46,5 +48,80 @@ func TestGetSongMetadata(t *testing.T) {
 	if songDetail.ReleaseDate == "" {
 		fmt.Println("release:", songDetail.ReleaseDate)
 		t.Error("Expected non-empty release date")
+	}
+}
+
+func TestChooseSong(t *testing.T) {
+	tests := []struct {
+		name        string
+		queryParams models.QueryParams
+		songs       []*genius.Hit
+		want        *genius.Song
+	}{
+		{
+			name: "Match found",
+			queryParams: models.QueryParams{
+				Group: "The Beatles",
+				Song:  "Yesterday",
+			},
+			songs: []*genius.Hit{
+				{
+					Result: &genius.Song{
+						PrimaryArtist: &genius.Artist{Name: "The Beatles"},
+						Title:         "Yesterday",
+					},
+				},
+				{
+					Result: &genius.Song{
+						PrimaryArtist: &genius.Artist{Name: "Another Artist"},
+						Title:         "Some Song",
+					},
+				},
+			},
+			want: &genius.Song{
+				PrimaryArtist: &genius.Artist{Name: "The Beatles"},
+				Title:         "Yesterday",
+			},
+		},
+		{
+			name: "No match found",
+			queryParams: models.QueryParams{
+				Group: "The Rolling Stones",
+				Song:  "Paint It Black",
+			},
+			songs: []*genius.Hit{
+				{
+					Result: &genius.Song{
+						PrimaryArtist: &genius.Artist{Name: "The Beatles"},
+						Title:         "Yesterday",
+					},
+				},
+				{
+					Result: &genius.Song{
+						PrimaryArtist: &genius.Artist{Name: "Another Artist"},
+						Title:         "Some Song",
+					},
+				},
+			},
+			want: nil,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := metadata.ChooseSong(&tt.queryParams, tt.songs)
+			t.Logf("Test case: %s", tt.name)
+			t.Logf("Query params: %+v", tt.queryParams)
+			t.Logf("Got: %+v", got)
+			t.Logf("Want: %+v", tt.want)
+			if (got == nil && tt.want != nil) || (got != nil && tt.want == nil) {
+				t.Errorf("ChooseSong() = %v, want %v", got, tt.want)
+			}
+			if got != nil && tt.want != nil {
+				if got.PrimaryArtist.Name != tt.want.PrimaryArtist.Name || got.Title != tt.want.Title {
+					t.Errorf("ChooseSong() = %v, want %v", got, tt.want)
+				}
+			}
+		})
 	}
 }

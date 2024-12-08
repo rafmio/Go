@@ -10,7 +10,7 @@ import (
 
 // http://localhost:8080/v1/songs/search?title=Supermassive%20Black%20Hole&artist=Muse&release_date=10-05-2006
 func SongsSearchGet(w http.ResponseWriter, r *http.Request) {
-	log.Println("inside the SongsSearchGet() func") // DEBUG print
+	log.Println("inside the SongsSearchGet() func")
 
 	// check if request's method is GET:
 	if r.Method != "GET" {
@@ -19,27 +19,37 @@ func SongsSearchGet(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	queryParams := new(models.QueryParams)
+	songDetail := new(models.SongDetail)
 	// parse query parameters:
-	queryParams.Song = r.URL.Query().Get("title")
-	queryParams.Group = r.URL.Query().Get("artist")
-	queryParams.ReleaseDate = r.URL.Query().Get("release_date")
+	songDetail.Title = r.URL.Query().Get("title")
+	songDetail.Artist = r.URL.Query().Get("artist")
+	songDetail.ReleaseDate = r.URL.Query().Get("release_date")
 
 	// check if all fields are empty
-	if queryParams.Song == "" && queryParams.Group == "" && queryParams.ReleaseDate == "" {
+	if songDetail.Title == "" && songDetail.Artist == "" && songDetail.ReleaseDate == "" {
 		log.Println("all parameters (fields) in request are empty")
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
-	// TODO: Implement more complex validations like date format, etc.
-	// TODO: Implement pagination and limit results to 10 per page.
-	// TODO: Implement logging for API requests and responses.
+	// TODO: Implement pagination
 
 	// search song
 	log.Println("try to find song")
-	songs, err := dbops.SongsSearchDB(queryParams)
+	jsonSongs, err := dbops.SongsSearchDB(songDetail)
+	if err != nil {
+		log.Println("the desired song with the specified parameters was not found")
+		w.WriteHeader(http.StatusNotFound)
+	} else {
+		if jsonSongs != nil {
+			log.Println("the songs you are looking for have been found")
+		}
+	}
 
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
+	_, err = w.Write(jsonSongs)
+	if err != nil {
+		log.Println("Error writing response:", err)
+	}
 }

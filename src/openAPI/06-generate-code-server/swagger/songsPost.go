@@ -3,6 +3,7 @@ package swagger
 import (
 	"encoding/json"
 	"errors"
+	"getcode/clients"
 	"getcode/dbops"
 	"getcode/models"
 	"log"
@@ -77,13 +78,25 @@ func SongsPost(w http.ResponseWriter, r *http.Request) {
 func callExternalApi(queryParams *models.QueryParams) (*models.SongDetail, error) {
 	log.Println("the callExternalApi() has been called")
 
+	songDetail := new(models.SongDetail)
+
 	// selects the API to use based on the configuration. By default, it uses the Genius API
 	apiConfig, err := selectApi()
 	if err != nil {
 		log.Println("error selecting API source:", err)
 		return nil, err
 	}
+	if apiConfig.accessToken == "" {
+		// implement client to custom external API
+	} else {
+		songDetail, err = clients.GetSongMetadata(queryParams, apiConfig.accessToken)
+		if err != nil {
+			log.Println("error getting song metadata from genius.com API:", err)
+			return nil, err
+		}
+	}
 
+	return songDetail, nil
 }
 
 func selectApi() (*externalApiConfig, error) {
@@ -99,12 +112,9 @@ func selectApi() (*externalApiConfig, error) {
 	if os.Getenv("MUSIC_INFO_USE_GENIUS_API") == "true" {
 		log.Println("the geinus.com API has been selected as default")
 
-		externalApiConfig.host = os.Getenv("GENIUS_API_HOST")
-		externalApiConfig.port = os.Getenv("GENIUS_API_PORT")
-		externalApiConfig.path = os.Getenv("GENIUS_API_PATH")
 		externalApiConfig.accessToken = os.Getenv("GENIUS_API_ACCESS_TOKEN")
 
-		if externalApiConfig.host == "" || externalApiConfig.port == "" || externalApiConfig.accessToken == "" || externalApiConfig.path == "" {
+		if externalApiConfig.accessToken == "" {
 			return nil, errors.New("missing required environment variables for Genius API")
 		}
 	} else {
@@ -113,10 +123,10 @@ func selectApi() (*externalApiConfig, error) {
 		externalApiConfig.host = os.Getenv("EXTERNAL_API_HOST")
 		externalApiConfig.port = os.Getenv("EXTERNAL_API_PORT")
 		externalApiConfig.path = os.Getenv("EXTERNAL_API_PATH")
-		externalApiConfig.accessToken = "none"
+		externalApiConfig.accessToken = ""
 
-		if externalApiConfig.host == "" || externalApiConfig.port == "" || externalApiConfig.accessToken == "" || externalApiConfig.path == "" {
-			return nil, errors.New("missing required environment variables for Genius API")
+		if externalApiConfig.host == "" || externalApiConfig.port == "" || externalApiConfig.path == "" {
+			return nil, errors.New("missing required environment variables for custom external API")
 		}
 
 	}

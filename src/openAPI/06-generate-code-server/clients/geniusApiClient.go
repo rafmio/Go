@@ -1,4 +1,4 @@
-package geniusapi
+package clients
 
 import (
 	"errors"
@@ -11,8 +11,8 @@ import (
 	"geniusapi/models"
 )
 
-func GetSongMetadata(queryParams *models.QueryParams) (*models.SongDetail, error) {
-	accessToken := "ycPo8Ic25mjQO6-Kcka0gUeeZDNNDmhCFh1o19YNPLGXY4W95_xXGuPwCDVjBeJA"
+func GetSongMetadata(queryParams *models.QueryParams, accessToken string) (*models.SongDetail, error) {
+	// accessToken := "ycPo8Ic25mjQO6-Kcka0gUeeZDNNDmhCFh1o19YNPLGXY4W95_xXGuPwCDVjBeJA"
 
 	// Create a new client for the Genius API
 	client := genius.NewClient(nil, accessToken)

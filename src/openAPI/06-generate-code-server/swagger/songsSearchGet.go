@@ -3,17 +3,18 @@ package swagger
 import (
 	"log"
 	"net/http"
+	"strconv"
 
 	"getcode/dbops"
 	"getcode/models"
 )
 
-// http://localhost:8080/v1/songs/search?title=Supermassive%20Black%20Hole&artist=Muse&release_date=10-05-2006
+// http://localhost:8080/v1/songs/search?id=1232&title=Supermassive%20Black%20Hole&artist=Muse&release_date=10-05-2006
 func SongsSearchGet(w http.ResponseWriter, r *http.Request) {
 	log.Println("inside the SongsSearchGet() func")
 
 	// check if request's method is GET:
-	if r.Method != "GET" {
+	if r.Method != http.MethodGet {
 		log.Println("the SongsSearchGet() receive wrong method")
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		return
@@ -21,16 +22,10 @@ func SongsSearchGet(w http.ResponseWriter, r *http.Request) {
 
 	songDetail := new(models.SongDetail)
 	// parse query parameters:
+	songDetail.ID, _ = strconv.Atoi(r.URL.Query().Get("id"))
 	songDetail.Title = r.URL.Query().Get("title")
 	songDetail.Artist = r.URL.Query().Get("artist")
 	songDetail.ReleaseDate = r.URL.Query().Get("release_date")
-
-	// check if all fields are empty
-	if songDetail.Title == "" && songDetail.Artist == "" && songDetail.ReleaseDate == "" {
-		log.Println("all parameters (fields) in request are empty")
-		w.WriteHeader(http.StatusBadRequest)
-		return
-	}
 
 	// TODO: Implement pagination
 

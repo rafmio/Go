@@ -1,7 +1,29 @@
 package swagger
 
-import "net/http"
+import (
+	"encoding/json"
+	"errors"
+	"getcode/dbops"
+	"getcode/models"
+	"log"
+	"net/http"
+	"os"
 
+	"github.com/joho/godotenv"
+)
+
+var (
+	dotEnvFile = "../config/dbconf.env" // path to the .env file
+)
+
+type externalApiConfig struct {
+	host        string
+	port        string
+	accessToken string
+	path        string
+}
+
+// request example:
 // curl -X POST \
 //   http://localhost:8080/v1/songs \
 //   -H 'Content-Type: application/json' \
@@ -11,6 +33,93 @@ import "net/http"
 // }'
 
 func SongsPost(w http.ResponseWriter, r *http.Request) {
+	log.Println("the SongsPost() function has been called")
+
+	// check if request's method is POST:
+	if r.Method != http.MethodPost {
+		log.Println("the SongsSearchGet() receive wrong method")
+		w.WriteHeader(http.StatusMethodNotAllowed)
+		return
+	}
+
+	// parse request to the QueryParams struct
+	var queryParams models.QueryParams
+	err := json.NewDecoder(r.Body).Decode(&queryParams)
+	if err != nil {
+		log.Println("parsing request to add (POST) new song: invalid request body", err)
+		http.Error(w, "parsing request to add (POST) new song: Invalid request body", http.StatusBadRequest)
+		return
+	} else {
+		log.Println("the request's body has been parsed to QueryParams struct")
+	}
+
+	// check if the song to be added (POSTed) already exists in the database to avoid duplicates
+	songsDetail := new(models.SongDetail)
+	songsDetail.Artist = queryParams.Group
+	songsDetail.Title = queryParams.Song
+
+	jsonSongs, err := dbops.SongsSearchDB(songsDetail)
+	if err != nil {
+		log.Println("error searching in DB")
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	if len(jsonSongs) > 0 {
+		log.Println("the song you are trying to add (POST) already exists in the DB")
+		w.WriteHeader(http.StatusConflict) // 409
+		return
+	}
+
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
+}
+
+func callExternalApi(queryParams *models.QueryParams) (*models.SongDetail, error) {
+	log.Println("the callExternalApi() has been called")
+
+	// selects the API to use based on the configuration. By default, it uses the Genius API
+	apiConfig, err := selectApi()
+	if err != nil {
+		log.Println("error selecting API source:", err)
+		return nil, err
+	}
+
+}
+
+func selectApi() (*externalApiConfig, error) {
+	log.Println("the selectApi() has been called")
+
+	err := godotenv.Load(dotEnvFile)
+	if err != nil {
+		log.Fatalf("error loading .env file: %v", err)
+	}
+
+	externalApiConfig := new(externalApiConfig)
+	// retrieve API configuration from environment variables
+	if os.Getenv("MUSIC_INFO_USE_GENIUS_API") == "true" {
+		log.Println("the geinus.com API has been selected as default")
+
+		externalApiConfig.host = os.Getenv("GENIUS_API_HOST")
+		externalApiConfig.port = os.Getenv("GENIUS_API_PORT")
+		externalApiConfig.path = os.Getenv("GENIUS_API_PATH")
+		externalApiConfig.accessToken = os.Getenv("GENIUS_API_ACCESS_TOKEN")
+
+		if externalApiConfig.host == "" || externalApiConfig.port == "" || externalApiConfig.accessToken == "" || externalApiConfig.path == "" {
+			return nil, errors.New("missing required environment variables for Genius API")
+		}
+	} else {
+		log.Println("the custom external API has been selected")
+
+		externalApiConfig.host = os.Getenv("EXTERNAL_API_HOST")
+		externalApiConfig.port = os.Getenv("EXTERNAL_API_PORT")
+		externalApiConfig.path = os.Getenv("EXTERNAL_API_PATH")
+		externalApiConfig.accessToken = "none"
+
+		if externalApiConfig.host == "" || externalApiConfig.port == "" || externalApiConfig.accessToken == "" || externalApiConfig.path == "" {
+			return nil, errors.New("missing required environment variables for Genius API")
+		}
+
+	}
+
+	return externalApiConfig, nil
 }

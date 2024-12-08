@@ -14,5 +14,4 @@ type SongDetail struct {
 type QueryParams struct {
 	Group       string `json:"group"`
 	Song        string `json:"song"`
-	ReleaseDate string `json:"release_date"`
 }

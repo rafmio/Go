@@ -10,6 +10,10 @@ import (
 	_ "github.com/lib/pq"
 )
 
+var (
+	dotEnvFile = "../config/dbconf.env"
+)
+
 type DBConfig struct {
 	DriverName string // e.g. "postgres"
 	Host       string // "127.0.0.1", "localhost", etc
@@ -33,9 +37,10 @@ func NewDBConfig(dbConfigFilePath string) (*DBConfig, error) {
 
 	// Load environment variables from dbconf.env file
 	log.Println("load environment variables from .env file")
-	err := godotenv.Load("../config/dbconf.env")
+
+	err := godotenv.Load(dotEnvFile)
 	if err != nil {
-		log.Fatalf("Error loading .env file: %v", err)
+		log.Fatalf("error loading .env file: %v", err)
 	}
 
 	dbCfg := new(DBConfig) // new DBConfig instance

@@ -1,11 +1,9 @@
-Checking for exitsting SSH keys:
-ls -al ~/.ssh
+Checking for exitsting SSH keys: '$ls -al ~/.ssh'
 
 Generating a new SSH key:
 $ ssh-keygen -t ed25519 -C "myprimary_don't_secondary_mail@google.com"
 
-Add SSH key to SSH agent:
-$ ssh-add ~/.ssh/id_ed25519
+Add SSH key to SSH agent: '$ ssh-add ~/.ssh/id_ed25519'
 
 To add SSH key to github.com need to use @gmail.com mail (don't use secondary mail)
 

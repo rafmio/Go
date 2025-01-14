@@ -1,0 +1,39 @@
+{
+  "office_hours": [
+    {
+      "day": "Monday",
+      "open_time": "09:00:00",
+      "close_time": "17:00:00"
+    },
+    {
+      "day": "Tuesday",
+      "open_time": "09:00:00",
+      "close_time": "18:00:00"
+    },
+    {
+      "day": "Wednesday",
+      "open_time": "09:30:00",
+      "close_time": "17:30:00"
+    },
+    {
+      "day": "Thursday",
+      "open_time": "09:30:00",
+      "close_time": "17:30:00"
+    },
+    {
+      "day": "Friday",
+      "open_time": "10:00:00",
+      "close_time": "16:00:00"
+    },
+    {
+      "day": "Saturday",
+      "open_time": "10:00:00",
+      "close_time": "14:00:00"
+    },
+    {
+      "day": "Sunday",
+      "open_time": "11:00:00",
+      "close_time": "15:00:00"
+    }
+  ]
+}

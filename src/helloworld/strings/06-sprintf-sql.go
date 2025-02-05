@@ -26,16 +26,32 @@ func generatePlaceholders(count int) []string {
 	}
 	return placeholders
 }
+func buildExistsQuery(req entry) (string, error) {
+	if len(req.params) != len(req.columns) {
+		return "", fmt.Errorf("params and columns must have the same length")
+	}
 
-// func generateExistsQuery() {
-// 	for i, column := range
-// }
+	var conditions []string
+
+	// conditions for WHERE
+	for i, column := range req.columns {
+		conditions = append(conditions, fmt.Sprintf("%s = $%d", column, i+1))
+	}
+
+	query := fmt.Sprintf(
+		"SELECT EXISTS (SELECT 1 FROM %s WHERE %s)",
+		req.tableName,
+		strings.Join(conditions, " AND "),
+	)
+
+	return query, nil
+}
 
 func main() {
 	newQuery := entry{
 		tableName: "users",
 		columns:   []string{"id", "name", "email", "phone"},
-		params:    []string{"1", "John Doe", "johndoe@example.com", "555-32-31"},
+		params:    []string{"1", "Ivan Pomidorov", "ivanterrorist@example.com", "555-32-31"},
 	}
 
 	oneMoreQuery := entry{
@@ -45,4 +61,20 @@ func main() {
 	}
 	generateSQLstring(newQuery)
 	generateSQLstring(oneMoreQuery)
+
+	existQueryOne, err := buildExistsQuery(newQuery)
+	if err != nil {
+		fmt.Println("Error building exists query:", err)
+		return
+	} else {
+		fmt.Println(existQueryOne)
+	}
+
+	existsQuery, err := buildExistsQuery(oneMoreQuery)
+	if err != nil {
+		fmt.Println("Error building exists query:", err)
+		return
+	} else {
+		fmt.Println(existsQuery)
+	}
 }

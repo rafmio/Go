@@ -1,14 +1,10 @@
 net/http package: server, client, request, response, mux
-
 linked lists
-
 Bitwise operations
-
 context.Backgound
 context package
 
-Что такое MIME?
-mime/multipart
+Что такое MIME? mime/multipart
 
 init functions
 

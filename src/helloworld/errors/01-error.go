@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"log"
 )
@@ -16,4 +17,7 @@ func main() {
 	}
 
 	log.Printf("%d is greater than %d, and error is %v", b, a, err)
+
+	err = errors.New(fmt.Sprintf("This is the new added text to err: %s", err))
+	fmt.Println(err)
 }

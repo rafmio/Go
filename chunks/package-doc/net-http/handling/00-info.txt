@@ -1,0 +1,6 @@
+This directory was created to help me understand the various types of data and functionality available in the Go "net/http" package, including:
+1.http.Handler
+2.http.Handle
+3.http.HandleFunc
+4.http.HandlerFunc
+5.ServeHTTP

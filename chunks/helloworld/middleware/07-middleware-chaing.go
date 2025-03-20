@@ -1,3 +1,4 @@
+// Example provided by DeepSeek
 package main
 
 import (
@@ -19,6 +20,7 @@ func authMiddleware(next http.Handler) http.Handler {
 		if r.Header.Get("Authorization") != "secret" {
 			http.Error(w, "Nonauthorized", http.StatusUnauthorized)
 		}
+		w.Write([]byte("Executing next.ServeHTTP() inside authMiddleware()"))
 		next.ServeHTTP(w, r)
 	})
 }
@@ -49,3 +51,6 @@ func main() {
 		log.Fatal(err)
 	}
 }
+
+// $ curl -H 'Authorization: secret' http://localhost:8080
+// $ curl -X GET http://localhost:8080

@@ -31,9 +31,3 @@ fan-in, fan-out
 
 runtime package
 
-from the 'net/http' package:
-http.Handler
-http.Handle
-http.HandleFunc
-http.HandlerFunc
-ServeHTTP

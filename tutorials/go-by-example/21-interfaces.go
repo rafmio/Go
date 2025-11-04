@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
 type geometry interface {
@@ -33,4 +34,22 @@ func (c circle) perim() float64 {
 	return 2 * math.Pi * c.radius
 }
 
-func measure(g )
+func measure(g geometry) {
+	fmt.Println(g)
+	fmt.Println(g.area())
+	fmt.Println(g.perim())
+}
+
+func detectCircle(g geometry) {
+	if c, ok := g.(circle); ok {
+		fmt.Println("circle with radius", c.radius)
+	}
+}
+
+func main() {
+	r := rect{width: 3, height: 4}
+	c := circle{radius: 5}
+
+	measure(r)
+	measure(c)
+}

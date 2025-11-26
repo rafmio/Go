@@ -1,0 +1,11 @@
+.git
+.gitignore
+README.md
+*.md
+*.test
+*.sh
+node_modules
+Dockerfile
+.dockerignore
+Makefile
+.github
